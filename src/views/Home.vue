@@ -1,7 +1,27 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld/>
+    <div class="header-home pb-5">
+    <div class="row">
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <h1>
+                Meet &amp; Book Artists
+            </h1>
+        </div>
+        <div class="col-md-6 col-lg-6 col-xl-6">
+            <div>
+              <b-img src="./assets/sitting-2x.png" fluid alt="Responsive image"></b-img>
+          </div>
+        </div>
+    </div>
+    </div>
+    <div class="book">
+        <div  class="container">
+            <h1>
+                Book your artist anytime
+            </h1>
+        </div>
+    </div>
   </div>
 </template>
 
