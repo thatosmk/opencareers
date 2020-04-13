@@ -63,7 +63,35 @@
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-8">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="py-4">
+                            <h6 class="">
+                                Products
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="py-4">
+                            <h6 class="">
+                                Company
+                            </h6>
+                        </div>
+                    </div>
+                    <div class="col-xs-12 col-sm-12 col-md-4">
+                        <div class="py-4">
+                            <h6 class="">
+                                Resources
+                            </h6>
+                        </div>
+                    </div>
+                </div>
             </div>
+        </div>
+        <div class="py-5">
+            <p class="text-muted">
+                plab &copy; All Rights Reserved 2020
+            </p>
         </div>
     </footer>
   </div>
