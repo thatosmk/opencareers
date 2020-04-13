@@ -6,9 +6,7 @@ import App from './App.vue';
 import router from './router';
 
 // adding the styling files for bootstrap
-import 'bootstrap/dist/css/bootstrap.css';
-import 'bootstrap-vue/dist/bootstrap-vue.css';
-import './assets/css/custom.css';
+import './assets/scss/custom.scss';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);

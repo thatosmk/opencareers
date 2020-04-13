@@ -2,6 +2,10 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import Home from '../views/Home.vue';
 import Customers from '@/components/Customers.vue';
+import Bookings from '@/components/Bookings.vue';
+import RegisterMinervas from '@/components/RegisterMinervas.vue';
+import SessionMinervas from '@/components/SessionMinervas.vue';
+import TodoItems from '@/components/Todos.vue';
 
 Vue.use(VueRouter);
 
@@ -12,9 +16,29 @@ const routes = [
     component: Home,
   },
   {
+    path: '/bookings',
+    name: 'bookings',
+    component: Bookings,
+  },
+  {
+    path: '/todo-items',
+    name: 'todo-items',
+    component: TodoItems,
+  },
+  {
     path: '/customers',
     name: 'customers',
     component: Customers,
+  },
+  {
+    path: '/minervas/sign_in',
+    name: 'minervas_login',
+    component: SessionMinervas,
+  },
+  {
+    path: '/minervas/sign_up',
+    name: 'minervas',
+    component: RegisterMinervas,
   },
   {
     path: '/about',

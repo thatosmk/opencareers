@@ -5,7 +5,12 @@
     <div class="row">
         <div class="col-md-6 col-lg-6 col-xl-6">
             <h1>
-                Meet &amp; Book Artists
+                Find
+                <transition name="fade">
+                 <p :if="show" v-for="fruit in fruits" :key="fruit">
+                     {{ fruit }}
+                 </p>
+                </transition>
             </h1>
         </div>
         <div class="col-md-6 col-lg-6 col-xl-6">
@@ -31,6 +36,12 @@ import HelloWorld from '@/components/HelloWorld.vue';
 
 export default {
   name: 'home',
+  data() {
+    return {
+      fruits: ['apple', 'banana', 'pear'],
+      show: true,
+    };
+  },
   components: {
     HelloWorld,
   },
