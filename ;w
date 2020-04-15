@@ -1,0 +1,24 @@
+<template>
+    <div>
+        <div class="mx-4">
+            <h1 class="py-4">
+                dashboard
+            </h1>
+        </div>
+        <b-card class="mx-4">
+            <b-table-simple :items="bookings" :borderless="borderless">
+            </b-table-simple>
+        </b-card>
+    </div>
+</template>
+
+<script>
+export default {
+  name: 'UserDashboard',
+  computed: {
+    bookings() {
+      return this.$store.state.bookings;
+    },
+  },
+};
+</script>

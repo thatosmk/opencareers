@@ -1,16 +1,15 @@
-$primary: #2eaf7d;
-$secondary: #3fd0c9;
-$dark: #02353c;
-$light: #c1f6ed;
-$success: #449342;
+@import "variables";
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
+@import "mixins";
+@import "bookings";
+@import "sessions";
+@import "plabsters";
 
-.header-home
+.bg-light
 {
-    min-height: 100vh;
+    background-color: transparent !important;
 }
-
 .navbar-nav .nav-link span
 {
     color: #555;
@@ -37,10 +36,63 @@ $success: #449342;
     color: #555;
 }
 
+/* main */
+header
+{
+    @include landing_div(transparent, 100vh);
 
-.fade-enter-active, .fade-leave-active {
-      transition: opacity .5s;
-  }
-  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-        opacity: 0;
+    h1
+    {
+        @include landing_h1;
     }
+
+}
+.filter_tag
+{
+    display: inline-block !important;
+    padding-right: 8px !important;
+    padding-top: 4px !important;
+    padding-bottom: 4px !important;
+
+    .inner_tag_press
+    {
+        font-weight: 400 !important;
+        font-size: 14px !important;
+        line-height: 18px !important;
+
+        span
+        {
+            display: inline-block !important; 
+        }
+    }
+
+    .tag_press
+    {
+        @include btn_tag; 
+    }
+}
+.reviews
+{
+    @include landing_div(transparent, 100px);
+}
+
+.why_1, .why_2, .why_3
+{
+    @include landing_div(transparent, 100px);
+}
+
+.contact
+{
+    @include landing_div(transparent, 100px);
+    h2
+    {
+        font-size: 2.2em; 
+        line-height: 45px;
+    }
+}
+footer
+{
+    @include landing_div($dark, 30vh);
+    bottom: 0;
+    color: $light;
+}

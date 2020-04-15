@@ -1,12 +1,63 @@
 <template>
   <div class="main">
     <header class="py-5">
-        <h1 class="font-weight-bold">
-            Looking for
-        </h1>
+        <vue-typed-js :strings="words" :loop="true">
+            <h1 class="font-weight-bold pt-5">Looking for &nbsp;
+                <br/>
+                <span class="text-primary worded font-weight-bold pt-2 typing">
+                </span>
+                <hr/>
+            </h1>
+        </vue-typed-js>
         <p class="lead py-4">
             At your convenience
         </p>
+        <div class="py-4">
+            <div class="filter_tag">
+                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
+                    <span aria-label="Photographer">
+                        <div class="inner_tag_press">
+                            <span>
+                                Hair Stylist
+                            </span>
+                        </div>
+                    </span>
+                </button>
+            </div>
+            <div class="filter_tag">
+                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
+                    <span aria-label="Photographer">
+                        <div class="inner_tag_press">
+                            <span>
+                                Photographer
+                            </span>
+                        </div>
+                    </span>
+                </button>
+            </div>
+            <div class="filter_tag">
+                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
+                    <span aria-label="Photographer">
+                        <div class="inner_tag_press">
+                            <span>
+                                Chefs
+                            </span>
+                        </div>
+                    </span>
+                </button>
+            </div>
+            <div class="filter_tag">
+                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
+                    <span aria-label="Photographer">
+                        <div class="inner_tag_press">
+                            <span>
+                                Makeup artist
+                            </span>
+                        </div>
+                    </span>
+                </button>
+            </div>
+        </div>
     </header>
     <div class="reviews">
         <div class="py-5 text-center">
@@ -20,7 +71,7 @@
         </div>
     </div>
     <div class="why">
-        <div class="row">
+        <div class="row why_1">
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="py-5">
                     <h1 class="font-weight-bold">
@@ -35,7 +86,7 @@
             <div class="col-xs-12 col-sm-12 col-md-6">
             </div>
         </div>
-        <div class="row">
+        <div class="row why_2">
             <div class="col-xs-12 col-sm-12 col-md-6">
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
@@ -50,7 +101,7 @@
                 </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row why_3">
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="py-5">
                     <h1 class="font-weight-bold">
@@ -70,9 +121,13 @@
         <div class="row">
             <div class="col-xs-12 col-sm-12 col-md-6">
                 <div class="py-5">
-                    <p class="lead">
-                        Ready to get started?
-                    </p>
+                    <h2 class="font-weight-light">
+                        <span class="subtitle text-primary">
+                            Ready to get started?
+                        </span>
+                        <br/>
+                        Get in touch or create an account
+                    </h2>
                 </div>
             </div>
             <div class="col-xs-12 col-sm-12 col-md-6">
@@ -99,6 +154,7 @@ export default {
   name: 'home',
   data() {
     return {
+      words: ['drivers', 'artists', 'chefs', 'photographers', 'makeup artists', 'designers', 'freelancers', 'go-getters'],
     };
   },
   components: {
