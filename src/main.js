@@ -3,7 +3,7 @@ import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import VueTypedJs from 'vue-typed-js';
 import App from './App.vue';
 import router from './router';
-import store from './store/index';
+import store from './store';
 
 // adding the styling files for bootstrap
 import './assets/scss/custom.scss';
@@ -14,6 +14,7 @@ Vue.use(IconsPlugin);
 Vue.use(VueTypedJs);
 
 new Vue({
+  el: '#app',
   router,
   store,
   render: h => h(App),

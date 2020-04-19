@@ -1,10 +1,13 @@
 <template>
-    <div>
+    <div id="app">
         <router-view/>
     </div>
 </template>
 <script>
 export default {
-  name: 'User',
+  name: 'user',
+  created() {
+    // this.$store.dispatch('getUser');
+  },
 };
 </script>

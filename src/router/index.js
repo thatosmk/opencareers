@@ -3,6 +3,9 @@ import VueRouter from 'vue-router';
 import Home from '@/views/Home.vue';
 import GetStarted from '@/views/GetStarted.vue';
 import Customers from '@/components/Customers.vue';
+// auth
+import UserLogin from '@/components/auth/UserLogin.vue';
+import UserSignout from '@/components/auth/UserSignout.vue';
 // users
 import User from '@/components/User.vue';
 import UserBookings from '@/components/UserBookings.vue';
@@ -66,9 +69,25 @@ const routes = [
     ],
   },
   {
+    path: '/user-login',
+    name: 'user_login',
+    component: UserLogin,
+    meta: {
+      guest: true,
+    },
+  },
+  {
+    path: '/user-logout',
+    name: 'user_logout',
+    component: UserSignout,
+  },
+  {
     path: '/user',
     name: 'user',
     component: User,
+    meta: {
+      requiresAuth: true,
+    },
     children: [
       {
         path: 'user-dashboard',
@@ -93,6 +112,9 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue'),
+    meta: {
+      guest: true,
+    },
   },
   {
     path: '/bookings',
@@ -132,4 +154,20 @@ const router = new VueRouter({
   routes,
 });
 
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (localStorage.getItem('token') == null) {
+      next({
+        path: '/login',
+        params: { nextUrl: to.fullPath },
+      });
+    } else {
+      const user = JSON.parse(localStorage.getItem('currentUser'));
+      this.$store.state.user = user;
+      next({ name: 'user_dashboard' });
+    }
+  } else {
+    next();
+  }
+});
 export default router;

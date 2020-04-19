@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-if="user">
+    <div id="app" v-if="user">
         <div class="row">
             <section class="col-md-3 col-lg-2 col-xl-2 sidebar">
                 <div class="py-5 mx-2">
@@ -69,7 +69,7 @@
             </section>
         </div>
     </div>
-    <div v-else-if="plabster">
+    <div id="app" v-else-if="plabster">
         <main>
             <router-view/>
         </main>
@@ -182,10 +182,12 @@ export default {
   name: 'Home',
   computed: {
     user() {
-      return this.$router.currentRoute.matched[0].path === '/user';
+      return false;
+      // return this.$store.state.user;
     },
     plabster() {
-      return this.$router.currentRoute.matched[0].path === '/plabster';
+      return false;
+      // return this.$router.currentRoute.matched[0].path === '/plabster';
     },
   },
 };

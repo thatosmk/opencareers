@@ -2,7 +2,7 @@
     <div>
         <div class="mx-4">
             <h1 class="py-4">
-                dashboard#overview
+                Hi {{ current_user.email }}
             </h1>
         </div>
     </div>
@@ -11,5 +11,10 @@
 <script>
 export default {
   name: 'UserDashboard',
+  computed: {
+    current_user() {
+      return this.$store.state.user;
+    },
+  },
 };
 </script>
