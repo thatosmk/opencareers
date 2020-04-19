@@ -6,8 +6,7 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    user: false,
-    minerva: false,
+    user: '',
     bookings: [],
     booking: '',
     busyDays: [],
@@ -23,8 +22,6 @@ const store = new Vuex.Store({
     },
 
     setUser(state, user) {
-      console.log(user);
-      console.log('User set');
       state.user = user;
     },
 
@@ -71,10 +68,10 @@ const store = new Vuex.Store({
         method: 'delete',
       }).then((response) => {
         localStorage.removeItem('token');
+        localStorage.removeItem('currentUser');
         response.json();
       })
         .then((user) => {
-          localStorage.removeItem('currentUser');
           commit('userLogin', user);
         }).catch();
     },

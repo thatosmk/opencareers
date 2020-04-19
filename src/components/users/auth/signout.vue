@@ -1,10 +1,10 @@
 <template>
-  <div id="app" class="login">
+  <div id="app">
   </div>
 </template>
 <script>
 export default {
-  name: 'UserSignout',
+  name: 'Signout',
   created() {
     this.$store.dispatch('userSignout');
   },

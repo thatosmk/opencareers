@@ -1,24 +1,16 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+
 import Home from '@/views/Home.vue';
 import GetStarted from '@/views/GetStarted.vue';
-import Customers from '@/components/Customers.vue';
-// auth
-import UserLogin from '@/components/auth/UserLogin.vue';
-import UserSignout from '@/components/auth/UserSignout.vue';
 // users
-import User from '@/components/User.vue';
-import UserBookings from '@/components/UserBookings.vue';
-import UserDashboard from '@/components/UserDashboard.vue';
+import User from '@/components/users/user.vue';
+import Login from '@/components/users/auth/login.vue';
+import Signout from '@/components/users/auth/signout.vue';
+import Bookings from '@/components/users/dashboard/bookings.vue';
+import Overview from '@/components/users/dashboard/overview.vue';
 
-// plabsters
-import PlabsterProfile from '@/components/PlabsterProfile.vue';
-import Search from '@/components/Search.vue';
-import Bookings from '@/components/Bookings.vue';
 import NewBooking from '@/components/NewBooking.vue';
-import RegisterMinervas from '@/components/RegisterMinervas.vue';
-import SessionMinervas from '@/components/SessionMinervas.vue';
-import TodoItems from '@/components/Todos.vue';
 
 Vue.use(VueRouter);
 
@@ -29,78 +21,41 @@ const routes = [
     component: Home,
   },
   {
-    path: '/search',
-    name: 'search',
-    component: Search,
-  },
-  {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue'),
-  },
-  {
     path: '/get-started',
     name: 'get_started',
     component: GetStarted,
   },
   {
-    path: '/plabster',
+    path: '/plabsters',
     name: 'plabster',
-    component: User,
     children: [
-      {
-        path: 'plabster-dashboard',
-        name: 'plabster_dashboard',
-        component: UserDashboard,
-      },
-      {
-        path: 'plabster-bookings',
-        name: 'plabster_bookings',
-        component: UserBookings,
-      },
-      {
-        path: 'plabster-profile',
-        name: 'plabster_profile',
-        component: PlabsterProfile,
-      },
     ],
   },
   {
-    path: '/user-login',
-    name: 'user_login',
-    component: UserLogin,
-    meta: {
-      guest: true,
-    },
-  },
-  {
-    path: '/user-logout',
-    name: 'user_logout',
-    component: UserSignout,
-  },
-  {
-    path: '/user',
-    name: 'user',
+    path: '/users',
+    name: 'users',
     component: User,
     meta: {
       requiresAuth: true,
     },
     children: [
       {
-        path: 'user-dashboard',
+        path: 'overview',
         name: 'user_dashboard',
-        component: UserDashboard,
+        component: Overview,
       },
       {
-        path: 'user-bookings',
+        path: 'logout',
+        name: 'user_logout',
+        component: Signout,
+      },
+      {
+        path: 'bookings',
         name: 'user_bookings',
-        component: UserBookings,
+        component: Bookings,
       },
       {
-        path: 'user-profile',
+        path: 'profile',
         name: 'user_profile',
       },
     ],
@@ -112,9 +67,11 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/Login.vue'),
-    meta: {
-      guest: true,
-    },
+  },
+  {
+    path: '/user-login',
+    name: 'user_login',
+    component: Login,
   },
   {
     path: '/bookings',
@@ -125,26 +82,6 @@ const routes = [
     path: '/bookings/new',
     name: 'new_booking',
     component: NewBooking,
-  },
-  {
-    path: '/todo-items',
-    name: 'todo-items',
-    component: TodoItems,
-  },
-  {
-    path: '/customers',
-    name: 'customers',
-    component: Customers,
-  },
-  {
-    path: '/minervas/sign_in',
-    name: 'minervas_login',
-    component: SessionMinervas,
-  },
-  {
-    path: '/minervas/sign_up',
-    name: 'minervas',
-    component: RegisterMinervas,
   },
 ];
 
@@ -159,12 +96,18 @@ router.beforeEach((to, from, next) => {
     if (localStorage.getItem('token') == null) {
       next({
         path: '/login',
-        params: { nextUrl: to.fullPath },
+        query: { redirect: to.fullPath },
       });
+    } else if (to.name !== 'user_logout') {
+      next({ path: '/' });
     } else {
-      const user = JSON.parse(localStorage.getItem('currentUser'));
-      this.$store.state.user = user;
-      next({ name: 'user_dashboard' });
+      next();
+    }
+  } else if (to.matched.some(record => record.meta.guest)) {
+    if (localStorage.getItem('token') == null) {
+      next({ name: 'home' });
+    } else {
+      next();
     }
   } else {
     next();

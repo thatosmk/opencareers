@@ -37,7 +37,7 @@
 <script>
 
 export default {
-  name: 'UserLogin',
+  name: 'Login',
   methods: {
     async userLogin() {
       const formData = new FormData(this.$refs.form);

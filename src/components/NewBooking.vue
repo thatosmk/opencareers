@@ -94,8 +94,6 @@
 </template>
 
 <script>
-import store from '../store/index';
-
 export default {
   name: 'NewBooking',
   components: {
@@ -107,7 +105,7 @@ export default {
   methods: {
     async saveBooking() {
       const formData = new FormData(this.$refs.form);
-      store.dispatch('createBooking', formData);
+      this.$store.dispatch('createBooking', formData);
       this.$router.push('/');
       // navigate to new route
       // query the new booking and navigate to it.

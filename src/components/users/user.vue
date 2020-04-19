@@ -5,7 +5,7 @@
 </template>
 <script>
 export default {
-  name: 'user',
+  name: 'User',
   created() {
     // this.$store.dispatch('getUser');
   },

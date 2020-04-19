@@ -18,19 +18,17 @@
 </template>
 
 <script>
-import store from '../store/index';
-
 export default {
   name: 'UserDashboard',
   created() {
-    store.dispatch('loadBookings');
+    this.$store.dispatch('loadBookings');
   },
   computed: {
     bookings() {
-      return store.state.bookings;
+      return this.$store.state.bookings;
     },
     bookingsCount() {
-      return store.state.bookings.length;
+      return this.$store.state.bookings.length;
     },
   },
 };
