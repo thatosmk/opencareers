@@ -2,9 +2,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
 @import "mixins";
-@import "bookings";
-@import "sessions";
-@import "plabsters";
 
 .bg-light
 {
@@ -47,52 +44,20 @@ header
     }
 
 }
-.filter_tag
+.card
 {
-    display: inline-block !important;
-    padding-right: 8px !important;
-    padding-top: 4px !important;
-    padding-bottom: 4px !important;
-
-    .inner_tag_press
-    {
-        font-weight: 400 !important;
-        font-size: 14px !important;
-        line-height: 18px !important;
-
-        span
-        {
-            display: inline-block !important; 
-        }
-    }
-
-    .tag_press
-    {
-        @include btn_tag; 
-    }
-}
-.reviews
-{
-    @include landing_div(transparent, 100px);
+    border-radius: 16px !important;
+    border: 1px solid #fff;    
 }
 
-.why_1, .why_2, .why_3
+.ux_read
 {
-    @include landing_div(transparent, 100px);
-}
-
-.contact
-{
-    @include landing_div(transparent, 100px);
-    h2
-    {
-        font-size: 2.2em; 
-        line-height: 45px;
-    }
+    margin: 50px 10vw;
 }
 footer
 {
-    @include landing_div($dark, 30vh);
+    // @include landing_div($dark, 30vh);
     bottom: 0;
-    color: $light;
+    text-align: center;
+    // color: $light;
 }

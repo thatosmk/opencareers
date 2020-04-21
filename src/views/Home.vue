@@ -1,148 +1,67 @@
 <template>
   <div class="main">
-    <header class="py-5">
-        <vue-typed-js :strings="words" :loop="true">
-            <h1 class="font-weight-bold pt-5">Looking for &nbsp;
-                <br/>
-                <span class="text-primary worded font-weight-bold pt-2 typing">
-                </span>
-                <hr/>
-            </h1>
-        </vue-typed-js>
-        <p class="lead py-4">
-            At your convenience
-        </p>
-        <div class="py-4">
-            <div class="filter_tag">
-                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
-                    <span aria-label="Photographer">
-                        <div class="inner_tag_press">
-                            <span>
-                                Hair Stylist
+    <header class="py-5 text-center ">
+        <b-row>
+            <div class="col-xs-12 col-md-7">
+                <div class="text-center">
+                    <vue-typed-js :strings="words" :loop="true">
+                        <h2 class="font-weight-light text-italic pt-5">
+                            Become  &nbsp;
+                            <span class="text-primary worded font-weight-bold pt-2 typing">
                             </span>
-                        </div>
-                    </span>
-                </button>
+                        </h2>
+                    </vue-typed-js>
+                </div>
+                <div class="py-5">
+                    <b-form>
+                        <label class="sr-only" for="inline-form-input-search">search career</label>
+                        <b-input-group size="lg">
+                            <b-input-group-prepend is-text>
+                                <b-icon-search
+                                    variant="primary"
+                                    class="mx-2"
+                                ></b-icon-search>
+                            </b-input-group-prepend>
+                            <b-input id="form-input-search"
+                                placeholder="What do you want to be?"
+                                size="lg"
+                                class="px-4 pb-2 pt-2"
+                            >
+                            </b-input>
+                        </b-input-group>
+                    </b-form>
+                </div>
             </div>
-            <div class="filter_tag">
-                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
-                    <span aria-label="Photographer">
-                        <div class="inner_tag_press">
-                            <span>
-                                Photographer
-                            </span>
-                        </div>
-                    </span>
-                </button>
+            <div class="col-xs-12 col-md-5">
             </div>
-            <div class="filter_tag">
-                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
-                    <span aria-label="Photographer">
-                        <div class="inner_tag_press">
-                            <span>
-                                Chefs
-                            </span>
-                        </div>
-                    </span>
-                </button>
-            </div>
-            <div class="filter_tag">
-                <button aria-invalid="false" class="tag_press" aria-pressed="pressed">
-                    <span aria-label="Photographer">
-                        <div class="inner_tag_press">
-                            <span>
-                                Makeup artist
-                            </span>
-                        </div>
-                    </span>
-                </button>
-            </div>
-        </div>
+        </b-row>
     </header>
-    <div class="reviews">
-        <div class="py-5 text-center">
-            <h1 class="font-weight-bold">
-                What others are saying
-            </h1>
-            <p class="py-4 lead">
-                Whether you’re looking to bill customers on a recurring basis,
-                set up a marketplace, or simply accept.
-            </p>
-        </div>
-    </div>
-    <div class="why">
-        <div class="row why_1">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="py-5">
-                    <h1 class="font-weight-bold">
-                        Convenient
-                    </h1>
-                    <p class="py-4 lead">
-                        Whether you’re looking to bill customers on a recurring basis,
-                        set up a marketplace, or simply accept.
+    <div class="careers">
+        <b-card-group columns>
+            <b-card
+                class="shadow mb-5"
+                v-for="career in careers"
+                :key="career.id"
+                :title="career.title"
+            >
+                <b-card-text>
+                    <p class="font-weight-light">
+                        {{ career.description }}
                     </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-            </div>
-        </div>
-        <div class="row why_2">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="py-5">
-                    <h1 class="font-weight-bold">
-                        Authentic
-                    </h1>
-                    <p class="py-4 lead">
-                        Whether you’re looking to bill customers on a recurring basis,
-                        set up a marketplace, or simply accept.
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div class="row why_3">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="py-5">
-                    <h1 class="font-weight-bold">
-                        Safe &amp; Reliable
-                    </h1>
-                    <p class="py-4 lead">
-                        Whether you’re looking to bill customers on a recurring basis,
-                        set up a marketplace, or simply accept.
-                    </p>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-            </div>
-        </div>
-    </div>
-    <div class="contact">
-        <div class="row">
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="py-5">
-                    <h2 class="font-weight-light">
-                        <span class="subtitle text-primary">
-                            Ready to get started?
+                    <p class="py-2">
+                        <span class="badge badge-primary">
+                            {{ career.industry }}
                         </span>
-                        <br/>
-                        Get in touch or create an account
-                    </h2>
-                </div>
-            </div>
-            <div class="col-xs-12 col-sm-12 col-md-6">
-                <div class="py-5">
-                    <b-button-toolbar>
-                        <b-button class="mx-2" variant="primary">
-                            Start now
-                        </b-button>
-                        <b-button variant="secondary">
-                            Contact us
-                        </b-button>
-                    </b-button-toolbar>
-                </div>
-            </div>
-        </div>
+                    </p>
+                </b-card-text>
+                <router-link
+                    :to="{ name: 'career', params: { careerId: career.id } }"
+                    variant="outline-primary"
+                >
+                    Explore career
+                </router-link>
+            </b-card>
+        </b-card-group>
     </div>
   </div>
 </template>
@@ -154,8 +73,13 @@ export default {
   name: 'home',
   data() {
     return {
-      words: ['drivers', 'artists', 'chefs', 'photographers', 'makeup artists', 'designers', 'freelancers', 'go-getters'],
+      words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer', 'a freelancer', 'scientist'],
     };
+  },
+  computed: {
+    careers() {
+      return this.$store.getters.careers;
+    },
   },
   components: {
   },
