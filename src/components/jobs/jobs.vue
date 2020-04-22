@@ -63,7 +63,7 @@
                         </p>
                     </b-card-text>
                     <router-link
-                        :to="{ name: 'job', params: { jobId: job.id } }"
+                        :to="{ name: 'job', params: { jobId: job.slug } }"
                         variant="outline-primary"
                     >
                         Read more

@@ -65,7 +65,7 @@
                     </p>
                 </b-card-text>
                 <router-link
-                    :to="{ name: 'career', params: { careerId: career.id } }"
+                    :to="{ name: 'career', params: { careerId: career.slug } }"
                     variant="outline-primary"
                 >
                     Explore career
