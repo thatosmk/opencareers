@@ -1,6 +1,30 @@
-# happy-hour-client
+# Open Careers
 
-## Project setup
+> Open source careers inspired by [Hacktoberfest!](https://hacktoberfest.digitalocean.com/)
+
+This is the front-end side of the project, there is also a [Rails](https://rails.org) API 
+that serves the back-end, find it [here](https://github/thatosmk/urban-sesilu) 
+
+## Submit a career
+
+> to be completed
+
+Kindly check out Issues for any open bug fixes or feature requests!
+
+## Development
+
+Open careers is built with the following technologies:
+
+* Vue
+* BootstrapVue
+* Hosted on [DigitalOcean](https://digitalocean.com/) ```-- not yet```
+
+If you are familiar or want to give it a shot, feel free to contribute!
+
+## Prerequisites
+
+* Install latest version of Node.js on your machine.
+
 ```
 npm install
 ```
@@ -15,10 +39,24 @@ npm run serve
 npm run build
 ```
 
-### Lints and fixes files
+### Lint
 ```
 npm run lint
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Test
+```
+npm test
+```
+
+### Docker
+
+> Coming soon.
+
+## Inspiration
+
+> This project was also inspired by [opendrinks](https://opendrinks.io/).
+
+## License
+
+MIT
