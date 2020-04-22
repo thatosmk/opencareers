@@ -7,7 +7,9 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     careers: [],
-    career: '',
+    jobs: [],
+    career: {},
+    job: {},
   },
 
   getters: {
@@ -16,6 +18,12 @@ const store = new Vuex.Store({
     },
     career(state) {
       return state.career;
+    },
+    jobs(state) {
+      return state.jobs;
+    },
+    job(state) {
+      return state.job;
     },
   },
 
@@ -26,9 +34,40 @@ const store = new Vuex.Store({
     setCareer(state, career) {
       state.career = career;
     },
+    loadJobs(state, jobs) {
+      state.jobs = jobs;
+    },
+    setJob(state, job) {
+      state.job = job;
+    },
   },
 
   actions: {
+    async loadJobs({ commit }) {
+      fetch('http://localhost:3000/api/v1/jobs', {
+        headers: {
+          accept: 'application/json',
+        },
+        method: 'get',
+      }).then(response => response.json()).then(jobs => commit('loadJobs', jobs)).catch();
+    },
+    async loadJob({ commit }) {
+      fetch(`http://localhost:3000/api/v1/jobs/${router.currentRoute.params.jobId}`, {
+        headers: {
+          accept: 'application/json',
+        },
+        method: 'get',
+      }).then(response => response.json()).then(job => commit('setJob', job)).catch();
+    },
+    async createJob({ commit }, formData) {
+      fetch('http://localhost:3000/api/v1/jobs', {
+        headers: {
+          accept: 'application/json',
+        },
+        method: 'post',
+        body: formData,
+      }).then(response => response.json()).then(job => commit('setJob', job)).catch();
+    },
     async loadCareers({ commit }) {
       fetch('http://localhost:3000/api/v1/careers', {
         headers: {
@@ -43,6 +82,24 @@ const store = new Vuex.Store({
           accept: 'application/json',
         },
         method: 'get',
+      }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
+    },
+    async updateCareer({ commit }, formData) {
+      fetch(`http://localhost:3000/api/v1/careers/${router.currentRoute.params.careerId}`, {
+        headers: {
+          accept: 'application/json',
+        },
+        method: 'put',
+        body: formData,
+      }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
+    },
+    async createCareer({ commit }, formData) {
+      fetch('http://localhost:3000/api/v1/careers', {
+        headers: {
+          accept: 'application/json',
+        },
+        method: 'post',
+        body: formData,
       }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
     },
   },

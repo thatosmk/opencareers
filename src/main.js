@@ -1,17 +1,20 @@
 import Vue from 'vue';
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue';
 import VueTypedJs from 'vue-typed-js';
+import Editor from 'v-markdown-editor';
 import App from './App.vue';
 import router from './router';
 import store from './store';
 
 // adding the styling files for bootstrap
+import 'v-markdown-editor/dist/v-markdown-editor.css';
 import './assets/scss/custom.scss';
 
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(VueTypedJs);
+Vue.use(Editor);
 
 Vue.component('main-navbar', {
   template: `
@@ -27,6 +30,12 @@ Vue.component('main-navbar', {
             <!-- Center aligned nav items -->
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
+                <b-nav-item :to="{path: '/jobs' }">
+                    find jobs
+                </b-nav-item>
+                <b-nav-item :to="{path: '/about' }">
+                    about
+                </b-nav-item>
                 <b-nav-item :to="{path: 'get-started' }">
                     blog
                 </b-nav-item>
