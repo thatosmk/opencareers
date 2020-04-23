@@ -1,9 +1,8 @@
-@mixin landing_div($color, $height) {
+@mixin landing_div($color) {
     padding-top: 130px;
     padding-bottom: 130px;
     background-color: $color;
     position: relative;
-    min-height: calc(260px + $height);
 }
 
 @mixin landing_h1 {
@@ -38,10 +37,9 @@
     font-size: 12px !important;
     line-height: 16px !important;
 }
-@mixin normal_div($color, $height) {
+@mixin normal_div($color) {
     padding-top: 130px;
     padding-bottom: 130px;
     background-color: $color;
     position: relative;
-    min-height: calc(260px + $height);
 }
