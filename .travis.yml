@@ -1,0 +1,8 @@
+nguage: node_js
+node_js:
+ - "node"
+
+cache: npm
+
+script: npm run build
+

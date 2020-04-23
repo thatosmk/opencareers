@@ -36,7 +36,7 @@
 /* main */
 .header-home
 {
-    @include landing_div(transparent, 100vh);
+    @include landing_div(transparent);
 
     h1
     {
