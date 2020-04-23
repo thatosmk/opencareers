@@ -1,4 +1,4 @@
-# Open Careers
+# Open Careers [![Build Status](https://travis-ci.com/thatosmk/opencareers.svg?branch=master)](https://travis-ci.com/thatosmk/opencareers)
 
 > Open source careers inspired by [Hacktoberfest!](https://hacktoberfest.digitalocean.com/)
 
