@@ -18,10 +18,13 @@ Vue.component('main-navbar', {
                     Careers
                 </b-nav-item>
                 <b-nav-item href="/varsities">
-                    Universities
+                    Institutions
                 </b-nav-item>
                 <b-nav-item href="/ask-me-anything">
                     AMAs
+                </b-nav-item>
+                <b-nav-item href="/about">
+                    About
                 </b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav class="ml-auto">
@@ -57,6 +60,14 @@ Vue.component('career-sidebar', {
         <b-nav-item
             href="#how"
             >How to get started
+        </b-nav-item>
+        <b-nav-item
+            href="#day"
+            >A day in the life of
+        </b-nav-item>
+        <b-nav-item
+            href="#salary"
+            >Salary range
         </b-nav-item>
         <b-nav-item
             href="#links"

@@ -2,10 +2,10 @@
     <div class="container">
         <div class="py-5">
             <h1>
-                Universities
+                Institutions
             </h1>
             <p class="text-muted py-2">
-                Looking for a good university to study at?
+                Looking for a good institution to enrol in?
             </p>
         </div>
         <div class="py-4">

@@ -22,6 +22,26 @@
                     </b-jumbotron>
                     <div class="position-relative">
                         <h2>
+                            Details
+                        </h2>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-4">
+                                <p class="lead text-muted">
+                                    qualification: {{ programme.qualification }}
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <p class="lead text-muted">
+                                    duration: {{ programme.duration }} years
+                                </p>
+                            </div>
+                            <div class="col-xs-12 col-md-4">
+                                <p class="lead text-muted">
+                                    faculty: {{ programme.faculty.name }}
+                                </p>
+                            </div>
+                        </div>
+                        <h2>
                             Course to be taken
                         </h2>
                         <p class="pb-4 lead text-muted">

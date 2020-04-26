@@ -21,11 +21,6 @@
                             </b-form-textarea>
                         </b-form-group>
                         <b-form-group label="Description">
-                            <markdown-editor
-                                :options="options"
-                                v-model="career.description"
-                                name="career[description]"
-                            ></markdown-editor>
                         </b-form-group>
                         <b-button-toolbar>
                             <b-button
@@ -62,11 +57,11 @@ export default {
   },
   computed: {
     career() {
-      return this.$store.getters.career;
+      return this.$store.state.careers.career;
     },
   },
   created() {
-    this.$store.dispatch('loadCareer');
+    this.$store.dispatch('careers/loadCareer');
   },
   methods: {
     async updateCareer() {

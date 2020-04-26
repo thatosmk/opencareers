@@ -22,6 +22,15 @@
                     </b-jumbotron>
                     <div class="position-relative">
                         <h2>
+                            Outline
+                        </h2>
+                        <h2>
+                            Entry requirements
+                        </h2>
+                        <h2>
+                            Assessments
+                        </h2>
+                        <h2>
                             Course to be taken
                         </h2>
                         <p class="pb-4 lead text-muted">

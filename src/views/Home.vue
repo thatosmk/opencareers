@@ -11,6 +11,14 @@
             be? We can help you navigate safely into the seemingly
             dreadful unknown.
         </p>
+    </div>
+    <div>
+        <h1 class="pt-5 pb-4 font-weight-bold">
+            Discover the best careers in the world
+        </h1>
+        <p class="font-weight-light pb-5 lead">
+            Find out more information about careers
+        </p>
         <b-card-group columns>
             <b-card
                 class="shadow mb-5"
@@ -36,14 +44,6 @@
                 </router-link>
             </b-card>
         </b-card-group>
-    </div>
-    <div>
-        <h1 class="pt-5 pb-4 font-weight-bold">
-            Discover the best careers in the world
-        </h1>
-        <p class="font-weight-light pb-5 lead">
-            Find out more information about careers
-        </p>
     </div>
     <div>
         <h1 class="pt-5 pb-4 font-weight-bold">

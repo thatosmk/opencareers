@@ -30,6 +30,22 @@
                                 {{ career.process }}
                             </p>
                         </div>
+                        <div id="day">
+                            <h2>
+                                What do my days look like?
+                            </h2>
+                            <p class="pt-4">
+                                {{ career.process }}
+                            </p>
+                        </div>
+                        <div id="salary">
+                            <h2>
+                                Estimated market related salary
+                            </h2>
+                            <p class="pt-4">
+                                {{ career.process }}
+                            </p>
+                        </div>
                         <div id="links">
                             <h2>
                                 Read more about it

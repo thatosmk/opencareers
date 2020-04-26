@@ -7,11 +7,16 @@
 {
     background-color: transparent !important;
 }
+
 .navbar-nav .nav-link span
 {
     color: #555;
 }
 
+.navbar-light .navbar-nav .active > .nav-link
+{
+    color: #fff;
+}
 .navbar-nav .nav-item .nav-link
 {
     color: #555;
@@ -24,13 +29,16 @@
 
 .navbar-nav .active
 {
-    color: #555;
-    border: 1px solid #999;
-    border-radius: 5px;
+    color: #fff !important;
+    background-color: $info;
+    border: 1px solid $info;
+    border-radius: 12px;
+    padding-left: 10px; 
+    padding-right: 10px; 
 }
 .navbar-nav .active .nav-link
 {
-    color: #555;
+    color: #fff;
 }
 
 /* main */
@@ -38,10 +46,10 @@
 {
     @media(min-width: 768px)
     {
-        background-image: url('../images/media_b.png');
+        background-image: url('../images/media_e.png');
         background-repeat: no-repeat;
         background-size: 100%;
-        min-height: 100vh;
+        min-height: 120vh;
 
         h1
         {
@@ -73,7 +81,7 @@
         }
     }
 }
-.card
+.card, .jumbotron
 {
     border-radius: 16px !important;
 }
