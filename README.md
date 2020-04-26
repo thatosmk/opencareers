@@ -3,7 +3,9 @@
 > Open source careers inspired by [Hacktoberfest!](https://hacktoberfest.digitalocean.com/)
 
 This is the front-end side of the project, there is also a [Rails](https://rails.org) API 
-that serves the back-end, find it [here](https://github/thatosmk/urban-sesilu) 
+that serves the back-end, find it [here](https://github.com/thatosmk/urban-sesilo) 
+
+## Backend API
 
 ## Submit a career
 

@@ -2,16 +2,6 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 
 import Home from '@/views/Home.vue';
-import About from '@/views/About.vue';
-import Search from '@/components/Search.vue';
-// careers
-import Career from '@/components/careers/career.vue';
-import EditCareer from '@/components/careers/edit.vue';
-import NewCareer from '@/components/careers/new.vue';
-// jobs
-import Jobs from '@/components/jobs/jobs.vue';
-import Job from '@/components/jobs/job.vue';
-import NewJob from '@/components/jobs/new.vue';
 
 Vue.use(VueRouter);
 
@@ -22,44 +12,64 @@ const routes = [
     component: Home,
   },
   {
-    path: '/about',
-    name: 'about',
-    component: About,
+    path: '/get-started',
+    name: 'get_started',
+    component: () => import('@/views/get_started.vue'),
   },
   {
-    path: '/search',
-    name: 'search',
-    component: Search,
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/About.vue'),
+  },
+  {
+    path: '/ask-me-anything',
+    name: 'ama',
+    component: () => import('@/views/ama.vue'),
+  },
+  {
+    path: '/varsities',
+    name: 'universitites',
+    component: () => import('@/components/universities/index.vue'),
+  },
+  {
+    path: '/varsities/:varsityId',
+    name: 'university',
+    component: () => import('@/components/universities/show.vue'),
+  },
+  {
+    path: '/faculties/:facultyId',
+    name: 'university_faculties',
+    component: () => import('@/components/faculties/show.vue'),
+  },
+  {
+    path: '/programmes/:programmeId',
+    name: 'faculty_programmes',
+    component: () => import('@/components/programmes/show.vue'),
+  },
+  {
+    path: '/courses/:courseId',
+    name: 'course',
+    component: () => import('@/components/courses/show.vue'),
   },
   {
     path: '/careers/new',
     name: 'new_career',
-    component: NewCareer,
+    component: () => import('@/components/careers/new.vue'),
   },
   {
     path: '/careers/:careerId',
     name: 'career',
-    component: Career,
+    component: () => import('@/components/careers/career.vue'),
   },
   {
     path: '/careers/:careerId/update',
     name: 'edit_career',
-    component: EditCareer,
+    component: () => import('@/components/careers/edit.vue'),
   },
   {
-    path: '/jobs',
-    name: 'jobs',
-    component: Jobs,
-  },
-  {
-    path: '/jobs/new',
-    name: 'new_job',
-    component: NewJob,
-  },
-  {
-    path: '/jobs/:jobId',
-    name: 'job',
-    component: Job,
+    path: '/careers',
+    name: 'careers',
+    component: () => import('@/components/careers/index.vue'),
   },
 ];
 

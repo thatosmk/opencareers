@@ -3,48 +3,53 @@
         <div class="py-5 ux_read">
             <div class="row">
                 <div class="col-xs-12 col-md-3">
-                    <div class="py-5 toc position-fixed">
-                        <b-nav
-                            vertical
-                            nav-wrapper-class="w-50"
-                            v-b-scrollspy
-                            class="flex-column"
-                        >
-                            <b-nav-item
-                                href="#what"
-                                >What is {{ career.title }}
-                            </b-nav-item>
-                            <b-nav-item
-                                href="#how"
-                                >How to get started
-                            </b-nav-item>
-                            <b-nav-item
-                                href="#links"
-                                >Further reading
-                            </b-nav-item>
-                        </b-nav>
+                    <div class="py-2 toc position-fixed">
+                        <career-sidebar :career="career"/>
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-9">
-                    <div class="pt-2 pb-5 position-relative">
-                        <h1 class="text-center">
+                    <b-jumbotron class="text-center font-weight-bold">
+                        <template
+                            class="text-center"
+                            v-slot:header>
                             {{ career.title }}
-                        </h1>
-                        <p class="py-4 text-center">
-                            <span class="badge badge-primary">
+                            <span class="badge badge-primary text-small">
                                 {{ career.industry }}
                             </span>
-                        </p>
+                        </template>
+                    </b-jumbotron>
+                    <div class="pt-2 pb-5 position-relative">
                         <p id="what" class="py-5">
                             {{ career.description }}
                         </p>
-                        <p id="how" class="py-5">
-                            {{ career.process }}
-                        </p>
-                        <p id="links" class="py-2">
-                            {{ career.links }}
+                        <div id="how">
+                            <h2>
+                                How to get started
+                            </h2>
+                            <p class="pt-4">
+                                {{ career.process }}
+                            </p>
+                        </div>
+                        <div id="links">
+                            <h2>
+                                Read more about it
+                            </h2>
+                            <p class="pt-4">
+                                {{ career.links }}
+                            </p>
+                        </div>
+                    </div>
+                    <!-- programmes -->
+                    <div class="pt-5" id="programmes">
+                        <h2>
+                            Programmes you can study
+                        </h2>
+                        <p class="lead text-muted">
+                            Here are some of the programmes you can study
+                            to enter into this career.
                         </p>
                     </div>
+                    <programmes-index :programmes="programmes"/>
                     <div class="py-4">
                         <router-link
                             :to="{ name: 'home' }"
@@ -66,11 +71,16 @@ export default {
   name: 'Career',
   computed: {
     career() {
-      return this.$store.getters.career;
+      return this.$store.state.careers.career;
+    },
+    programmes() {
+      return this.$store.state.careers.programmes;
     },
   },
   created() {
-    this.$store.dispatch('loadCareer');
+    const id = this.$router.currentRoute.params.careerId;
+    this.$store.dispatch('careers/loadCareer', id);
+    this.$store.dispatch('careers/loadProgrammes', id);
   },
 };
 </script>

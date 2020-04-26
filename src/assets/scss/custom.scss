@@ -34,22 +34,64 @@
 }
 
 /* main */
-.header-home
+.landing-header
 {
-    @include landing_div(transparent, 100vh);
-
-    h1
+    @media(min-width: 768px)
     {
-        @include landing_h1;
-    }
+        background-image: url('../images/media_b.png');
+        background-repeat: no-repeat;
+        background-size: 100%;
+        min-height: 100vh;
 
+        h1
+        {
+            @include landing_h1;
+            color: $primary;
+            font-size: 4.4em;
+        }
+    
+    }
+    @media(max-width: 768px)
+    {
+        min-height: 100vh;
+        h1
+        {
+            @include landing_h1;
+            color: $primary;
+            font-size: 2.4em;
+            padding-right: 8vw;
+        }
+
+        .typed-element
+        {
+            padding-top: 45vh; 
+            
+            h2
+            {
+                font-size: 2.0em;
+            }
+        }
+    }
 }
 .card
 {
     border-radius: 16px !important;
-    border: 1px solid #fff;    
 }
 
+.card-img
+{
+   border-top-left-radius: 16px !important; 
+   border-top-right-radius: 16px !important; 
+   border-bottom-right-radius: 0px !important; 
+   border-bottom-left-radius: 0px !important; 
+}
+.uni_group
+{
+.card-columns .card
+{
+    border-radius: 16px !important;
+}
+}
 .ux_read
 {
     .toc
@@ -62,7 +104,7 @@
 h2
 {
     font-size: 1.8em;
-    padding: 50px 0px;
+    padding: 30px 0px;
 }
 
 .input-group-text
