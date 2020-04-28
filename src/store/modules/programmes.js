@@ -1,4 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
+const API_URL = 'https:api.threaded.co.za';
 // initial state
 const state = {
   all: [],
@@ -28,7 +29,7 @@ const mutations = {
 // actions
 const actions = {
   async loadCourse({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/courses/${id}.json`, {
+    fetch(`${API_URL}/api/v1/courses/${id}.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'GET',
@@ -42,7 +43,7 @@ const actions = {
       }).catch();
   },
   async loadCourses({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/programmes/${id}/courses.json`, {
+    fetch(`${API_URL}/api/v1/programmes/${id}/courses.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'GET',
@@ -56,7 +57,7 @@ const actions = {
       }).catch();
   },
   async loadProgramme({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/programmes/${id}.json`, {
+    fetch(`${API_URL}/api/v1/programmes/${id}.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'GET',
