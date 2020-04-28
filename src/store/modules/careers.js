@@ -1,4 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
+const API_URL = 'https:api.threaded.co.za';
 // initial state
 const state = {
   all: [],
@@ -28,7 +29,7 @@ const mutations = {
 // actions
 const actions = {
   async loadCareers({ commit }) {
-    fetch('http://localhost:3000/api/v1/careers.json', {
+    fetch(`${API_URL}/api/v1/careers.json`, {
       headers: {
         accept: 'application/json',
       },
@@ -36,7 +37,7 @@ const actions = {
     }).then(response => response.json()).then(careers => commit('load', careers)).catch();
   },
   async loadCareer({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/careers/${id}`, {
+    fetch(`${API_URL}/api/v1/careers/${id}`, {
       headers: {
         accept: 'application/json',
       },
@@ -44,7 +45,7 @@ const actions = {
     }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
   },
   async updateCareer({ commit }, formData, id) {
-    fetch(`http://localhost:3000/api/v1/careers/${id}`, {
+    fetch(`${API_URL}/api/v1/careers/${id}`, {
       headers: {
         accept: 'application/json',
       },
@@ -53,7 +54,7 @@ const actions = {
     }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
   },
   async createCareer({ commit }, formData) {
-    fetch('http://localhost:3000/api/v1/careers', {
+    fetch(`${API_URL}/api/v1/careers`, {
       headers: {
         accept: 'application/json',
       },
@@ -62,7 +63,7 @@ const actions = {
     }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
   },
   async loadProgrammes({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/careers/${id}/tagged.json`, {
+    fetch(`${API_URL}/api/v1/careers/${id}/tagged.json`, {
       headers: {
         accept: 'application/json',
       },

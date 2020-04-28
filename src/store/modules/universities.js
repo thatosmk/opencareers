@@ -1,4 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
+const API_URL = 'https:api.threaded.co.za';
 // initial state
 const state = {
   all: [],
@@ -27,7 +28,7 @@ const mutations = {
 // actions
 const actions = {
   async loadFaculties({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/universities/${id}/faculties.json`, {
+    fetch(`${API_URL}/api/v1/universities/${id}/faculties.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'DELETE',
@@ -41,7 +42,7 @@ const actions = {
       }).catch();
   },
   async loadUni({ commit }, id) {
-    fetch(`http://localhost:3000/api/v1/universities/${id}.json`, {
+    fetch(`${API_URL}/api/v1/universities/${id}.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'DELETE',
@@ -55,7 +56,7 @@ const actions = {
       }).catch();
   },
   async load({ commit }) {
-    fetch('http://localhost:3000/api/v1/universities.json', {
+    fetch(`${API_URL}/api/v1/universities.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'DELETE',
@@ -69,7 +70,7 @@ const actions = {
       }).catch();
   },
   async updateUni({ commit }, formData, id) {
-    fetch(`http://localhost:3000/api/v1/universities/${id}.json`, {
+    fetch(`${API_URL}/api/v1/universities/${id}.json`, {
       headers: {
         accept: 'application/json',
         'Access-Control-Request-Method': 'PUT',
