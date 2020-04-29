@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const { API_URL } = process.env.API_URL;
+const API_URL = 'https://api.threaded.co.za';
 // initial state
 const state = {
   programmes: [],
