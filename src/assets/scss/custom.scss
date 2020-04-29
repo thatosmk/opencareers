@@ -3,6 +3,16 @@
 @import '~bootstrap-vue/src/index.scss';
 @import "mixins";
 
+
+.marked-down
+{
+    blockquote 
+    {
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: .25em solid #dfe2e5;
+    }
+}
 .bg-light
 {
     background-color: transparent !important;
@@ -30,9 +40,9 @@
 .navbar-nav .active
 {
     color: #fff !important;
-    background-color: $info;
-    border: 1px solid $info;
-    border-radius: 12px;
+    background-color: $primary;
+    border: 1px solid $primary;
+    border-radius: 8px;
     padding-left: 10px; 
     padding-right: 10px; 
 }
@@ -46,16 +56,18 @@
 {
     @media(min-width: 768px)
     {
-        background-image: url('../images/media_e.png');
-        background-repeat: no-repeat;
-        background-size: 100%;
-        min-height: 120vh;
+        min-height: 80vh;
 
         h1
         {
             @include landing_h1;
             color: $primary;
             font-size: 4.4em;
+        }
+
+        img
+        {
+            max-width: 100%; 
         }
     
     }
@@ -66,17 +78,16 @@
         {
             @include landing_h1;
             color: $primary;
-            font-size: 2.4em;
+            font-size: 2.0em;
             padding-right: 8vw;
         }
 
         .typed-element
         {
-            padding-top: 45vh; 
             
             h2
             {
-                font-size: 2.0em;
+                font-size: 1.8em;
             }
         }
     }
@@ -144,6 +155,15 @@ h2
 .nav-link
 {
     word-break: break-word !important; 
+}
+
+.social .s-h1
+{
+    padding-top: 100px;
+}
+.careers, .discover, .social
+{
+    padding: 120px 0px;
 }
 footer
 {

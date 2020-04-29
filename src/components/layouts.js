@@ -37,6 +37,61 @@ Vue.component('main-navbar', {
     </b-navbar>
   `,
 });
+
+Vue.component('career-form', {
+  props: ['career'],
+  template: `
+    <div class="row">
+        <div class="col-xs-12 col-md-9">
+        <b-form-group>
+            <b-form-input
+                placeholder="Title"
+                size="lg"
+                name="career[title]"
+                v-model="career.title"
+                class="py-2"
+            >
+            </b-form-input>
+        </b-form-group>
+        <b-form-group>
+            <b-form-input
+                placeholder="4 tags max, comma separated"
+                size="lg"
+                name="career[tag_list]"
+                class="py-2"
+            >
+            </b-form-input>
+        </b-form-group>
+        <b-form-group>
+            <b-form-textarea
+                placeholder="(What it is, how to get started, salary, links)"
+                debounce="300"
+                size="lg"
+                rows="14"
+                name="career[description]"
+                class="py-2"
+            >
+            </b-form-textarea>
+        </b-form-group>
+                <b-button
+                    type="submit"
+                    variant="success"
+                    size="lg"
+                >
+                    Add career
+                </b-button>
+        </div>
+        <div class="col-xs-12 col-md-3">
+            <b-form-file
+                size="lg"
+                name="career[avatar]"
+                class="py-2"
+            >
+            </b-form-file>
+        </div>
+    </div>
+  `,
+});
 Vue.component('career-sidebar', {
   props: ['career'],
   template: `
@@ -54,15 +109,15 @@ Vue.component('career-sidebar', {
         class="flex-column"
     >
         <b-nav-item
-            href="#what"
+            href="#description"
             >What is {{ career.title }}
         </b-nav-item>
         <b-nav-item
-            href="#how"
+            href="#how-to-get-started"
             >How to get started
         </b-nav-item>
         <b-nav-item
-            href="#day"
+            href="#daily-routine"
             >A day in the life of
         </b-nav-item>
         <b-nav-item
@@ -86,6 +141,41 @@ Vue.component('career-sidebar', {
   `,
 });
 
+Vue.component('varsity-form', {
+  props: ['varsity'],
+  template: `
+    <div class="w-75">
+        <b-form-group>
+            <b-form-input
+                size="lg"
+                placeholder="name of institution"
+                name="university[name]"
+            >
+            </b-form-input>
+        </b-form-group>
+        <b-form-group>
+            <b-form-input
+                size="lg"
+                placeholder="address or website link"
+                name="university[address]"
+            >
+            </b-form-input>
+        </b-form-group>
+        <b-form-group label="add picture">
+            <b-form-file
+                size="lg"
+                name="university[avatar]"
+            >
+            </b-form-file>
+        </b-form-group>
+    <b-button
+        variant="success"
+    >
+        Submit
+    </b-button>
+    </div>
+  `,
+});
 Vue.component('varsity-sidebar', {
   props: ['uni'],
   template: `

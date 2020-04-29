@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https:api.threaded.co.za';
+const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   all: [],
@@ -54,7 +54,7 @@ const actions = {
     }).then(response => response.json()).then(career => commit('setCareer', career)).catch();
   },
   async createCareer({ commit }, formData) {
-    fetch(`${API_URL}/api/v1/careers`, {
+    fetch(`${API_URL}/api/v1/careers.json`, {
       headers: {
         accept: 'application/json',
       },

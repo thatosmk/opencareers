@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https:api.threaded.co.za';
+const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   all: [],
@@ -78,6 +78,21 @@ const actions = {
         'Access-Control-Allow-Origin': '*',
       },
       method: 'put',
+      body: formData,
+    }).then(response => response.json())
+      .then((university) => {
+        commit('setUniversity', university);
+      }).catch();
+  },
+  async createUniversity({ commit }, formData) {
+    fetch(`${API_URL}/api/v1/universities.json`, {
+      headers: {
+        accept: 'application/json',
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+      },
+      method: 'post',
       body: formData,
     }).then(response => response.json())
       .then((university) => {

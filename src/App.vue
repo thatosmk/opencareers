@@ -5,9 +5,9 @@
                 <main-navbar/>
                 <div class="container py-5">
                     <b-row>
-                        <div class="col-xs-12 col-md-7">
+                        <div class="col-xs-12 col-md-6">
                             <div>
-                                <h1 class="py-2 text-center d-block d-md-none">
+                                <h1 class="py-2 d-block d-md-none">
                                     Career development and learning
                                 </h1>
                                 <h1 class="py-5 d-none d-md-block">
@@ -30,6 +30,14 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
+                            <div class="py-4">
+                                <b-img
+                                    :src="read"
+                                    alt="threaded-careers"
+                                    fluid
+                                    >
+                                </b-img>
+                            </div>
                         </div>
                     </b-row>
                 </div>
@@ -57,11 +65,14 @@
 </template>
 
 <script>
+import read from '@/assets/images/open-read.png';
+
 export default {
   name: 'Home',
   data() {
     return {
       words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer', 'a freelancer', 'scientist'],
+      read,
     };
   },
   computed: {

@@ -7,6 +7,11 @@ Vue.use(VueRouter);
 
 const routes = [
   {
+    path: '*',
+    name: 'not_found',
+    component: () => import('@/views/not_found.vue'),
+  },
+  {
     path: '/',
     name: 'home',
     component: Home,
@@ -30,6 +35,11 @@ const routes = [
     path: '/varsities',
     name: 'universitites',
     component: () => import('@/components/universities/index.vue'),
+  },
+  {
+    path: '/varsities/new',
+    name: 'new_university',
+    component: () => import('@/components/universities/new.vue'),
   },
   {
     path: '/varsities/:varsityId',

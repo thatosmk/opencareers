@@ -13,14 +13,11 @@
                             class="text-center"
                             v-slot:header>
                             {{ career.title }}
-                            <span class="badge badge-primary text-small">
-                                {{ career.industry }}
-                            </span>
                         </template>
                     </b-jumbotron>
-                    <div class="pt-2 pb-5 position-relative">
+                    <div v-html="describe" class="marked-down pt-2 pb-5 position-relative">
                         <p id="what" class="py-5">
-                            {{ career.description }}
+                            {{ describe }}
                         </p>
                         <div id="how">
                             <h2>
@@ -35,7 +32,7 @@
                                 What do my days look like?
                             </h2>
                             <p class="pt-4">
-                                {{ career.process }}
+                                {{ career.a_brief_day }}
                             </p>
                         </div>
                         <div id="salary">
@@ -43,7 +40,7 @@
                                 Estimated market related salary
                             </h2>
                             <p class="pt-4">
-                                {{ career.process }}
+                                {{ career.salary }}
                             </p>
                         </div>
                         <div id="links">
@@ -82,12 +79,16 @@
 
 <script>
 // @ is an alias to /src
+import marked from 'marked';
 
 export default {
   name: 'Career',
   computed: {
     career() {
       return this.$store.state.careers.career;
+    },
+    describe() {
+      return marked(this.$store.state.careers.career.description, { sanitize: true });
     },
     programmes() {
       return this.$store.state.careers.programmes;
@@ -97,6 +98,9 @@ export default {
     const id = this.$router.currentRoute.params.careerId;
     this.$store.dispatch('careers/loadCareer', id);
     this.$store.dispatch('careers/loadProgrammes', id);
+  },
+  filters: {
+    marked,
   },
 };
 </script>
