@@ -3,33 +3,64 @@
     <div class="careers pt-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
-                <b-img-lazy
-                    v-bind="mainProps"
-                    :src="magnolia"
-                    alt="threaded-careers"
-                    >
-                </b-img-lazy>
+                <div class="d-none d-md-block">
+                    <b-img-lazy
+                        v-bind="mainProps"
+                        :src="magnolia"
+                        alt="threaded-careers"
+                        >
+                    </b-img-lazy>
+                </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <h1 class="pt-5 pb-4 font-weight-bold">
-                    Your future is bright
-                </h1>
-                <p class="font-weight-light pb-5 lead">
-                    Have you been worrying about what to do with your life,
-                    what the next the next step in your career would
-                    be? We can help you navigate safely into the seemingly
-                    dreadful unknown.
-                </p>
+                <div class="text-center d-md-none d-block">
+                    <h2 class="py-5 font-weight-bold">
+                        Your future is bright
+                    </h2>
+                    <p class="font-weight-light pb-5 lead">
+                        Have you been worrying about what to do with your life,
+                        what the next the next step in your career would
+                        be? We can help you navigate safely into the seemingly
+                        dreadful unknown.
+                    </p>
+                    <b-img-lazy
+                        v-bind="mainProps"
+                        :src="magnolia"
+                        alt="threaded-careers"
+                        >
+                    </b-img-lazy>
+                </div>
+                <div class="d-md-block d-none">
+                    <h1 class="pt-5 pb-4 font-weight-bold">
+                        Your future is bright
+                    </h1>
+                    <p class="font-weight-light pb-5 lead">
+                        Have you been worrying about what to do with your life,
+                        what the next the next step in your career would
+                        be? We can help you navigate safely into the seemingly
+                        dreadful unknown.
+                    </p>
+                </div>
             </div>
         </div>
     </div>
     <div class="discover">
-        <h1 class="pt-5 pb-4 font-weight-bold">
-            Discover the best careers in the world
-        </h1>
-        <p class="font-weight-light pb-5 lead">
-            Find out more information about careers
-        </p>
+        <div class="text-center d-md-none d-block">
+            <h2 class="pt-5 pb-4 font-weight-bold">
+                Discover the best careers in the world
+            </h2>
+            <p class="font-weight-light pb-5 lead">
+                Find out more information about careers
+            </p>
+        </div>
+        <div class="d-md-block d-none">
+            <h1 class="pt-5 pb-4 font-weight-bold">
+                Discover the best careers in the world
+            </h1>
+            <p class="font-weight-light pb-5 lead">
+                Find out more information about careers
+            </p>
+        </div>
         <careers-index :careers="careers" />
         <b-link
             class="ml-4"
@@ -37,39 +68,111 @@
             See more careers
         </b-link>
     </div>
-    <div class="pb-5">
-        <h1 class="pt-5 pb-4 font-weight-bold">
-            Give back to your community
-        </h1>
-        <p class="font-weight-light pb-5 lead w-50">
-            We are looking for volunteers to write
-            about careers and to host AMA sessions on
-            our platforms or on social media.
-        </p>
-        <b-button href='/get-started'
-            variant="primary">
-            Sign up to contribute
-        </b-button>
-    </div>
     <div class="social">
-        <div class="row">
-            <div class="col-xs-12 col-md-6">
-                <h1 class="s-h1 pt-5 pb-4 font-weight-bold">
-                    Follow the conversations
-                </h1>
-            </div>
-            <div class="col-xs-12 col-md-6">
-                <div class="text-center">
-                    <b-img-lazy
-                        :src="social"
-                        alt="threaded-careers"
-                        height="380px"
-                        fluid
-                        >
-                    </b-img-lazy>
-                </div>
-            </div>
+        <div class="text-center">
+            <h2 class="py-4">
+                Careers are important to all of us
+            </h2>
+            <p class="lead py-2">
+                We understand the value of a good career,
+                we want to help you find the best one for you.
+            </p>
         </div>
+        <b-card-group class="d-md-block d-none py-5 ml-5" columns>
+            <b-card class="no-border">
+                <b-card-text class="py-2">
+                    <b-icon-people
+                        variant="primary"
+                        font-scale="3"
+                        >
+                    </b-icon-people>
+                    <h4 class="py-4">
+                        Built by a community
+                    </h4>
+                    <p>
+                        We are a community of professionals in industry
+                        and academia. We want to support you so you
+                        make an informed career choice for your life.
+                    </p>
+                </b-card-text>
+            </b-card>
+            <b-card class="no-border">
+                <b-card-text class="py-2">
+                    <b-icon-people
+                        variant="primary"
+                        font-scale="3"
+                        >
+                    </b-icon-people>
+                    <h4 class="py-4">
+                        Break  boundaries
+                    </h4>
+                    <p>
+                        Threaded is about inspiring
+                        people to realise how important
+                        development is, in their life and
+                        in their career.
+                    </p>
+                </b-card-text>
+            </b-card>
+        </b-card-group>
+        <b-card-group class="d-md-none d-block py-5" columns>
+            <b-card class="no-border text-center">
+                <b-card-text class="py-2">
+                    <b-icon-people
+                        variant="primary"
+                        font-scale="3"
+                        >
+                    </b-icon-people>
+                    <h4 class="py-4">
+                        Built by a community
+                    </h4>
+                    <p>
+                        We are a community of professionals in industry
+                        and academia. We want to support you so you
+                        make an informed career choice for your life.
+                    </p>
+                </b-card-text>
+            </b-card>
+            <b-card class="no-border text-center">
+                <b-card-text class="py-2">
+                    <b-icon-people
+                        variant="primary"
+                        font-scale="3"
+                        >
+                    </b-icon-people>
+                    <h4 class="py-4">
+                        Break  boundaries
+                    </h4>
+                    <p>
+                        Threaded is about inspiring
+                        people to realise how important
+                        development is, in their life and
+                        in their career.
+                    </p>
+                </b-card-text>
+            </b-card>
+        </b-card-group>
+    </div>
+    <div class="py-4">
+        <b-jumbotron class="jumb_landing py-5">
+            <template
+                class="font-weight-light"
+                v-slot:lead>
+                    <div class="jumb_text">
+                        It's <span class="text-primary">
+                            your</span> future.
+                        <br/>
+                        We're just here to help.
+                    </div>
+                    <b-button
+                        variant="primary"
+                        size="lg"
+                        href="/careers"
+                        >
+                        Read about Careers
+                    </b-button>
+            </template>
+        </b-jumbotron>
     </div>
   </div>
 </template>
@@ -97,6 +200,11 @@ export default {
       readingImage,
       magnolia,
       social,
+      showAnimationFor: {
+        a: false,
+        b: false,
+        c: false,
+      },
     };
   },
   computed: {
@@ -108,6 +216,11 @@ export default {
     this.$store.dispatch('careers/loadCareers');
   },
   components: {
+  },
+  methods: {
+    isViewableNow(isVisible, entry, section) {
+      this.showAnimationFor[section] = isVisible;
+    },
   },
 };
 </script>

@@ -2,9 +2,10 @@
   <div id="app">
         <div v-if="rootPage">
             <header v-if="rootPage" class="landing-header">
+                <div class="jumbo-skew"></div>
                 <main-navbar/>
                 <div class="container py-5">
-                    <b-row>
+                    <b-row class="pt-5">
                         <div class="col-xs-12 col-md-6">
                             <div>
                                 <h1 class="py-2 d-block d-md-none">
@@ -32,7 +33,7 @@
                         <div class="col-xs-12 col-md-6">
                             <div class="py-4">
                                 <b-img
-                                    :src="read"
+                                    :src="threadedRead"
                                     alt="threaded-careers"
                                     fluid
                                     >
@@ -65,14 +66,16 @@
 </template>
 
 <script>
-import read from '@/assets/images/open-read.png';
+import threadedRead from '@/assets/images/threaded-wallpaper_4.png';
 
 export default {
   name: 'Home',
   data() {
     return {
-      words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer', 'a freelancer', 'scientist'],
-      read,
+      words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer',
+        'a freelancer', 'a scientist',
+      ],
+      threadedRead,
     };
   },
   computed: {
