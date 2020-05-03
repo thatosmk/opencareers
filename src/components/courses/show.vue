@@ -13,6 +13,14 @@
                     </div>
                 </div>
                 <div class="col-xs-12 col-md-9">
+                    <div class="py-2">
+                    <router-link
+            :to="{ name: 'faculty_programmes', params: { programmeId: course.programme.slug } }"
+                        class="btn btn-danger btn-sm"
+                        >
+                        back
+                    </router-link>
+                    </div>
                     <b-jumbotron class="text-center font-weight-bold">
                         <template
                             class="text-center"
@@ -20,19 +28,13 @@
                             {{ course.name }}
                         </template>
                     </b-jumbotron>
-                    <div class="position-relative">
-                        <h2>
-                            Outline
-                        </h2>
-                        <h2>
-                            Entry requirements
-                        </h2>
-                        <h2>
-                            Assessments
-                        </h2>
-                        <h2>
-                            Course to be taken
-                        </h2>
+                        <h4>
+                            Details
+                        </h4>
+                        <p class="lead text-muted">
+                            credits: {{ course.nqf_credits }}
+                        </p>
+                    <div v-html="describe" class="marked-down pt-2 pb-5 position-relative">
                         <p class="pb-4 lead text-muted">
                             These are the course to be taken for each
                             year until completion of the programme
@@ -45,16 +47,24 @@
 </template>
 
 <script>
+import marked from 'marked';
+
 export default {
   name: 'Course',
   computed: {
     course() {
       return this.$store.state.programmes.course;
     },
+    describe() {
+      return marked(this.$store.state.programmes.course.content, { sanitize: true });
+    },
   },
   created() {
     const id = this.$router.currentRoute.params.courseId;
     this.$store.dispatch('programmes/loadCourse', id);
+  },
+  filters: {
+    marked,
   },
 };
 </script>

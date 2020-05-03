@@ -1,10 +1,10 @@
 <template>
     <div class="container">
-        <div class="py-5">
-            <h1>
+        <div class="py-5 text-center">
+            <h1 class="font-weight-bold">
                 Contribute today and impact lifes
             </h1>
-            <p class="w-75 lead text-muted py-4">
+            <p class="lead text-muted py-4">
                 We are looking for content creators, moderators, speakers to
                 volunteer to enrich this platform with thoughtful and useful
                 content.

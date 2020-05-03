@@ -23,6 +23,9 @@ Vue.component('main-navbar', {
                 <b-nav-item href="/ask-me-anything">
                     AMAs
                 </b-nav-item>
+                <b-nav-item href="/careers">
+                    Mentorship
+                </b-nav-item>
                 <b-nav-item href="/about">
                     About
                 </b-nav-item>
@@ -41,8 +44,7 @@ Vue.component('main-navbar', {
 Vue.component('career-form', {
   props: ['career'],
   template: `
-    <div class="row">
-        <div class="col-xs-12 col-md-9">
+    <div class="py-2 mx-2 w-75">
         <b-form-group>
             <b-form-input
                 placeholder="Title"
@@ -53,18 +55,39 @@ Vue.component('career-form', {
             >
             </b-form-input>
         </b-form-group>
-        <b-form-group>
-            <b-form-input
-                placeholder="4 tags max, comma separated"
-                size="lg"
-                name="career[tag_list]"
-                class="py-2"
-            >
-            </b-form-input>
-        </b-form-group>
+        <div class="row">
+            <div class="col-xs-12 col-md-9">
+                <b-form-group>
+                    <b-form-input
+                        placeholder="4 tags max, comma separated"
+                        size="lg"
+                        name="career[tag_list]"
+                        class="py-2"
+                    >
+                    </b-form-input>
+                </b-form-group>
+            </div>
+            <div class="col-xs-12 col-md-3">
+                <div class="image-upload">
+                    <label for="file-input">
+                        <b-icon-image
+                            font-scale="2.5"
+                            >
+                        </b-icon-image>
+                    </label>
+                    <input
+                        size="lg"
+                        id="file-input"
+                        name="career[avatar]"
+                        class="py-2"
+                        type="file"
+                    />
+                </div>
+            </div>
+        </div>
         <b-form-group>
             <b-form-textarea
-                placeholder="(What it is, how to get started, salary, links)"
+                placeholder="(## Description, ## how to get started, ## salary, ## links)"
                 debounce="300"
                 size="lg"
                 rows="14"
@@ -80,14 +103,6 @@ Vue.component('career-form', {
                 >
                     Add career
                 </b-button>
-        </div>
-        <div class="col-xs-12 col-md-3">
-            <b-form-file
-                size="lg"
-                name="career[avatar]"
-                class="py-2"
-            >
-            </b-form-file>
         </div>
     </div>
   `,
@@ -144,35 +159,137 @@ Vue.component('career-sidebar', {
 Vue.component('varsity-form', {
   props: ['varsity'],
   template: `
-    <div class="w-75">
-        <b-form-group>
-            <b-form-input
+    <div class="py-2">
+            <b-row>
+                <div class="col-md-6 col-lg-5">
+                    <div class="my-4 image-upload">
+                        <label for="file-input">
+                            <b-icon-image
+                                font-scale="2.5"
+                                >
+                            </b-icon-image>
+                        </label>
+                        <input
+                            size="lg"
+                            id="file-input"
+                            name="university[avatar]"
+                            class="py-2"
+                            type="file"
+                        />
+                    </div>
+                    <b-form-group>
+                        <b-form-input
+                            size="lg"
+                            placeholder="name of institution"
+                            name="university[name]"
+                        >
+                        </b-form-input>
+                    </b-form-group>
+                    <b-form-group>
+                        <b-form-input
+                            size="lg"
+                            placeholder="street address"
+                            name="university[address]"
+                        >
+                        </b-form-input>
+                    </b-form-group>
+                    <b-row>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    size="lg"
+                                    placeholder="City"
+                                    name="university[city]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    size="lg"
+                                    placeholder="Province"
+                                    name="university[state]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    size="lg"
+                                    placeholder="Country"
+                                    name="university[country]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    size="lg"
+                                    placeholder="Zipcode"
+                                    name="university[zipcode]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <b-row>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    type="number"
+                                    size="lg"
+                                    placeholder="Country Rank"
+                                    name="university[local_rank]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                        <b-col>
+                            <b-form-group>
+                                <b-form-input
+                                    type="number"
+                                    size="lg"
+                                    placeholder="Global Rank"
+                                    name="university[global_rank]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                </div>
+                <div class="col-md-6 col-lg-7">
+                    <b-form-group>
+                        <b-form-textarea
+                            placeholder="(Enter brief bio)"
+                            debounce="300"
+                            size="lg"
+                            rows="14"
+                            name="career[description]"
+                            class="py-2"
+                        >
+                        </b-form-textarea>
+                    </b-form-group>
+                </div>
+            </b-row>
+            <b-button
+                variant="success"
+                type="submit"
                 size="lg"
-                placeholder="name of institution"
-                name="university[name]"
             >
-            </b-form-input>
-        </b-form-group>
-        <b-form-group>
-            <b-form-input
+                Submit
+            </b-button>
+            <b-button
+                variant="warning"
+                href="/varsities"
                 size="lg"
-                placeholder="address or website link"
-                name="university[address]"
             >
-            </b-form-input>
-        </b-form-group>
-        <b-form-group label="add picture">
-            <b-form-file
-                size="lg"
-                name="university[avatar]"
-            >
-            </b-form-file>
-        </b-form-group>
-    <b-button
-        variant="success"
-    >
-        Submit
-    </b-button>
+                Cancel
+            </b-button>
     </div>
   `,
 });
@@ -220,31 +337,120 @@ Vue.component('courses-index', {
   props: ['courses'],
   template: `
     <div class="py-2">
-    <b-card-group
-        columns
-    >
-        <b-card
+    <b-list-group>
+        <b-list-group-item
             v-for="course in courses" 
             :key="course.id"
             :title="course.name"
-            class="shadow"
+            class="my-2 shadow d-flex justify-content-between align-items-center"
         >
-            <b-card-text>
-                <span class="badge badge-primary">
-                    {{ course.code }}
-                </span>
-                <p class="text-muted pb-2">
-                 duration: min 
-                </p>
-            </b-card-text>
             <router-link
                 :to="{ name: 'course', params: { courseId: course.slug } }"
-                variant="outline-primary"
             >
-                Explore faculty
+                {{ course.name }} - {{ course.code }}
             </router-link>
-        </b-card>
-    </b-card-group>
+            <b-badge pill variant="info">
+                 {{ course.nqf_credits }} credits
+            </b-badge>
+        </b-list-group-item>
+    </b-list-group>
+    </div>
+  `,
+});
+Vue.component('course-form', {
+  template: `
+    <div class="py-2">
+            <b-row>
+                <div class="col-md-6 col-lg-5">
+                    <b-form-group>
+                        <b-form-input
+                            required
+                            size="lg"
+                            placeholder="e.g. Introduction to accounting"
+                            name="course[name]"
+                        >
+                        </b-form-input>
+                    </b-form-group>
+                    <b-form-group>
+                        <b-form-input
+                            size="lg"
+                            required
+                            placeholder="e.g. ACC1001F"
+                            name="course[code]"
+                        >
+                        </b-form-input>
+                    </b-form-group>
+                    <b-row>
+                        <b-col>
+                            <b-form-group label="Credits">
+                                <b-form-input
+                                    size="lg"
+                                    required
+                                    placeholder="e.g. 8"
+                                    name="course[nqf_credits]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                        <b-col>
+                            <b-form-group label="Year">
+                                <b-form-input
+                                    required
+                                    size="lg"
+                                    placeholder="e.g. First year"
+                                    name="course[year]"
+                                >
+                                </b-form-input>
+                            </b-form-group>
+                        </b-col>
+                    </b-row>
+                    <div class="py-4">
+                        <span class="badge badge-light">
+                            Hint
+                        </span>
+                        <p>
+                            Add these headers to your course details:
+                            <br/>
+                            - Outline 
+                            <br/>
+                            - entry requirements
+                            <br/>
+                            - assessment
+                            <br/>
+                            - lecture times
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-7">
+                    <b-form-group>
+                        <b-form-textarea
+                            required
+                            placeholder="## Outline"
+                            debounce="300"
+                            size="lg"
+                            rows="14"
+                            name="course[content]"
+                            class="py-2"
+                        >
+                        </b-form-textarea>
+                    </b-form-group>
+                </div>
+            </b-row>
+            <b-button
+                variant="success"
+                @click="$bvModal.hide('modal-add-course')"
+                type="submit"
+                size="lg"
+            >
+                Submit
+            </b-button>
+            <b-button
+                variant="warning"
+                @click="$bvModal.hide('modal-add-course')"
+                size="lg"
+            >
+                Cancel
+            </b-button>
     </div>
   `,
 });
@@ -263,15 +469,15 @@ Vue.component('programmes-index', {
                 <span class="badge badge-primary">
                     {{ prog.qualification }}
                 </span>
-                <p class="text-muted pb-2">
-                 duration: min 
+                <p class="text-muted py-2">
+                    duration: minimum of {{ prog.duration }}
                 </p>
             </b-card-text>
             <router-link
                 :to="{ name: 'faculty_programmes', params: { programmeId: prog.slug }}"
                 variant="outline-primary"
             >
-                Explore faculty
+                Explore Programme
             </router-link>
         </b-card>
     </b-card-group>
@@ -288,11 +494,12 @@ Vue.component('faculties', {
             v-for="faculty in faculties" 
             :key="faculty.id"
             :title="faculty.name"
-            class="shadow"
+            class="shadow px-2"
         >
             <b-card-text>
-                <p class="text-muted pb-2">
-                </p>
+                <span class="badge badge-secondary">
+                    {{ faculty.level }}
+                </span>
             </b-card-text>
             <router-link
                 :to="{ name: 'university_faculties', params: { facultyId: faculty.slug } }"
@@ -304,6 +511,188 @@ Vue.component('faculties', {
     </b-card-group>
     </div>
   `,
+});
+Vue.component('programme-form', {
+  props: ['bannerRight'],
+  template: `
+    <div class="py-2">
+        <b-row>
+            <div class="col-md-6 col-lg-5">
+                <b-form-group>
+                    <b-form-input
+                        size="lg"
+                        placeholder="e.g. Astronomy"
+                        name="programme[title]"
+                    >
+                    </b-form-input>
+                </b-form-group>
+                <b-form-group>
+                    <b-form-input
+                        size="lg"
+                        placeholder="add tags"
+                        name="programme[tag_list]"
+                    >
+                    </b-form-input>
+                </b-form-group>
+                <b-row>
+                    <div class="col-md-4 col-lg-4">
+                        <p class="lead">
+                           Qualification
+                        </p>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <b-form-group>
+                            <b-form-select
+                                size="lg"
+                                :options="levels"
+                                name="programme[qualification]"
+                            >
+                            </b-form-select>
+                        </b-form-group>
+                    </div>
+                </b-row>
+                <b-row>
+                    <div class="col-md-4 col-lg-4">
+                        <p class="lead">
+                           Duration
+                        </p>
+                    </div>
+                    <div class="col-md-8 col-lg-8">
+                        <b-form-group>
+                            <b-form-input
+                                size="lg"
+                                placeholder="e.g. 4 years"
+                                name="programme[duration]"
+                            >
+                            </b-form-input>
+                        </b-form-group>
+                    </div>
+                </b-row>
+            </div>
+            <div class="col-md-2 col-lg-1">
+            </div>
+            <div class="col-md-4 col-lg-5">
+                <b-img
+                    :src="bannerRight"
+                    alt="threaded-careers"
+                    fluid
+                    >
+                </b-img>
+            </div>
+        </b-row>
+        <b-button
+            variant="success"
+            @click="$bvModal.hide('modal-add-programme')"
+            type="submit"
+            size="lg"
+        >
+            Submit
+        </b-button>
+        <b-button
+            variant="warning"
+            @click="$bvModal.hide('modal-add-faculty')"
+            size="lg"
+        >
+            Cancel
+        </b-button>
+    </div>
+  `,
+  data() {
+    return {
+      levels: ['undergraduate', 'postgraduate', 'honours'],
+    };
+  },
+});
+Vue.component('faculty-form', {
+  props: ['bannerRight'],
+  template: `
+    <div class="py-2">
+        <b-row>
+            <div class="col-md-6 col-lg-5">
+                <b-form-group>
+                    <b-form-input
+                        size="lg"
+                        placeholder="name of Faculty"
+                        name="faculty[name]"
+                    >
+                    </b-form-input>
+                </b-form-group>
+                <b-form-group>
+                    <b-form-input
+                        size="lg"
+                        placeholder="Contact details"
+                        name="faculty[telephones]"
+                    >
+                    </b-form-input>
+                </b-form-group>
+                <b-row>
+                    <div class="col-md-4 col-lg-3">
+                        <p class="lead">
+                           Level
+                        </p>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <b-form-group>
+                            <b-form-select
+                                size="lg"
+                                :options="levels"
+                                name="faculty[level]"
+                            >
+                            </b-form-select>
+                        </b-form-group>
+                    </div>
+                </b-row>
+                <b-row>
+                    <div class="col-md-4 col-lg-3">
+                        <p class="lead">
+                           Website
+                        </p>
+                    </div>
+                    <div class="col-md-8 col-lg-9">
+                        <b-form-group>
+                            <b-form-input
+                                size="lg"
+                                placeholder="Website"
+                                name="faculty[url]"
+                            >
+                            </b-form-input>
+                        </b-form-group>
+                    </div>
+                </b-row>
+            </div>
+            <div class="col-md-2 col-lg-1">
+            </div>
+            <div class="col-md-4 col-lg-5">
+                <b-img
+                    :src="bannerRight"
+                    alt="threaded-careers"
+                    fluid
+                    >
+                </b-img>
+            </div>
+        </b-row>
+        <b-button
+            variant="success"
+            @click="$bvModal.hide('modal-add-faculty')"
+            type="submit"
+            size="lg"
+        >
+            Submit
+        </b-button>
+        <b-button
+            variant="warning"
+            @click="$bvModal.hide('modal-add-faculty')"
+            size="lg"
+        >
+            Cancel
+        </b-button>
+    </div>
+  `,
+  data() {
+    return {
+      levels: ['undergraduate', 'postgraduate', 'honours'],
+    };
+  },
 });
 Vue.component('varsities', {
   data() {

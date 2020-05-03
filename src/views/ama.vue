@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="py-5">
-            <h1>
+        <div class="py-5 text-center">
+            <h1 class="font-weight-bold">
                 AMAs
             </h1>
             <p class="text-muted py-2">

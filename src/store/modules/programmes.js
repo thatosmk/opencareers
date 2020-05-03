@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https://api.threaded.co.za';
+const API_URL = 'https://api.threaded.co.za/';
 // initial state
 const state = {
   all: [],
@@ -28,6 +28,20 @@ const mutations = {
 };
 // actions
 const actions = {
+  async loadCourses({ commit }, id) {
+    fetch(`${API_URL}/api/v1/programmes/${id}/courses.json`, {
+      headers: {
+        accept: 'application/json',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+      },
+      method: 'get',
+    }).then(response => response.json())
+      .then((courses) => {
+        commit('setCourses', courses);
+      }).catch();
+  },
   async loadCourse({ commit }, id) {
     fetch(`${API_URL}/api/v1/courses/${id}.json`, {
       headers: {
@@ -42,18 +56,34 @@ const actions = {
         commit('setCourse', course);
       }).catch();
   },
-  async loadCourses({ commit }, id) {
+  async createCourse({ commit }, [formData, id]) {
     fetch(`${API_URL}/api/v1/programmes/${id}/courses.json`, {
       headers: {
         accept: 'application/json',
-        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Method': 'post',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
       },
-      method: 'get',
+      method: 'post',
+      body: formData,
     }).then(response => response.json())
-      .then((courses) => {
-        commit('setCourses', courses);
+      .then((course) => {
+        commit('setCourse', course);
+      }).catch();
+  },
+  async add({ commit }, [formData, id]) {
+    fetch(`${API_URL}/api/v1/faculties/${id}/programmes.json`, {
+      headers: {
+        accept: 'application/json',
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+      },
+      method: 'post',
+      body: formData,
+    }).then(response => response.json())
+      .then((programme) => {
+        commit('setProgramme', programme);
       }).catch();
   },
   async loadProgramme({ commit }, id) {

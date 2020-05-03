@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class="pt-5 text-center">
-            <h1>
+            <h1 class="font-weight-bold">
                 Something terribly wrong happened
             </h1>
             <p class="text-muted py-4">

@@ -5,16 +5,10 @@
                 Add new institution
             </h1>
         </div>
-        <div class="row">
-            <div class="col-xs-12 col-md-8">
-                <div class="py-5">
-                    <form @submit.prevent="addVarsity" ref="form">
-                        <varsity-form :varsity="university" />
-                    </form>
-                </div>
-            </div>
-            <div class="col-xs-12 col-md-4">
-            </div>
+        <div class="py-5">
+        <form @submit.prevent="addVarsity" ref="form">
+            <varsity-form :varsity="university" />
+        </form>
         </div>
     </div>
 </template>

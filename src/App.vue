@@ -1,7 +1,7 @@
 <template>
   <div id="app">
-        <div v-if="rootPage">
-            <header v-if="rootPage" class="landing-header">
+        <div v-if="rootPage" class="content-wrap">
+            <header class="landing-header">
                 <div class="jumbo-skew"></div>
                 <main-navbar/>
                 <div class="container py-5">
@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import threadedRead from '@/assets/images/threaded-wallpaper_4.png';
+import threadedRead from '@/assets/images/open-read.png';
 
 export default {
   name: 'Home',
@@ -80,7 +80,7 @@ export default {
   },
   computed: {
     rootPage() {
-      return this.$router.currentRoute.name === 'home';
+      return this.$route.name === 'home';
     },
   },
 };

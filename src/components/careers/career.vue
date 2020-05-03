@@ -19,38 +19,6 @@
                         <p id="what" class="py-5">
                             {{ describe }}
                         </p>
-                        <div id="how">
-                            <h2>
-                                How to get started
-                            </h2>
-                            <p class="pt-4">
-                                {{ career.process }}
-                            </p>
-                        </div>
-                        <div id="day">
-                            <h2>
-                                What do my days look like?
-                            </h2>
-                            <p class="pt-4">
-                                {{ career.a_brief_day }}
-                            </p>
-                        </div>
-                        <div id="salary">
-                            <h2>
-                                Estimated market related salary
-                            </h2>
-                            <p class="pt-4">
-                                {{ career.salary }}
-                            </p>
-                        </div>
-                        <div id="links">
-                            <h2>
-                                Read more about it
-                            </h2>
-                            <p class="pt-4">
-                                {{ career.links }}
-                            </p>
-                        </div>
                     </div>
                     <!-- programmes -->
                     <div class="pt-5" id="programmes">
@@ -65,8 +33,8 @@
                     <programmes-index :programmes="programmes"/>
                     <div class="py-4">
                         <router-link
-                            :to="{ name: 'home' }"
-                            variant="light"
+                            :to="{ name: 'careers' }"
+                            class="btn btn-danger"
                         >
                             Return to careers
                         </router-link>

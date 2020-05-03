@@ -4,24 +4,53 @@
 @import "mixins";
 
 
+body
+{ overflow-x: hidden; }
+
+.w-search-bar
+{
+    margin: 2.25px 15%;
+    display: none;
+}
+.content-wrap
+{
+    display: block;
+    overflow: hidden;
+}
+
+.image-upload
+{
+    border-radius: 30px;
+    text-align: center;
+    padding: 5px;
+    background: #f2f2f2;
+}
+.image-upload > input {
+      display: none;
+  }
+  .image-upload svg
+  {
+              cursor: pointer;
+          }
 .jumbo-skew
 {
     @media(min-width: 768px)
     {
-    position: absolute;
-    left: auto;
-    top: -88%;
-    right: -26%;
-    bottom: auto;
-    width: 90%;
-    height: 150%;
-    border-radius: 94px;
-    background-color: #f2faff;
-    -webkit-transform: rotate(-23deg);
-    -ms-transform: rotate(-23deg);
-    transform: rotate(-23deg);
+        position: absolute;
+        left: auto;
+        top: -88%;
+        right: -26%;
+        bottom: auto;
+        width: 90%;
+        height: 150%;
+        border-radius: 94px;
+        background-color: #f2faff;
+        -webkit-transform: rotate(-23deg);
+        -ms-transform: rotate(-23deg);
+        transform: rotate(-23deg);
     }
 }
+
 .marked-down
 {
     blockquote 
@@ -110,9 +139,14 @@
         }
     }
 }
-.card, .jumbotron
+.card, .jumbotron, .list-group-item
 {
     border-radius: 16px !important;
+}
+
+.jumbotron .display-3
+{
+    padding-top: 10px !important;
 }
 
 .card-img
@@ -144,6 +178,12 @@ h2
     padding: 30px 0px;
 }
 
+h1
+{
+    @include h-1;
+    color: $dark;
+    font-size: 3.8em;
+}
 .input-group-text
 {
     background-color: #fff;
@@ -204,7 +244,12 @@ h2
 }
 .careers
 {
-    padding-top: 50px;
+    padding: 130px 0px !important;
+
+    h1
+    {
+        padding-top: 100px !important; 
+    }
 }
 .discover, .social
 {

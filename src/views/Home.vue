@@ -6,7 +6,7 @@
                 <div class="d-none d-md-block">
                     <b-img-lazy
                         v-bind="mainProps"
-                        :src="magnolia"
+                        :src="thoughts"
                         alt="threaded-careers"
                         >
                     </b-img-lazy>
@@ -14,9 +14,9 @@
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="text-center d-md-none d-block">
-                    <h2 class="py-5 font-weight-bold">
-                        Your future is bright
-                    </h2>
+                    <h1 class="py-5 font-weight-bold">
+                        Find your career
+                    </h1>
                     <p class="font-weight-light pb-5 lead">
                         Have you been worrying about what to do with your life,
                         what the next the next step in your career would
@@ -25,14 +25,19 @@
                     </p>
                     <b-img-lazy
                         v-bind="mainProps"
-                        :src="magnolia"
+                        :src="thoughts"
                         alt="threaded-careers"
                         >
                     </b-img-lazy>
+                    <router-link
+                       :to="{ path: '/' }"
+                       class="btn btn-primary btn-lg">
+                            Read about careers
+                    </router-link>
                 </div>
                 <div class="d-md-block d-none">
                     <h1 class="pt-5 pb-4 font-weight-bold">
-                        Your future is bright
+                        Find your career
                     </h1>
                     <p class="font-weight-light pb-5 lead">
                         Have you been worrying about what to do with your life,
@@ -40,6 +45,65 @@
                         be? We can help you navigate safely into the seemingly
                         dreadful unknown.
                     </p>
+                    <router-link
+                       :to="{ path: '/' }"
+                       class="btn btn-primary btn-lg">
+                            Read about careers
+                    </router-link>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="careers pt-5">
+        <div class="row">
+            <div class="col-xs-12 col-md-6">
+                <div class="text-center d-md-none d-block">
+                    <h1 class="py-5 font-weight-bold">
+                        Be inspired
+                    </h1>
+                    <p class="font-weight-light pb-5 lead">
+                        Have you been worrying about what to do with your life,
+                        what the next the next step in your career would
+                        be? We can help you navigate safely into the seemingly
+                        dreadful unknown.
+                    </p>
+                    <b-img-lazy
+                        v-bind="mainProps"
+                        :src="mOffice"
+                        alt="threaded-careers"
+                        >
+                    </b-img-lazy>
+                    <router-link
+                       :to="{ path: '/' }"
+                       class="btn btn-primary btn-lg">
+                            Find professionals in your area
+                    </router-link>
+                </div>
+                <div class="d-md-block d-none mr-4">
+                    <h1 class="pt-5 pb-4 font-weight-bold">
+                        Be inspired
+                    </h1>
+                    <p class="font-weight-light pb-5 lead">
+                        Have you been worrying about what to do with your life,
+                        what the next the next step in your career would
+                        be? We can help you navigate safely into the seemingly
+                        dreadful unknown.
+                    </p>
+                    <router-link
+                       :to="{ path: '/' }"
+                       class="btn btn-primary btn-lg">
+                            Find professionals in your area
+                    </router-link>
+                </div>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <div class="d-none d-md-block">
+                    <b-img-lazy
+                        v-bind="mainProps"
+                        :src="mOffice"
+                        alt="threaded-careers"
+                        >
+                    </b-img-lazy>
                 </div>
             </div>
         </div>
@@ -182,6 +246,8 @@
 import readingImage from '@/assets/images/happy_students2.jpg';
 import magnolia from '@/assets/images/marginalia-success.png';
 import social from '@/assets/images/social-girl.png';
+import mOffice from '@/assets/images/millennial-office.png';
+import thoughts from '@/assets/images/humaan-thoughts.png';
 
 export default {
   name: 'home',
@@ -199,7 +265,9 @@ export default {
       },
       readingImage,
       magnolia,
+      thoughts,
       social,
+      mOffice,
       showAnimationFor: {
         a: false,
         b: false,

@@ -47,6 +47,11 @@ const routes = [
     component: () => import('@/components/universities/show.vue'),
   },
   {
+    path: '/varsities/:varsityId/faculties/new',
+    name: 'new_faculty',
+    component: () => import('@/components/faculties/new.vue'),
+  },
+  {
     path: '/faculties/:facultyId',
     name: 'university_faculties',
     component: () => import('@/components/faculties/show.vue'),

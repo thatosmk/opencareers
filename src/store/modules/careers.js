@@ -1,8 +1,9 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https://api.threaded.co.za';
+const API_URL = 'https://api.threaded.co.za/';
 // initial state
 const state = {
   all: [],
+  results: [],
   programmes: [],
   career: {},
 };
@@ -15,6 +16,9 @@ const getters = {
 };
 // mutatioons
 const mutations = {
+  searches(state, careers) {
+    state.results = careers;
+  },
   load(state, careers) {
     state.all = careers;
   },
@@ -28,6 +32,14 @@ const mutations = {
 
 // actions
 const actions = {
+  async search({ commit }) {
+    fetch(`${API_URL}/api/v1/careers.json`, {
+      headers: {
+        accept: 'application/json',
+      },
+      method: 'get',
+    }).then(response => response.json()).then(careers => commit('load', careers)).catch();
+  },
   async loadCareers({ commit }) {
     fetch(`${API_URL}/api/v1/careers.json`, {
       headers: {
