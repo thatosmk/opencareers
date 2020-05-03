@@ -731,7 +731,7 @@ Vue.component('varsities', {
   `,
   methods: {
     getImageUrl(imageId) {
-      return `http://localhost:3000/${imageId}`;
+      return `https://api.threaded.co.za/${imageId}`;
     },
   },
 });
@@ -776,7 +776,7 @@ Vue.component('careers-index', {
   `,
   methods: {
     getImageUrl(imageId) {
-      return `http://localhost:3000/${imageId}`;
+      return `https://api.threaded.co.za/${imageId}`;
     },
   },
 });
