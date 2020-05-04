@@ -1,7 +1,7 @@
 <template>
     <div class="container">
-        <div class="py-5 text-center">
-            <h1 class="font-weight-bold">
+        <div class="py-2 text-center hero">
+            <h1 class="font-weight-light">
                 Careers
             </h1>
             <p class="text-muted py-2 lead">

@@ -17,7 +17,43 @@ body
     display: block;
     overflow: hidden;
 }
+.about-wrapper
+{
+    margin: 2.25px 15%;
 
+    p
+    {
+        font-size: 1.4em;
+    }
+}
+
+.hero
+{
+    @media(max-width: 768px)
+    {
+        h1
+        {
+            font-size: 2.5em !important; 
+        }
+        p
+        {
+            font-size: 1.2em !important;
+        }
+    }
+    @media(min-width: 768px)
+    {
+        margin: 0.2px 15%;
+        p
+        {
+            font-size: 1.4em;
+        }
+    }
+}
+
+.mx-login
+{
+    @include mx-center;
+}
 .image-upload
 {
     border-radius: 30px;
@@ -89,7 +125,7 @@ body
     color: #fff !important;
     background-color: $primary;
     border: 1px solid $primary;
-    border-radius: 8px;
+    border-radius: 5px;
     padding-left: 10px; 
     padding-right: 10px; 
 }

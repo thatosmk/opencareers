@@ -20,10 +20,7 @@ Vue.component('main-navbar', {
                 <b-nav-item href="/varsities">
                     Institutions
                 </b-nav-item>
-                <b-nav-item href="/ask-me-anything">
-                    AMAs
-                </b-nav-item>
-                <b-nav-item href="/careers">
+                <b-nav-item href="/mentorship">
                     Mentorship
                 </b-nav-item>
                 <b-nav-item href="/about">
@@ -34,6 +31,9 @@ Vue.component('main-navbar', {
                 <b-nav-item href="/get-started" class="active">
                     Contribute
                 </b-nav-item>
+                <b-nav-item href="/login">
+                    Login
+                </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
         </div>
@@ -41,6 +41,56 @@ Vue.component('main-navbar', {
   `,
 });
 
+Vue.component('login-form', {
+  template: `
+    <div class="py-2 mx-2 mx-login">
+        <div>
+            <b-form-group>
+               <b-form-input
+                    required
+                    type="email"
+                    placeholder="email address"
+                    size="lg"
+                    name="user[email]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="password"
+                    size="lg"
+                    name="user[email]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-button
+                block
+                type="submit"
+                variant="primary"
+                class="py-2"
+            >
+                Add career
+            </b-button>
+        </div>
+        <div class="py-4">
+            <p
+                class="text-muted"
+            >
+                Dont have an account? 
+                <router-link
+                    :to="{ path: '/get-started' }"
+                >
+                Sign up
+                </router-link>
+            </p>
+        </div>
+    </div>
+  `,
+});
 Vue.component('career-form', {
   props: ['career'],
   template: `
@@ -269,7 +319,7 @@ Vue.component('varsity-form', {
                             debounce="300"
                             size="lg"
                             rows="14"
-                            name="career[description]"
+                            name="career[bio]"
                             class="py-2"
                         >
                         </b-form-textarea>

@@ -42,3 +42,9 @@
     background-color: $color;
     position: relative;
 }
+
+@mixin mx-center
+{
+    padding-top: 50px;
+   margin: .2px 28% !important; 
+}
