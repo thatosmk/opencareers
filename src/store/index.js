@@ -4,7 +4,7 @@ import universities from './modules/universities';
 import faculties from './modules/faculties';
 import programmes from './modules/programmes';
 import careers from './modules/careers';
-import jobs from './modules/jobs';
+import posts from './modules/posts';
 
 Vue.use(Vuex);
 
@@ -14,7 +14,7 @@ const store = new Vuex.Store({
     faculties,
     programmes,
     careers,
-    jobs,
+    posts,
   },
 });
 

@@ -830,3 +830,47 @@ Vue.component('careers-index', {
     },
   },
 });
+
+Vue.component('posts-index', {
+  data() {
+    return {
+      mainProps: {
+        blank: true, blankColor: '#f2f4f8', width: 125, height: 125, class: 'm1',
+      },
+    };
+  },
+  props: ['posts'],
+  template: `
+    <div class="py-5 uni_group">
+    <b-card-group columns>
+        <b-card
+            v-for="post in posts" 
+            :key="post.id"
+            :title="post.title"
+            v-bind="mainProps"
+            :img-src="getImageUrl(post.avatar_url)"
+            class="shadow"
+        >
+            <b-card-text>
+                <span
+                    class="text-muted"
+                >
+                    {{ post.comments.length }} comments
+                </span>
+            </b-card-text>
+            <router-link
+                :to="{ name: 'blog_post', params: { postId: post.slug } }"
+                class="btn btn-primary"
+            >
+                Read more
+            </router-link>
+        </b-card>
+    </b-card-group>
+    </div>
+  `,
+  methods: {
+    getImageUrl(imageId) {
+      return `https://api.threaded.co.za/${imageId}`;
+    },
+  },
+});

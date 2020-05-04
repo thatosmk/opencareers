@@ -96,6 +96,21 @@ const routes = [
     name: 'careers',
     component: () => import('@/components/careers/index.vue'),
   },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/components/posts/index.vue'),
+  },
+  {
+    path: '/blog/:postId',
+    name: 'blog_post',
+    component: () => import('@/components/posts/post.vue'),
+  },
+  {
+    path: '/new',
+    name: 'new_blog',
+    component: () => import('@/components/posts/new.vue'),
+  },
 ];
 
 const router = new VueRouter({
