@@ -22,9 +22,26 @@ const routes = [
     component: () => import('@/views/get_started.vue'),
   },
   {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('@/components/users/profile.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register.vue'),
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/views/login.vue'),
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/views/logout.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/mentorship',
@@ -120,6 +137,24 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  next();
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.name === 'logout') {
+      if (Vue.$cookies.isKey('user-token')) {
+        next();
+      } else {
+        next('/');
+      }
+    } else if (to.name === 'profile') {
+      if (Vue.$cookies.isKey('user-token')) {
+        next();
+      } else {
+        next('/login');
+      }
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 export default router;

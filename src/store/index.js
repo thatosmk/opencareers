@@ -5,6 +5,7 @@ import faculties from './modules/faculties';
 import programmes from './modules/programmes';
 import careers from './modules/careers';
 import posts from './modules/posts';
+import users from './modules/users';
 
 Vue.use(Vuex);
 
@@ -15,6 +16,7 @@ const store = new Vuex.Store({
     programmes,
     careers,
     posts,
+    users,
   },
 });
 

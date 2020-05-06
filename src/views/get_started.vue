@@ -57,6 +57,12 @@
                 href="https://threaded.typeform.com/to/MFVFiZ">
                 I want to contribute somehow
             </b-button>
+            <router-link
+                :to="{ path: '/register' }"
+                class="btn btn-lg btn-danger mx-4 py-4 px-5"
+            >
+                Get started today
+            </router-link>
         </div>
     </div>
 </template>

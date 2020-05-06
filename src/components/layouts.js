@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 Vue.component('main-navbar', {
+  props: ['userSignedIn'],
   template: `
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
@@ -27,12 +28,24 @@ Vue.component('main-navbar', {
                     About
                 </b-nav-item>
             </b-navbar-nav>
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav v-if="userSignedIn" class="ml-auto">
+                <b-nav-item   
+                    href="/profile">
+                    dashboard
+                </b-nav-item>
+                <b-nav-item   
+                    class="active"
+                    href="/logout">
+                    Logout
+                </b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav v-else class="ml-auto">
+                <b-nav-item 
+                    href="/login">
+                    Login
+                </b-nav-item>
                 <b-nav-item href="/get-started" class="active">
                     Contribute
-                </b-nav-item>
-                <b-nav-item href="/login">
-                    Login
                 </b-nav-item>
             </b-navbar-nav>
         </b-collapse>
@@ -41,6 +54,78 @@ Vue.component('main-navbar', {
   `,
 });
 
+Vue.component('register-form', {
+  template: `
+    <div class="py-2 mx-2 mx-login">
+        <div>
+            <b-form-group class="py-2">
+               <b-form-input
+                    required
+                    type="text"
+                    placeholder="Full Name"
+                    size="lg"
+                    name="user[full_name]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+               <b-form-input
+                    required
+                    type="email"
+                    placeholder="email address"
+                    size="lg"
+                    name="user[email]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="Create Password"
+                    size="lg"
+                    name="user[password]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="Type password again"
+                    size="lg"
+                    name="user[password_confirmation]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-button
+                block
+                type="submit"
+                variant="secondary"
+                class="py-2"
+            >
+                Register
+            </b-button>
+        </div>
+        <div class="py-4">
+            <p
+                class="text-muted"
+            >
+                Already have an account?
+                <router-link
+                    :to="{ path: '/login' }"
+                >
+                Sign in
+                </router-link>
+            </p>
+        </div>
+    </div>
+  `,
+});
 Vue.component('login-form', {
   template: `
     <div class="py-2 mx-2 mx-login">
@@ -62,7 +147,7 @@ Vue.component('login-form', {
                     required
                     placeholder="password"
                     size="lg"
-                    name="user[email]"
+                    name="user[password]"
                     class="py-4"
                 >
                 </b-form-input>
@@ -73,16 +158,16 @@ Vue.component('login-form', {
                 variant="primary"
                 class="py-2"
             >
-                Add career
+                Sign in
             </b-button>
         </div>
         <div class="py-4">
             <p
                 class="text-muted"
             >
-                Dont have an account? 
+                Dont have an account?
                 <router-link
-                    :to="{ path: '/get-started' }"
+                    :to="{ path: '/register' }"
                 >
                 Sign up
                 </router-link>

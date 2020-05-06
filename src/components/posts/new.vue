@@ -81,6 +81,13 @@ export default {
       const formData = new FormData(this.$refs.form);
       this.$store.dispatch('posts/createPost', formData);
       this.$router.push('/blog');
+      this.$notify({
+        group: 'alerts',
+        title: 'Post successfully added',
+        type: 'success',
+        position: 'top center',
+        text: 'Hello user! This is a notification!',
+      });
     },
   },
   filters: {

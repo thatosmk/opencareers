@@ -1,13 +1,13 @@
 <template>
     <div class="container">
-        <div class="pt-5 text-center" style="padding-top: 120px !important;">
+        <div class="pt-5 text-center">
             <h3 class="font-weight-light">
-                Welcome back
+                Create an account
             </h3>
         </div>
         <div class="py-4">
-            <form @submit.prevent="login" ref="form">
-                <login-form/>
+            <form @submit.prevent="register" ref="form">
+                <register-form/>
             </form>
         </div>
     </div>
@@ -16,11 +16,11 @@
 // @ is an alias to /src
 
 export default {
-  name: 'Login',
+  name: 'Register',
   methods: {
-    async login() {
+    async register() {
       const formData = new FormData(this.$refs.form);
-      this.$store.dispatch('users/userSession', formData);
+      this.$store.dispatch('users/userRegister', formData);
       this.$notify({
         group: 'alerts',
         title: 'You have signed out',
@@ -28,7 +28,7 @@ export default {
         position: 'top center',
         text: 'Hello user! This is a notification!',
       });
-      this.$router.push('/login');
+      this.$router.push('/');
     },
   },
   computed: {

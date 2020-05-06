@@ -14,8 +14,8 @@
             </div>
             <div class="col-xs-12 col-md-6">
                 <div class="text-center d-md-none d-block">
-                    <h1 class="py-5 font-weight-bold">
-                        Find your career
+                    <h1 class="py-5 font-weight-light">
+                        Learn about careers
                     </h1>
                     <p class="font-weight-light pb-5 lead">
                         Have you been worrying about what to do with your life,
@@ -36,7 +36,7 @@
                     </router-link>
                 </div>
                 <div class="d-md-block d-none">
-                    <h1 class="pt-5 pb-4 font-weight-bold">
+                    <h1 class="pt-5 pb-4 font-weight-light">
                         Find your career
                     </h1>
                     <p class="font-weight-light pb-5 lead">
@@ -58,7 +58,7 @@
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <div class="text-center d-md-none d-block">
-                    <h1 class="py-5 font-weight-bold">
+                    <h1 class="py-5 font-weight-light">
                         Be inspired
                     </h1>
                     <p class="font-weight-light pb-5 lead">
@@ -80,7 +80,7 @@
                     </router-link>
                 </div>
                 <div class="d-md-block d-none mr-4">
-                    <h1 class="pt-5 pb-4 font-weight-bold">
+                    <h1 class="pt-5 pb-4 font-weight-light">
                         Be inspired
                     </h1>
                     <p class="font-weight-light pb-5 lead">
@@ -109,16 +109,45 @@
         </div>
     </div>
     <div class="discover">
+        <div class="d-md-block d-none">
+            <h1 class="text-center font-weight-light">
+                Mentors can help us get there easily
+            </h1>
+            <p class="mx-5 p-4 lead text-center">
+                Are you just starting your career? We think it best if you can
+                pair yourself with someone you look up to, therefore ensuring
+                you become exceptionally ready for the road ahead.
+            </p>
+        </div>
+        <div class="d-md-none d-block">
+            <h1 class="text-center font-weight-light">
+                Mentors are the best
+            </h1>
+            <p class="py-4 lead text-center">
+                Are you just starting your career? We think it best if you can
+                pair yourself with someone you look up to, therefore ensuring
+                you become exceptionally ready for the road ahead.
+            </p>
+        </div>
+        <b-img-lazy
+            v-bind="mainProps"
+            :src="thoughts"
+            alt="threaded-careers"
+            fluid
+            >
+        </b-img-lazy>
+    </div>
+    <div class="discover">
         <div class="text-center d-md-none d-block">
-            <h2 class="pt-5 pb-4 font-weight-bold">
-                Discover the best careers in the world
-            </h2>
+            <h1 class="pt-5 pb-4 font-weight-light">
+                Trending careers
+            </h1>
             <p class="font-weight-light pb-5 lead">
                 Find out more information about careers
             </p>
         </div>
         <div class="d-md-block d-none">
-            <h1 class="pt-5 pb-4 font-weight-bold">
+            <h1 class="pt-5 pb-4 font-weight-light">
                 Discover the best careers in the world
             </h1>
             <p class="font-weight-light pb-5 lead">
