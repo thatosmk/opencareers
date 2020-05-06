@@ -7,6 +7,14 @@ that serves the back-end, find it [here](https://github.com/thatosmk/urban-sesil
 
 ## Backend API
 
+### Endpoints 
+
+> GET ```/careers```
+
+> GET ```/universities```
+
+> GET ```/posts```
+
 ## Submit a career
 
 > to be completed
