@@ -5,7 +5,7 @@ import VueCookies from 'vue-cookies';
 
 Vue.use(VueCookies);
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://api.threaded.co.za/';
 
 // initial state
 const state = {
