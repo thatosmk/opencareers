@@ -31,12 +31,12 @@
                                     {{ programme.qualification }}
                                 </p>
                             </div>
-                            <div class="col-xs-12 col-md-4">
+                            <div class="col-xs-12 col-md-2">
                                 <p class="lead text-muted">
                                     {{ programme.duration }}
                                 </p>
                             </div>
-                            <div class="col-xs-12 col-md-4">
+                            <div class="col-xs-12 col-md-6">
                                 <p class="lead text-muted">
                                     {{ programme.faculty.name }} faculty
                                 </p>

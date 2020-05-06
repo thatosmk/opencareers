@@ -1,6 +1,6 @@
 <template>
     <div class="container">
-        <div class="py-5 text-center">
+        <div class="py-5 text-center hero">
             <h1 class="font-weight-bold">
                 AMAs
             </h1>

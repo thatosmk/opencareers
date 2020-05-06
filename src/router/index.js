@@ -22,6 +22,33 @@ const routes = [
     component: () => import('@/views/get_started.vue'),
   },
   {
+    path: '/profile',
+    name: 'profile',
+    component: () => import('@/components/users/profile.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/views/register.vue'),
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/views/login.vue'),
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/views/logout.vue'),
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/mentorship',
+    name: 'mentorship',
+    component: () => import('@/views/mentorship.vue'),
+  },
+  {
     path: '/about',
     name: 'about',
     component: () => import('@/views/About.vue'),
@@ -86,6 +113,21 @@ const routes = [
     name: 'careers',
     component: () => import('@/components/careers/index.vue'),
   },
+  {
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/components/posts/index.vue'),
+  },
+  {
+    path: '/blog/:postId',
+    name: 'blog_post',
+    component: () => import('@/components/posts/post.vue'),
+  },
+  {
+    path: '/new',
+    name: 'new_blog',
+    component: () => import('@/components/posts/new.vue'),
+  },
 ];
 
 const router = new VueRouter({
@@ -95,6 +137,24 @@ const router = new VueRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  next();
+  if (to.matched.some(record => record.meta.requiresAuth)) {
+    if (to.name === 'logout') {
+      if (Vue.$cookies.isKey('user-token')) {
+        next();
+      } else {
+        next('/');
+      }
+    } else if (to.name === 'profile') {
+      if (Vue.$cookies.isKey('user-token')) {
+        next();
+      } else {
+        next('/login');
+      }
+    } else {
+      next();
+    }
+  } else {
+    next();
+  }
 });
 export default router;

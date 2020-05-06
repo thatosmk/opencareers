@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 Vue.component('main-navbar', {
+  props: ['userSignedIn'],
   template: `
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
@@ -20,17 +21,29 @@ Vue.component('main-navbar', {
                 <b-nav-item href="/varsities">
                     Institutions
                 </b-nav-item>
-                <b-nav-item href="/ask-me-anything">
-                    AMAs
-                </b-nav-item>
-                <b-nav-item href="/careers">
+                <b-nav-item href="/mentorship">
                     Mentorship
                 </b-nav-item>
                 <b-nav-item href="/about">
                     About
                 </b-nav-item>
             </b-navbar-nav>
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav v-if="userSignedIn" class="ml-auto">
+                <b-nav-item   
+                    href="/profile">
+                    dashboard
+                </b-nav-item>
+                <b-nav-item   
+                    class="active"
+                    href="/logout">
+                    Logout
+                </b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav v-else class="ml-auto">
+                <b-nav-item 
+                    href="/login">
+                    Login
+                </b-nav-item>
                 <b-nav-item href="/get-started" class="active">
                     Contribute
                 </b-nav-item>
@@ -41,6 +54,128 @@ Vue.component('main-navbar', {
   `,
 });
 
+Vue.component('register-form', {
+  template: `
+    <div class="py-2 mx-2 mx-login">
+        <div>
+            <b-form-group class="py-2">
+               <b-form-input
+                    required
+                    type="text"
+                    placeholder="Full Name"
+                    size="lg"
+                    name="user[full_name]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+               <b-form-input
+                    required
+                    type="email"
+                    placeholder="email address"
+                    size="lg"
+                    name="user[email]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="Create Password"
+                    size="lg"
+                    name="user[password]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="Type password again"
+                    size="lg"
+                    name="user[password_confirmation]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-button
+                block
+                type="submit"
+                variant="secondary"
+                class="py-2"
+            >
+                Register
+            </b-button>
+        </div>
+        <div class="py-4">
+            <p
+                class="text-muted"
+            >
+                Already have an account?
+                <router-link
+                    :to="{ path: '/login' }"
+                >
+                Sign in
+                </router-link>
+            </p>
+        </div>
+    </div>
+  `,
+});
+Vue.component('login-form', {
+  template: `
+    <div class="py-2 mx-2 mx-login">
+        <div>
+            <b-form-group>
+               <b-form-input
+                    required
+                    type="email"
+                    placeholder="email address"
+                    size="lg"
+                    name="user[email]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-form-group class="py-2">
+                <b-form-input
+                    type="password"
+                    required
+                    placeholder="password"
+                    size="lg"
+                    name="user[password]"
+                    class="py-4"
+                >
+                </b-form-input>
+            </b-form-group>
+            <b-button
+                block
+                type="submit"
+                variant="primary"
+                class="py-2"
+            >
+                Sign in
+            </b-button>
+        </div>
+        <div class="py-4">
+            <p
+                class="text-muted"
+            >
+                Dont have an account?
+                <router-link
+                    :to="{ path: '/register' }"
+                >
+                Sign up
+                </router-link>
+            </p>
+        </div>
+    </div>
+  `,
+});
 Vue.component('career-form', {
   props: ['career'],
   template: `
@@ -269,7 +404,7 @@ Vue.component('varsity-form', {
                             debounce="300"
                             size="lg"
                             rows="14"
-                            name="career[description]"
+                            name="career[bio]"
                             class="py-2"
                         >
                         </b-form-textarea>
@@ -767,6 +902,50 @@ Vue.component('careers-index', {
             <router-link
                 :to="{ name: 'career', params: { careerId: career.slug } }"
                 variant="outline-primary"
+            >
+                Read more
+            </router-link>
+        </b-card>
+    </b-card-group>
+    </div>
+  `,
+  methods: {
+    getImageUrl(imageId) {
+      return `https://api.threaded.co.za/${imageId}`;
+    },
+  },
+});
+
+Vue.component('posts-index', {
+  data() {
+    return {
+      mainProps: {
+        blank: true, blankColor: '#f2f4f8', width: 125, height: 125, class: 'm1',
+      },
+    };
+  },
+  props: ['posts'],
+  template: `
+    <div class="py-5 uni_group">
+    <b-card-group columns>
+        <b-card
+            v-for="post in posts" 
+            :key="post.id"
+            :title="post.title"
+            v-bind="mainProps"
+            :img-src="getImageUrl(post.avatar_url)"
+            class="shadow"
+        >
+            <b-card-text>
+                <span
+                    class="text-muted"
+                >
+                    {{ post.comments.length }} comments
+                </span>
+            </b-card-text>
+            <router-link
+                :to="{ name: 'blog_post', params: { postId: post.slug } }"
+                class="btn btn-primary"
             >
                 Read more
             </router-link>

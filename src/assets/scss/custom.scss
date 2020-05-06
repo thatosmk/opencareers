@@ -17,7 +17,82 @@ body
     display: block;
     overflow: hidden;
 }
+.about-wrapper
+{
+    margin: 2.25px 15%;
 
+    p
+    {
+        font-size: 1.4em;
+    }
+}
+
+.hero-post
+{
+    @media(min-width: 768px)
+    {
+        h1
+        {
+            font-size: 3em;
+            line-height: 1.5;
+            text-rendering: optimizeLegibility;
+        }
+    }
+    @media(max-width: 768px)
+    {
+        h1
+        {
+            font-size: 2em;
+            line-height: 1.5;
+            text-rendering: optimizeLegibility;
+        }
+    }
+}
+.post-wrapper
+{
+    @media(min-width: 768px)
+    {
+        margin: 2.25px 15%;
+    }
+    @media(max-width: 768px)
+    {
+        margin: 2.25px 2%;
+        text-align: justify;
+    }
+
+    p
+    {
+        font-size: 1.0em;
+        line-height: 1.8;
+    }
+}
+.hero
+{
+    @media(max-width: 768px)
+    {
+        h1
+        {
+            font-size: 2.5em !important; 
+        }
+        p
+        {
+            font-size: 1.2em !important;
+        }
+    }
+    @media(min-width: 768px)
+    {
+        margin: 0.2px 15%;
+        p
+        {
+            font-size: 1.4em;
+        }
+    }
+}
+
+.mx-login
+{
+    @include mx-center;
+}
 .image-upload
 {
     border-radius: 30px;
@@ -44,7 +119,8 @@ body
         width: 90%;
         height: 150%;
         border-radius: 94px;
-        background-color: #f2faff;
+        // background-color: #f2faff;
+        background-color: #fff5a8;
         -webkit-transform: rotate(-23deg);
         -ms-transform: rotate(-23deg);
         transform: rotate(-23deg);
@@ -53,6 +129,8 @@ body
 
 .marked-down
 {
+    width: 578px;
+    padding: 0 75px;
     blockquote 
     {
         padding: 0 1em;
@@ -89,7 +167,7 @@ body
     color: #fff !important;
     background-color: $primary;
     border: 1px solid $primary;
-    border-radius: 8px;
+    border-radius: 5px;
     padding-left: 10px; 
     padding-right: 10px; 
 }
@@ -254,6 +332,12 @@ h1
 .discover, .social
 {
     padding: 120px 0px;
+}
+
+.card-profile
+{
+    margin: 0.25px 15% !important;
+    border: none;
 }
 footer
 {

@@ -3,7 +3,8 @@
         <div v-if="rootPage" class="content-wrap">
             <header class="landing-header">
                 <div class="jumbo-skew"></div>
-                <main-navbar/>
+                <main-navbar :userSignedIn="loggedIn" />
+                <notifications group="alerts" />
                 <div class="container py-5">
                     <b-row class="pt-5">
                         <div class="col-xs-12 col-md-6">
@@ -49,7 +50,8 @@
         </div>
         <div v-else>
             <main class="container">
-                <main-navbar/>
+                <main-navbar :userSignedIn="loggedIn" />
+                <notifications group="alerts" />
                 <router-view/>
             </main>
         </div>
@@ -66,7 +68,7 @@
 </template>
 
 <script>
-import threadedRead from '@/assets/images/open-read.png';
+import threadedRead from '@/assets/images/threaded-wallpaper_4.png';
 
 export default {
   name: 'Home',
@@ -81,6 +83,9 @@ export default {
   computed: {
     rootPage() {
       return this.$route.name === 'home';
+    },
+    loggedIn() {
+      return this.$cookies.isKey('user-token');
     },
   },
 };

@@ -36,8 +36,7 @@
                         </p>
                     <div v-html="describe" class="marked-down pt-2 pb-5 position-relative">
                         <p class="pb-4 lead text-muted">
-                            These are the course to be taken for each
-                            year until completion of the programme
+                            {{ describe }}
                         </p>
                     </div>
                 </div>
