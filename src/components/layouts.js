@@ -1,6 +1,7 @@
 import Vue from 'vue';
 
 Vue.component('main-navbar', {
+  props: ['userSignedIn'],
   template: `
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
@@ -12,13 +13,32 @@ Vue.component('main-navbar', {
         <b-collapse id="nav-collapse" is-nav>
 
             <!-- Center aligned nav items -->
-            <!-- Right aligned nav items -->
-            <b-navbar-nav class="ml-auto">
+            <b-navbar-nav class="mr-auto">
                 <b-nav-item   
                     href="/about">
                     About
                 </b-nav-item>
-                <b-nav-item href="/get-started" class="active">
+                <b-nav-item   
+                    href="/about">
+                    Pricing
+                </b-nav-item>
+                <b-nav-item   
+                    href="/about">
+                    Blog
+                </b-nav-item>
+            </b-navbar-nav>
+            <!-- Right aligned nav items -->
+            <b-navbar-nav v-if="userSignedIn" class="ml-auto">
+                <b-nav-item href="/logout" class="active">
+                    Logout
+                </b-nav-item>
+            </b-navbar-nav>
+            <b-navbar-nav v-else class="ml-auto">
+                <b-nav-item   
+                    href="/login">
+                    Login
+                </b-nav-item>
+                <b-nav-item href="/register" class="active">
                     Try threaded
                 </b-nav-item>
             </b-navbar-nav>

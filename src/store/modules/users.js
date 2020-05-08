@@ -5,7 +5,7 @@ import VueCookies from 'vue-cookies';
 
 Vue.use(VueCookies);
 
-const API_URL = 'https://api.threaded.co.za/';
+const API_URL = 'http://localhost:3000';
 
 // initial state
 const state = {
@@ -52,6 +52,7 @@ const actions = {
       method: 'delete',
     }).then((response) => {
       Vue.$cookies.remove('user-token');
+      Vue.$cookies.remove('login-errors');
       response.json();
     })
       .then((user) => {
@@ -122,6 +123,7 @@ const actions = {
     }).then((response) => {
       if (response.headers.get('Authorization')) {
         Vue.$cookies.set('user-token', response.headers.get('Authorization'));
+        Vue.$cookies.remove('login-errors');
       } else {
         Vue.$cookies.set('login-errors', response.body);
       }

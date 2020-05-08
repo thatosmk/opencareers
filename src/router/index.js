@@ -17,11 +17,6 @@ const routes = [
     component: Home,
   },
   {
-    path: '/get-started',
-    name: 'get_started',
-    component: () => import('@/views/get_started.vue'),
-  },
-  {
     path: '/blog',
     name: 'blog',
     component: () => import('@/components/posts/index.vue'),
@@ -35,6 +30,22 @@ const routes = [
     path: '/new',
     name: 'new_blog',
     component: () => import('@/components/posts/new.vue'),
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import('@/components/users/login.vue'),
+  },
+  {
+    path: '/register',
+    name: 'register',
+    component: () => import('@/components/users/register.vue'),
+  },
+  {
+    path: '/logout',
+    name: 'logout',
+    component: () => import('@/components/users/logout.vue'),
+    meta: { requriesAuth: true },
   },
 ];
 

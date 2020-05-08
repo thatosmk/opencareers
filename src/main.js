@@ -4,6 +4,7 @@ import VueTypedJs from 'vue-typed-js';
 import Notifications from 'vue-notification';
 import App from './App.vue';
 import router from './router';
+import store from './store';
 
 
 import '@/components/layouts';
@@ -19,5 +20,6 @@ Vue.use(Notifications);
 new Vue({
   el: '#app',
   router,
+  store,
   render: h => h(App),
 }).$mount('#app');

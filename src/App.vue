@@ -3,7 +3,7 @@
         <div v-if="rootPage" class="content-wrap">
             <header class="landing-header">
                 <div class="jumbo-skew"></div>
-                <main-navbar />
+                <main-navbar :userSignedIn="loggedIn" />
                 <div class="section-header">
                     <b-row class="pt-2">
                         <div class="d-block d-md-none">
@@ -54,7 +54,7 @@
         </div>
         <div v-else>
             <main class="container">
-                <main-navbar />
+                <main-navbar :userSignedIn="loggedIn" />
                 <router-view/>
             </main>
         </div>
@@ -85,6 +85,9 @@ export default {
   computed: {
     rootPage() {
       return this.$route.name === 'home';
+    },
+    loggedIn() {
+      return this.$cookies.isKey('user-token');
     },
   },
 };
