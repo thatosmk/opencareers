@@ -1,68 +1,43 @@
 <template>
     <div class="container">
         <div class="py-2 text-center hero">
-            <h1 class="font-weight-light">
-                Contribute today and impact lifes
+            <h1>
+                Sign up today and impact lifes
             </h1>
-            <p class="lead text-muted py-4">
-                We are looking for content creators, moderators, speakers to
-                volunteer to enrich this platform with thoughtful and useful
-                content.
+            <p class="lead text-muted py-4 mx-5">
+                If you are in interesting in sharing your experiences
+                or if you need a mentor, we'd love to you to try threaded.
             </p>
         </div>
-        <div>
-            <b-card-group deck class="py-4">
-                <b-card class="shadow">
-                    <b-card-text>
-                        <h4 class="py-4 text-primary">
-                            Content contributor
-                        </h4>
-                        Add careers and details around
-                        how to get into particular careers.
-                        Source data from the web and add it into the
-                        platform, you will add university programme info,
-                        term dates etc.
-                    </b-card-text>
-                </b-card>
-                <b-card class="shadow">
-                    <b-card-text>
-                        <h4 class="py-4 text-primary">
-                        AMAs
-                        </h4>
-                        <em>Ask me anything</em> is a thread
-                        where successful individuals in their
-                        careers open themselves up for questions
-                        pertaining to their career paths.
-                    </b-card-text>
-                </b-card>
-                <b-card class="shadow">
-                    <b-card-text>
-                        <h4 class="py-4 text-primary">
-                            Mentorship
-                        </h4>
-                        We strongly feel that most of the black folk
-                        have little to no exposure around careers and
-                        their different flavours. A mentor would expose,
-                        nurture and inspire the high school student to follow
-                        their dreams.
-                    </b-card-text>
-                </b-card>
-            </b-card-group>
-        </div>
-        <div class="py-4">
+        <div class="py-4 text-center">
             <b-button
                 variant="primary"
                 size="lg"
                 class="py-4 px-5"
                 href="https://threaded.typeform.com/to/MFVFiZ">
-                I want to contribute somehow
+                I want to mentor
             </b-button>
-            <router-link
-                :to="{ path: '/register' }"
-                class="btn btn-lg btn-danger mx-4 py-4 px-5"
-            >
-                Get started today
-            </router-link>
+            <b-button
+                variant="danger"
+                size="lg"
+                class="py-4 px-5 mx-4"
+                href="https://threaded.typeform.com/to/MFVFiZ">
+                I need a mentor
+            </b-button>
+        </div>
+        <div class="py-4 text-center">
+            <p style="margin: 0.25px 30%;">
+                We’ll only use your email address to send an
+                invite to Threaded, not for future marketing, sales, or anything
+                like that. We’ll never sell or trade your name
+                or email. In fact, the list will be destroyed once
+                everyone on the list has been invited.
+                <br/>
+                <br/>
+                *We’ll send you an email back asking your
+                permission before using your information for anything
+                other than what has been advertised above. Promise.
+            </p>
         </div>
     </div>
 </template>

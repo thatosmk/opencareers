@@ -3,40 +3,44 @@
         <div v-if="rootPage" class="content-wrap">
             <header class="landing-header">
                 <div class="jumbo-skew"></div>
-                <main-navbar :userSignedIn="loggedIn" />
-                <notifications group="alerts" />
-                <div class="container py-5">
-                    <b-row class="pt-5">
-                        <div class="col-xs-12 col-md-6">
-                            <div>
-                                <h1 class="py-2 d-block d-md-none">
-                                    Career development and learning
-                                </h1>
-                                <h1 class="py-5 d-none d-md-block">
-                                    Career development & learning
-                                </h1>
-                                <vue-typed-js :strings="words" :loop="true">
-                                    <h2 class="font-weight-light text-italic pt-4">
-                                        Become  &nbsp;
-                                        <span
-                                            class="text-primary worded font-weight-bold pt-2 typing"
-                                        >
-                                        </span>
-                                    </h2>
-                                </vue-typed-js>
-                                <p class="d-none">
-                                    Move carefully or skilfully in and out of hurdles
-                                    that pull you down, we provide the tools and knowledge
-                                    to become threaded.
-                                </p>
-                            </div>
+                <main-navbar />
+                <div class="section-header">
+                    <b-row class="pt-2">
+                        <div class="d-block d-md-none">
+                            <b-img
+                                :src="threadedRead"
+                                alt="threaded-careers"
+                                fluid
+                                >
+                            </b-img>
                         </div>
-                        <div class="col-xs-12 col-md-6">
-                            <div class="py-4">
+                        <div class="col-xs-12 col-md-2">
+                        </div>
+                        <div class="col-xs-12 col-md-4">
+                            <h1>
+                                Start mentoring today
+                            </h1>
+                            <p>
+                                At any stage in your career
+                                the right relationship can steer you into
+                                a fruitful journey.
+                            </p>
+                            <vue-typed-js :strings="words" :loop="true">
+                                <h2 class="font-weight-light text-italic pt-4">
+                                    Become  &nbsp;
+                                    <span
+                                        class="text-primary worded font-weight-bold pt-2 typing"
+                                    >
+                                    </span>
+                                </h2>
+                            </vue-typed-js>
+                        </div>
+                        <div class="col-xs-12 col-md-5">
+                            <div class="d-none d-md-block">
                                 <b-img
                                     :src="threadedRead"
                                     alt="threaded-careers"
-                                    fluid
+                                    fluid-grow
                                     >
                                 </b-img>
                             </div>
@@ -50,8 +54,7 @@
         </div>
         <div v-else>
             <main class="container">
-                <main-navbar :userSignedIn="loggedIn" />
-                <notifications group="alerts" />
+                <main-navbar />
                 <router-view/>
             </main>
         </div>
@@ -68,14 +71,13 @@
 </template>
 
 <script>
-import threadedRead from '@/assets/images/threaded-wallpaper_4.png';
+import threadedRead from '@/assets/images/hero-header.png';
 
 export default {
   name: 'Home',
   data() {
     return {
-      words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer',
-        'a freelancer', 'a scientist',
+      words: ['a friend', 'an inspiration', 'a role-model', 'an icon', 'a miracle', 'a blessing',
       ],
       threadedRead,
     };
@@ -83,9 +85,6 @@ export default {
   computed: {
     rootPage() {
       return this.$route.name === 'home';
-    },
-    loggedIn() {
-      return this.$cookies.isKey('user-token');
     },
   },
 };

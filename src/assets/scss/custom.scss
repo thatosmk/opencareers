@@ -7,106 +7,6 @@
 body
 { overflow-x: hidden; }
 
-.w-search-bar
-{
-    margin: 2.25px 15%;
-    display: none;
-}
-.content-wrap
-{
-    display: block;
-    overflow: hidden;
-}
-.about-wrapper
-{
-    margin: 2.25px 15%;
-
-    p
-    {
-        font-size: 1.4em;
-    }
-}
-
-.hero-post
-{
-    @media(min-width: 768px)
-    {
-        h1
-        {
-            font-size: 3em;
-            line-height: 1.5;
-            text-rendering: optimizeLegibility;
-        }
-    }
-    @media(max-width: 768px)
-    {
-        h1
-        {
-            font-size: 2em;
-            line-height: 1.5;
-            text-rendering: optimizeLegibility;
-        }
-    }
-}
-.post-wrapper
-{
-    @media(min-width: 768px)
-    {
-        margin: 2.25px 15%;
-    }
-    @media(max-width: 768px)
-    {
-        margin: 2.25px 2%;
-        text-align: justify;
-    }
-
-    p
-    {
-        font-size: 1.0em;
-        line-height: 1.8;
-    }
-}
-.hero
-{
-    @media(max-width: 768px)
-    {
-        h1
-        {
-            font-size: 2.5em !important; 
-        }
-        p
-        {
-            font-size: 1.2em !important;
-        }
-    }
-    @media(min-width: 768px)
-    {
-        margin: 0.2px 15%;
-        p
-        {
-            font-size: 1.4em;
-        }
-    }
-}
-
-.mx-login
-{
-    @include mx-center;
-}
-.image-upload
-{
-    border-radius: 30px;
-    text-align: center;
-    padding: 5px;
-    background: #f2f2f2;
-}
-.image-upload > input {
-      display: none;
-  }
-  .image-upload svg
-  {
-              cursor: pointer;
-          }
 .jumbo-skew
 {
     @media(min-width: 768px)
@@ -119,25 +19,13 @@ body
         width: 90%;
         height: 150%;
         border-radius: 94px;
-        // background-color: #f2faff;
-        background-color: #fff5a8;
+        background-color:rgb(245, 241, 234); // #f2faff;
         -webkit-transform: rotate(-23deg);
         -ms-transform: rotate(-23deg);
         transform: rotate(-23deg);
     }
 }
 
-.marked-down
-{
-    width: 578px;
-    padding: 0 75px;
-    blockquote 
-    {
-        padding: 0 1em;
-        color: #6a737d;
-        border-left: .25em solid #dfe2e5;
-    }
-}
 .bg-light
 {
     background-color: transparent !important;
@@ -177,17 +65,45 @@ body
 }
 
 /* main */
+h1
+{
+    @media(max-width: 768px)
+    {
+        font-size: 2.2em !important;
+        text-align: center;
+    }
+    padding-top: 40px;
+    font-weight: 900;
+    color: $dark;
+}
+
+p
+{
+    @media(max-width: 768px)
+    {
+        text-align: center;
+    }
+    padding-top: 20px;
+    line-height: 1.8;
+    font-weight: 300;
+}
 .landing-header
 {
     @media(min-width: 768px)
     {
-        min-height: 100vh;
+        min-height: 80vh;
 
+        .section-header
+        {
+            padding-top: 5rem;
+        }
         h1
         {
-            @include h-1;
-            color: $dark;
-            font-size: 4.8em;
+            font-size: 4.0em;
+        }
+        p
+        {
+            font-size: 1.6rem;
         }
 
         img
@@ -199,12 +115,21 @@ body
     @media(max-width: 768px)
     {
         min-height: 100vh;
+        padding: 1.0px 0.5rem;
         h1
         {
-            @include h-1;
-            font-size: 2.0em;
+            font-size: 2.0em !important;
             line-height: 1.3;
-            padding-right: 8vw;
+            text-align: left !important;
+        }
+        .typed-element
+        {
+            padding-top: 10px !important; 
+        }
+        p
+        {
+            font-size: 1.25rem;
+            text-align: left !important;
         }
 
         .typed-element
@@ -215,6 +140,38 @@ body
                 font-size: 1.8em;
             }
         }
+    }
+}
+
+.give-back
+{
+    @media(min-width: 768px)
+    {
+        p
+        {
+            margin: 1.2rem 20%;
+        }
+    }
+
+    img
+    {
+    }
+}
+
+.for-companies-2
+{
+    @media(min-width: 768px)
+    {
+        padding: 150px 0.2px !important;
+    }
+    @media(max-width: 768px)
+    {
+        padding: 80px 0.2px !important;
+    }
+
+    img
+    {
+        border-radius: 25px !important; 
     }
 }
 .card, .jumbotron, .list-group-item
@@ -258,7 +215,6 @@ h2
 
 h1
 {
-    @include h-1;
     color: $dark;
     font-size: 3.8em;
 }
@@ -303,7 +259,6 @@ h1
         @media(min-width: 768px)
         {
             font-size: 44px;  
-            width: 75%;
         }
         @media(max-width: 768px)
         {
@@ -345,4 +300,18 @@ footer
     bottom: 0;
     text-align: center;
     // color: $light;
+}
+/* Enter and leave animations can use different */
+/* durations and timing functions.              */
+.slide-fade-enter-active {
+  transition: all .3s ease;
+}
+.slide-fade-leave-active {
+  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+}
+.slide-fade-enter, .slide-fade-leave-to
+/* .slide-fade-leave-active below version 2.1.8 */ 
+{
+  transform: translateX(10px);
+  opacity: 0;
 }

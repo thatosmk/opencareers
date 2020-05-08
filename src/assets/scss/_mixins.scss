@@ -5,10 +5,6 @@
     position: relative;
 }
 
-@mixin h-1 {
-    padding-top: 80px;
-    font-weight: 900;
-}
 @mixin landing_h2($color){
     font-size: 46px;
 }
