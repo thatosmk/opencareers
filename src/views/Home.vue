@@ -42,11 +42,17 @@
                     A sense of fulfilment &amp; personal growth
                 </h1>
                 <p class="pb-5 lead">
-                    Have you been worrying about what to do with your life,
-                    what the next the next step in your career would
-                    be? We can help you navigate safely into the seemingly
-                    dreadful unknown.
+                    This is one of the highly valued benefits of
+                    engaging mentorship, by opening yourself to helping
+                    &amp; learning about others, you inherently learn
+                    a lot more about yourself.
                 </p>
+                <h4>
+                    Improve communication &amp; personal skills.
+                </h4>
+                <h4>
+                    Improve communication &amp; personal skills.
+                </h4>
                 <router-link
                    :to="{ path: '/' }"
                    class="btn btn-primary btn-lg">
@@ -56,7 +62,7 @@
             <div class="col-xs-12 col-md-5">
                 <b-img-lazy
                     v-bind="mainProps"
-                    :src="mOffice"
+                    :src="growth"
                     alt="threaded-careers"
                     >
                 </b-img-lazy>
@@ -144,29 +150,22 @@
             </p>
             <b-img-lazy
                 v-bind="mainProps"
-                :src="mOffice"
+                :src="heroCompany"
                 alt="threaded-careers"
                 >
             </b-img-lazy>
-            <router-link
-               :to="{ path: '/' }"
-               class="btn btn-primary btn-lg">
-                    Find professionals in your area
-            </router-link>
         </div>
     </div>
-    <div class="for-companies-2 pt-5">
+    <div class="for-companies-2 pt-5 container">
         <div class="row">
-            <div class="col-xs-12 col-md-2">
-            </div>
             <div class="col-xs-12 col-md-4">
-                <h1 class="py-5">
+                <h4 class="text-center py-5">
                     Create an impactful mentorship program
-                </h1>
+                </h4>
                 <div class="d-block d-md-none">
                 <b-img-lazy
                     fluid
-                    :src="mOffice"
+                    :src="heroCompany"
                     alt="threaded-careers"
                     >
                 </b-img-lazy>
@@ -177,36 +176,10 @@
                     and valuable to mentees and mentors.
                 </p>
             </div>
-            <div class="col-xs-12 col-md-5">
-                <div class="d-none d-md-block">
-                <b-img-lazy
-                    v-bind="mainProps"
-                    :src="mOffice"
-                    alt="threaded-careers"
-                    >
-                </b-img-lazy>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="for-companies-2 pt-5">
-        <div class="row">
-            <div class="col-xs-12 col-md-2">
-            </div>
-            <div class="col-xs-12 col-md-5">
-                <div class="d-none d-md-block">
-                <b-img-lazy
-                    fluid
-                    :src="mOffice"
-                    alt="threaded-careers"
-                    >
-                </b-img-lazy>
-                </div>
-            </div>
             <div class="col-xs-12 col-md-4">
-                <h1 class="py-5">
+                <h4 class="text-center py-5">
                     Sign-up mentees &amp; mentors instantly
-                </h1>
+                </h4>
                 <div class="d-block d-md-none">
                 <b-img-lazy
                     fluid
@@ -222,16 +195,10 @@
                     our algorithm recommendations.
                 </p>
             </div>
-        </div>
-    </div>
-    <div class="for-companies-2 pt-2">
-        <div class="row">
-            <div class="col-xs-12 col-md-2">
-            </div>
             <div class="col-xs-12 col-md-4">
-                <h1 class="py-5">
+                <h4 class="text-center py-5">
                     The right connection can change a life
-                </h1>
+                </h4>
                 <p class="pb-5 lead">
                     Ensure ideal mentor-mentee matches by using our
                     match recommendation algorithm that ensure that both
@@ -252,13 +219,10 @@
                    class="btn btn-primary btn-lg my-4">
                         Create your mentorship programme
                 </router-link>
-            </div>
-            <div class="col-xs-12 col-md-5">
                 <div class="d-none d-md-block">
                 <b-img-lazy
-                    fluid
-                    rounded
-                    :src="thoughts"
+                    v-bind="mainProps"
+                    :src="heroCompany"
                     alt="threaded-careers"
                     >
                 </b-img-lazy>
@@ -297,7 +261,9 @@ import readingImage from '@/assets/images/happy_students2.jpg';
 import magnolia from '@/assets/images/marginalia-success.png';
 import social from '@/assets/images/social-girl.png';
 import mOffice from '@/assets/images/hero-company.png';
+import heroCompany from '@/assets/images/hero-company-1.png';
 import thoughts from '@/assets/images/smiling.jpg';
+import growth from '@/assets/images/love.png';
 
 export default {
   name: 'home',
@@ -317,7 +283,9 @@ export default {
       magnolia,
       thoughts,
       social,
+      growth,
       mOffice,
+      heroCompany,
     };
   },
   computed: {
