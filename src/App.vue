@@ -48,7 +48,7 @@
                     </b-row>
                 </div>
             </header>
-            <main class="container">
+            <main>
                 <router-view/>
             </main>
         </div>

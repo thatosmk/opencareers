@@ -35,7 +35,9 @@
     </div>
     <div class="for-individuals pt-5">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-2">
+            </div>
+            <div class="col-xs-12 col-md-4">
                 <h1 class="py-5">
                     A sense of fulfilment &amp; personal growth
                 </h1>
@@ -51,7 +53,7 @@
                         Find professionals in your area
                 </router-link>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-5">
                 <b-img-lazy
                     v-bind="mainProps"
                     :src="mOffice"
@@ -71,10 +73,11 @@
                 we want to help you find the best one for you.
             </p>
         </div>
-        <b-card-group class="py-5" columns>
+        <b-card-group class="container py-5" columns>
             <b-card class="no-border">
                 <b-card-text class="py-2">
                     <b-icon-chat
+                        animation="cylon"
                         variant="primary"
                         font-scale="3"
                         >
@@ -111,6 +114,7 @@
             <b-card class="no-border">
                 <b-card-text class="py-2">
                     <b-icon-people
+                        animation="cylon"
                         variant="primary"
                         font-scale="3"
                         >
@@ -127,7 +131,7 @@
             </b-card>
         </b-card-group>
     </div>
-    <div class="for-companies pt-5">
+    <div class="for-companies pt-5 container">
         <div class="text-center">
             <h1 class="py-5">
                 Mentoring software for your organisation
@@ -153,7 +157,9 @@
     </div>
     <div class="for-companies-2 pt-5">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-2">
+            </div>
+            <div class="col-xs-12 col-md-4">
                 <h1 class="py-5">
                     Create an impactful mentorship program
                 </h1>
@@ -171,7 +177,7 @@
                     and valuable to mentees and mentors.
                 </p>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-5">
                 <div class="d-none d-md-block">
                 <b-img-lazy
                     v-bind="mainProps"
@@ -185,7 +191,9 @@
     </div>
     <div class="for-companies-2 pt-5">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-2">
+            </div>
+            <div class="col-xs-12 col-md-5">
                 <div class="d-none d-md-block">
                 <b-img-lazy
                     fluid
@@ -195,7 +203,7 @@
                 </b-img-lazy>
                 </div>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-4">
                 <h1 class="py-5">
                     Sign-up mentees &amp; mentors instantly
                 </h1>
@@ -218,7 +226,9 @@
     </div>
     <div class="for-companies-2 pt-2">
         <div class="row">
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-2">
+            </div>
+            <div class="col-xs-12 col-md-4">
                 <h1 class="py-5">
                     The right connection can change a life
                 </h1>
@@ -243,7 +253,7 @@
                         Create your mentorship programme
                 </router-link>
             </div>
-            <div class="col-xs-12 col-md-6">
+            <div class="col-xs-12 col-md-5">
                 <div class="d-none d-md-block">
                 <b-img-lazy
                     fluid
@@ -256,7 +266,7 @@
             </div>
         </div>
     </div>
-    <div class="py-4">
+    <div class="container py-4">
         <b-jumbotron class="jumb_landing py-5">
             <template
                 class="font-weight-bold"
