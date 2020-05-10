@@ -16,9 +16,14 @@
                         </template>
                     </b-jumbotron>
                     <div v-html="describe" class="marked-down pt-2 pb-5 position-relative">
+                        <highlightable
+                            @share="share"
+                            @highlight="highlight"
+                        >
                         <p id="what" class="py-5">
                             {{ describe }}
                         </p>
+                        </highlightable>
                     </div>
                     <!-- programmes -->
                     <div class="pt-5" id="programmes">
@@ -66,6 +71,15 @@ export default {
     const id = this.$router.currentRoute.params.careerId;
     this.$store.dispatch('careers/loadCareer', id);
     this.$store.dispatch('careers/loadProgrammes', id);
+  },
+  methods: {
+    onShare (text) {
+      console.log('share:', text);
+    },
+
+    onHighlight (text) {
+      console.log('highlight:', text);
+    },
   },
   filters: {
     marked,

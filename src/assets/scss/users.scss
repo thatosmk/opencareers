@@ -1,0 +1,30 @@
+@import "variables";
+
+.text-sm
+{
+    font-weight: 300;
+    padding-bottom: 10px !important;
+}
+.sidebar
+{
+    background-color: #611f69;
+    min-height: 100vh;
+    width: 100%;
+    position: fixed;
+
+    #sidebar-no-header
+    {
+        position: absolute;
+    }
+}
+
+.main-wrapper
+{
+    position: relative;
+    padding: 1rem 1rem 2rem 20rem;
+}
+
+.mentee_card
+{
+    height: 100px;
+}

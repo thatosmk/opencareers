@@ -1,15 +1,7 @@
 <template>
     <div class="container">
-        <div class="py-2 text-center hero">
-            <h1 class="font-weight-light">
-                Blog
-            </h1>
-            <p class="text-muted py-2 lead">
-                Become anything you can imagine
-            </p>
-        </div>
         <div class="py-4">
-            <posts-index :posts="posts"/>
+            <router-view />
         </div>
     </div>
 </template>
@@ -26,6 +18,16 @@ export default {
     },
   },
   methods: {
+  },
+  watch: {
+    $route(newVal) {
+      this.showModal = newVal.meta && newVal.meta.showModal;
+    },
+  },
+  data() {
+    return {
+      showModal: false,
+    };
   },
 };
 </script>

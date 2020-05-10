@@ -1,5 +1,9 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https://api.threaded.co.za/';
+import Vue from 'vue';
+import VueCookies from 'vue-cookies';
+
+Vue.use(VueCookies);
+const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   all: [],
@@ -37,6 +41,7 @@ const actions = {
     fetch(`${API_URL}/api/v1/posts.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'GET',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
@@ -51,6 +56,7 @@ const actions = {
     fetch(`${API_URL}/api/v1/posts/${id}.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'GET',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
@@ -65,6 +71,7 @@ const actions = {
     fetch(`${API_URL}/api/v1/posts.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'post',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
@@ -80,6 +87,7 @@ const actions = {
     fetch(`${API_URL}/api/v1/posts/${id}/comments.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'POST',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
@@ -95,6 +103,7 @@ const actions = {
     fetch(`${API_URL}/api/v1/posts/${id}/comments.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'GET',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',

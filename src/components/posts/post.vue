@@ -1,39 +1,18 @@
 <template>
-    <div class="py-2">
-        <div class="py-2 text-center hero-post">
-            <h1 class="font-weight-light">
+    <div class="py-4 canvas">
+        <div class="py-2 hero-post">
+            <h3 class="font-weight-bold">
                 {{ post.title }}
-            </h1>
+            </h3>
         </div>
-        <div v-html="describe" class="marked-down py-5 position-relative post-wrapper">
+        <div v-html="describe" class="marked-down py-2 position-relative post-wrapper">
             <p id="what" class="py-5">
                 {{ describe }}
             </p>
         </div>
         <div class="post-wrapper">
             <div class="py-4">
-                <h4 class="font-weight-light">
-                    add a comment
-                </h4>
-                <form @submit.prevent="addComment" ref="form">
-                        <b-input-group size="lg">
-                            <b-form-textarea
-                                size="lg"
-                                placeholder="type something"
-                                name="comment[body]"
-                            >
-                            </b-form-textarea>
-                            <b-input-group-append>
-                                <b-button
-                                    size="lg"
-                                    variant="success"
-                                    type="submit"
-                                >
-                                    Submit
-                                </b-button>
-                            </b-input-group-append>
-                        </b-input-group>
-                </form>
+                <add-comment :user="user" />
             </div>
             <div class="py-2">
                 <h4 class="font-weight-light">
@@ -76,8 +55,8 @@ export default {
     post() {
       return this.$store.state.posts.post;
     },
-    describe() {
-      return marked(this.$store.state.posts.post.content);
+    user() {
+      return this.$store.state.users.user;
     },
     comments() {
       return this.$store.state.posts.comments;
@@ -85,21 +64,14 @@ export default {
     commentsCount() {
       return this.$store.state.posts.comments.length;
     },
+    describe() {
+      return marked(this.$store.state.posts.post.content);
+    },
   },
   created() {
     const id = this.$router.currentRoute.params.postId;
     this.$store.dispatch('posts/loadPost', id);
     this.$store.dispatch('posts/loadComments', id);
-  },
-  filters: {
-    marked,
-  },
-  methods: {
-    async addComment() {
-      const formData = new FormData(this.$refs.form);
-      const id = this.$route.params.postId;
-      this.$store.dispatch('posts/createComment', [formData, id]);
-    },
   },
 };
 </script>

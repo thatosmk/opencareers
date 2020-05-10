@@ -2,11 +2,24 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
 @import "mixins";
+@import "users";
 
 
 body
 { overflow-x: hidden; }
 
+.app__background
+{
+    background-color: #eee;
+    min-height: 100vh;
+}
+.canvas
+{
+    background-color: #fff;
+    padding: 2rem 2rem;
+    border-radius: 16px;
+    min-height: 350px;
+}
 .jumbo-skew
 {
     @media(min-width: 768px)
@@ -29,6 +42,10 @@ body
 .bg-light
 {
     background-color: transparent !important;
+}
+.navbar .container
+{
+    height: 70px;
 }
 
 .navbar-nav .nav-link span
@@ -174,7 +191,7 @@ p
         border-radius: 25px !important; 
     }
 }
-.card, .jumbotron, .list-group-item
+.jumbotron
 {
     border-radius: 16px !important;
 }
@@ -193,9 +210,14 @@ p
 }
 .uni_group
 {
+    a
+    {
+        color: $dark; 
+    }
 .card-columns .card
 {
-    border-radius: 16px !important;
+    border-radius: 8px !important;
+    text-decoration: none !important;
 }
 }
 .ux_read

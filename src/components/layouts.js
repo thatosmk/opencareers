@@ -1,5 +1,98 @@
 import Vue from 'vue';
 
+Vue.component('user-sidebar', {
+  props: ['user'],
+  template: `
+    <div class="py-5 mx-2">
+        <div class="ml-auto">
+            <b-sidebar
+                class="bg-dark"
+                id="sidebar-no-header"
+                aria-labelledby="sidebar-no-header-title"
+                no-header shadow visible
+            >
+                <template v-slot:default="{ hide }">
+                    <div class="p-4 text-center">
+                        <h4 id="sidebar-no-header-title py-5">
+                            {{ user.email }}
+                        </h4>
+                        <nav class="mb-3 py-5">
+                            <b-nav vertical>
+                                <b-nav-item href="/users/dashboard">
+                                    Overview
+                                </b-nav-item>
+                                <b-nav-item active href="/users/messages">
+                                    Inbox
+                                </b-nav-item>
+                                <b-nav-item href="/users/mentees">
+                                    Mentees
+                                </b-nav-item>
+                                <b-nav-item href="/users/files">
+                                    Files
+                                </b-nav-item>
+                            </b-nav>
+                        </nav>
+                    </div>
+                </template>
+            </b-sidebar>
+        </div>
+    </div>
+  `,
+});
+Vue.component('user-navbar', {
+  template: `
+    <!-- navbar -->
+    <b-navbar toggleable="lg" type="light" variant="light" sticky>
+       <div class="container">
+        <b-navbar-brand tag="h1" class="mb-0">Threaded</b-navbar-brand>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+
+            <!-- Center aligned nav items -->
+            <b-navbar-nav class="mx-auto">
+                <b-nav-item href="/users/dashboard">
+                    <b-icon-house>
+                    </b-icon-house>
+                    Home
+                </b-nav-item>
+                <b-nav-item href="/users/messages">
+                    <b-icon-inbox>
+                    </b-icon-inbox>
+                    Inbox
+                </b-nav-item>
+                <b-nav-item href="/users/mentees">
+                    <b-icon-people>
+                    </b-icon-people>
+                    Mentees
+                </b-nav-item>
+                <b-nav-item href="/users/files">
+                    <b-icon-files>
+                    </b-icon-files>
+                    Files
+                </b-nav-item>
+                <b-nav-item href="/users/files">
+                    <b-icon-person>
+                    </b-icon-person>
+                    My Profile
+                </b-nav-item>
+                <b-nav-item href="/users/settings">
+                    <b-icon-gear>
+                    </b-icon-gear>
+                    Settings
+                </b-nav-item>
+            </b-navbar-nav>
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
+                <b-nav-item href="/logout" class="active">
+                    Logout
+                </b-nav-item>
+            </b-navbar-nav>
+        </b-collapse>
+        </div>
+    </b-navbar>
+  `,
+});
 Vue.component('main-navbar', {
   props: ['userSignedIn'],
   template: `
@@ -920,36 +1013,214 @@ Vue.component('posts-index', {
   },
   props: ['posts'],
   template: `
-    <div class="py-5 uni_group">
+    <div class="py-2 uni_group">
     <b-card-group columns>
-        <b-card
-            v-for="post in posts" 
-            :key="post.id"
-            :title="post.title"
-            v-bind="mainProps"
-            :img-src="getImageUrl(post.avatar_url)"
-            class="shadow"
-        >
-            <b-card-text>
-                <span
-                    class="text-muted"
-                >
-                    {{ post.comments.length }} comments
-                </span>
-            </b-card-text>
-            <router-link
-                :to="{ name: 'blog_post', params: { postId: post.slug } }"
-                class="btn btn-primary"
+            <b-card
+                v-for="post in posts" 
+                :key="post.id"
+                class="p-2"
             >
-                Read more
-            </router-link>
-        </b-card>
+                <b-card-text>
+                    <router-link
+                        :to="{ name: 'post', params: { postId: post.slug }}"
+                    >
+                        <h4 class="pb-4">
+                        {{ post.title }}
+                        </h4>
+                    </router-link>
+                    {{ post.content.slice(0,50) }}...
+                </b-card-text>
+                <div v-if="post.comments != null">
+                    {{ post.comments.length }} comments
+                </div>
+            </b-card>
     </b-card-group>
     </div>
   `,
   methods: {
     getImageUrl(imageId) {
-      return `https://api.threaded.co.za/${imageId}`;
+      return `http://localhost:3000/${imageId}`;
+    },
+  },
+});
+
+Vue.component('checks-index', {
+  props: ['checks'],
+  template: `
+    <div class="py-2">
+        <div
+            v-for="check in checks"
+            :key="check.id"
+            class="py-4">
+            <router-link
+                :to="{ name: 'checkIn', params: { checkInId: check.id}}"
+            >
+            <h6 class="font-weight-bold">
+                {{ check.title }}
+            </h6>
+            </router-link>
+            <div class="py-2">
+                <div v-if="check.comments.length != 0">
+                    <b-img
+                        v-for="comment in check.comments"
+                        class="rounded-circle"
+                        style="height: 30px;"
+                        :src="getImageUrl(comment.user.avatar_url)"
+                    > 
+                    </b-img> 
+                </div>
+            </div>
+        </div>
+    </div>
+  `,
+  methods: {
+    getImageUrl(imageId) {
+      return `http://localhost:3000/${imageId}`;
+    },
+  },
+});
+
+Vue.component('view-post', {
+  props: ['post'],
+  template: `
+    <div>
+        <b-modal id="modal-view-post"
+            centered
+            :title="post.title"
+            size="lg"
+            hide-header
+            hide-footer
+        >
+            <div class="py-2 text-center">
+                <h2 class="pb-4">
+                    {{ post.title }}
+                </h2>
+                <p>
+                    {{ post.content }}
+                </p>
+            </div>
+        </b-modal>
+    </div>
+  `,
+  methods: {
+    async addPost() {
+      const formData = new FormData(this.$refs.form);
+      this.$store.dispatch('posts/createPost', formData);
+      this.$router.push('/users/dashboard');
+    },
+  },
+});
+Vue.component('add-post', {
+  template: `
+    <div>
+        <b-modal id="modal-add-post"
+            centered
+            title="Add a post item"
+            size="xl"
+            hide-header
+            hide-footer
+        >
+            <div class="py-2 text-center">
+                <h2 class="pb-4">
+                    Start a conversation with people in your circle
+                </h2>
+            </div>
+            <div class="mx-5 pb-5">
+            <form @submit.prevent="addPost" ref="form">
+                <div class="py-2">
+                    <b-form-group>
+                        <b-form-input
+                            size="lg"
+                            placeholder="title"
+                            name="post[title]"
+                        >
+                        </b-form-input>
+                    </b-form-group>
+                </div>
+                <div>
+                    <b-input-group size="lg">
+                        <b-input-group-append class="image-upload">
+                            <label for="file-input">
+                                <b-icon-image
+                                    font-scale="2.5"
+                                    >
+                                </b-icon-image>
+                            </label>
+                            <input
+                                size="lg"
+                                id="file-input"
+                                name="post[avatar]"
+                                class="py-2"
+                                type="file"
+                            />
+                        </b-input-group-append>
+                    </b-input-group>
+                </div>
+                <div class="py-2">
+                    <b-form-group>
+                        <b-form-textarea
+                            placeholder="(Enter markdown content)"
+                            debounce="300"
+                            size="lg"
+                            rows="14"
+                            name="post[content]"
+                            class="py-2"
+                        >
+                        </b-form-textarea>
+                    </b-form-group>
+                </div>
+                    <b-button
+                        variant="success"
+                        @click="$bvModal.hide('modal-add-post')"
+                        type="submit"
+                        size="lg"
+                    >
+                        Submit
+                    </b-button>
+                </form>
+            </div>
+        </b-modal>
+    </div>
+  `,
+  methods: {
+    async addPost() {
+      const formData = new FormData(this.$refs.form);
+      this.$store.dispatch('posts/createPost', formData);
+      this.$router.push('/users/dashboard');
+    },
+  },
+});
+
+Vue.component('add-comment', {
+  props: ['user'],
+  template: `
+    <form @submit.prevent="addComment" ref="form">
+        <b-input-group>
+            <b-input-group-prepend>
+                <b-img
+                    class="rounded mx-4"
+                    style="height: 80px;"
+                    :src="getImageUrl(user.avatar_url)"
+                >
+                </b-img>
+            </b-input-group-prepend>
+            <b-form-textarea
+                size="lg"
+                placeholder="type something"
+                name="comment[body]"
+            >
+            </b-form-textarea>
+        </b-input-group>
+    </form>
+  `,
+  methods: {
+    async addComment() {
+      const formData = new FormData(this.$refs.form);
+      const id = this.$route.params.postId;
+      this.$store.dispatch('posts/createComment', [formData, id]);
+    },
+    getImageUrl(imageId) {
+      return `http://localhost:3000/${imageId}`;
     },
   },
 });

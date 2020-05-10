@@ -1,5 +1,5 @@
 /* eslint no-shadow: ["error", { "allow": ["state"] }] */
-const API_URL = 'https://api.threaded.co.za/';
+const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   all: [],

@@ -17,14 +17,9 @@ const routes = [
     component: Home,
   },
   {
-    path: '/blog',
-    name: 'blog',
-    component: () => import('@/components/posts/index.vue'),
-  },
-  {
-    path: '/blog/:postId',
-    name: 'blog_post',
-    component: () => import('@/components/posts/post.vue'),
+    path: '/about',
+    name: 'about',
+    component: () => import('@/views/About.vue'),
   },
   {
     path: '/new',
@@ -45,7 +40,56 @@ const routes = [
     path: '/logout',
     name: 'logout',
     component: () => import('@/components/users/logout.vue'),
-    meta: { requriesAuth: true },
+    meta: { requiresAuth: true },
+  },
+  {
+    path: '/users',
+    name: 'users',
+    component: () => import('@/components/users/profile.vue'),
+    meta: { requiresAuth: true },
+    children: [
+      {
+        path: 'profile/:userId',
+        name: 'user',
+        component: () => import('@/components/users/show.vue'),
+      },
+      {
+        path: 'mentees',
+        name: 'user_mentees',
+        component: () => import('@/components/users/mentees.vue'),
+      },
+      {
+        path: 'dashboard',
+        name: 'user_dashboard',
+        component: () => import('@/components/users/dashboard.vue'),
+      },
+      {
+        path: 'messages',
+        name: 'user_messages',
+        component: () => import('@/components/users/inbox.vue'),
+      },
+      {
+        path: 'settings',
+        name: 'user_settings',
+        component: () => import('@/components/users/settings.vue'),
+      },
+      {
+        path: 'files',
+        name: 'user_files',
+        component: () => import('@/components/users/files.vue'),
+        meta: { requiresAuth: true },
+      },
+      {
+        path: 'posts/:postId',
+        name: 'post',
+        component: () => import('@/components/posts/post.vue'),
+      },
+      {
+        path: 'check_ins/:checkInId',
+        name: 'checkIn',
+        component: () => import('@/components/users/checkIn.vue'),
+      },
+    ],
   },
 ];
 
@@ -57,20 +101,13 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (to.name === 'logout') {
-      if (Vue.$cookies.isKey('user-token')) {
-        next();
-      } else {
-        next('/');
-      }
-    } else if (to.name === 'profile') {
-      if (Vue.$cookies.isKey('user-token')) {
-        next();
-      } else {
-        next('/login');
-      }
-    } else {
+    if (Vue.$cookies.isKey('user-token')) {
       next();
+    } else {
+      next({
+        path: '/login',
+        query: { redirect: to.fullPath },
+      });
     }
   } else {
     next();

@@ -1,5 +1,18 @@
 <template>
   <div id="app">
+      <div v-if="loggedIn" class="app__background">
+        <router-view />
+        <footer>
+            <div class="container">
+                <div class="py-5">
+                    <p class="text-muted">
+                        threaded &copy; All Rights Reserved 2020
+                    </p>
+                </div>
+            </div>
+        </footer>
+      </div>
+      <div v-else>
         <div v-if="rootPage" class="content-wrap">
             <header class="landing-header">
                 <div class="jumbo-skew"></div>
@@ -58,15 +71,16 @@
                 <router-view/>
             </main>
         </div>
-    <footer>
-        <div class="container">
-            <div class="py-5">
-                <p class="text-muted">
-                    threaded &copy; All Rights Reserved 2020
-                </p>
+        <footer>
+            <div class="container">
+                <div class="py-5">
+                    <p class="text-muted">
+                        threaded &copy; All Rights Reserved 2020
+                    </p>
+                </div>
             </div>
-        </div>
-    </footer>
+        </footer>
+      </div>
   </div>
 </template>
 
