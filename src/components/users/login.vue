@@ -5,7 +5,10 @@
                 Welcome back
             </h3>
         </div>
-        <div class="py-4">
+        <div class="py-4 login_form">
+            <b-alert show v-if="notAuthenticated" variant="danger">
+                {{ errors }}
+            </b-alert>
             <form @submit.prevent="login" ref="form">
                 <login-form/>
             </form>
@@ -20,20 +23,27 @@ export default {
   methods: {
     async login() {
       const formData = new FormData(this.$refs.form);
-      this.$store.dispatch('users/userSession', formData);
-      this.$notify({
-        group: 'alerts',
-        title: 'You have signed out',
-        type: 'success',
-        position: 'top center',
-        text: 'Hello user! This is a notification!',
-      });
-      this.$router.push('/login');
+      this.$store.dispatch('users/userSession', formData)
+        .then((value) => {
+          console.log(value);
+          this.$router.push('/users/dashboard');
+        })
+        .catch((error) => { console.log('not logged in', error); });
+      /*
+      if (this.$store.state.users.errors !== null) {
+        this.$router.push('/login');
+      } else if (this.$cookies.isKey('user-token')) {
+        this.$router.push('/users/dashboard');
+      }
+      */
     },
   },
   computed: {
-    loginErrors() {
-      return this.$cookies.get('login-errors');
+    errors() {
+      return this.$store.state.users.errors.error;
+    },
+    notAuthenticated() {
+      return this.$store.state.users.errors !== null;
     },
   },
 };

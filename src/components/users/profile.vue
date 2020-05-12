@@ -29,13 +29,6 @@ export default {
     async updateUser() {
       const formData = new FormData(this.$refs.form);
       this.$store.dispatch('users/userUpdate', formData);
-      this.$notify({
-        group: 'alerts',
-        title: 'Post successfully added',
-        type: 'success',
-        position: 'top center',
-        text: 'Hello user! This is a notification!',
-      });
     },
   },
 };

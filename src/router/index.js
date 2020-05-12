@@ -69,6 +69,11 @@ const routes = [
         component: () => import('@/components/users/inbox.vue'),
       },
       {
+        path: 'activity',
+        name: 'user_activity',
+        component: () => import('@/components/users/activity.vue'),
+      },
+      {
         path: 'settings',
         name: 'user_settings',
         component: () => import('@/components/users/settings.vue'),

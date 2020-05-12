@@ -1,5 +1,46 @@
 import Vue from 'vue';
 
+Vue.component('user-mentees', {
+  props: ['mentees'],
+  template: `
+    <b-card-group columns class="py-4">
+        <router-link
+            v-for="mentee in mentees"
+            :key="mentee.id"
+            :to="{ name: 'user', params: { userId: mentee.slug }}"
+            >
+            <b-card
+                :title="mentee.full_name"
+                :img-src="getImageUrl(mentee.avatar_url)"
+                class="mx-4 mentee__card">
+                <b-card-text>
+                    {{ mentee.bio }}
+                </b-card-text>
+            </b-card>
+        </router-link>
+    </b-card-group>
+  `,
+  methods: {
+    getImageUrl(imageId) {
+      return `http://localhost:3000/${imageId}`;
+    },
+  },
+});
+Vue.component('user-avatar', {
+  props: ['user', 'imgHeight'],
+  template: `
+    <b-img
+        :style="height: imgHeight;"
+        :src="getImageUrl(user.avatar_url)"
+        >
+    </b-img>
+  `,
+  methods: {
+    getImageUrl(imageId) {
+      return `http://localhost:3000/${imageId}`;
+    },
+  },
+});
 Vue.component('user-sidebar', {
   props: ['user'],
   template: `
@@ -71,10 +112,10 @@ Vue.component('user-navbar', {
                     </b-icon-files>
                     Files
                 </b-nav-item>
-                <b-nav-item href="/users/files">
+                <b-nav-item href="/users/activity">
                     <b-icon-person>
                     </b-icon-person>
-                    My Profile
+                    Timeline
                 </b-nav-item>
                 <b-nav-item href="/users/settings">
                     <b-icon-gear>
@@ -1063,6 +1104,7 @@ Vue.component('checks-index', {
                 <div v-if="check.comments.length != 0">
                     <b-img
                         v-for="comment in check.comments"
+                        :key="comment.id"
                         class="rounded-circle"
                         style="height: 30px;"
                         :src="getImageUrl(comment.user.avatar_url)"

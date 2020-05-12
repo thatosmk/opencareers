@@ -101,7 +101,7 @@ export default {
       return this.$route.name === 'home';
     },
     loggedIn() {
-      return this.$cookies.isKey('user-token');
+      return this.$store.state.users.user_signed_in;
     },
   },
 };

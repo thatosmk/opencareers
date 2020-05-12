@@ -9,8 +9,8 @@ const API_URL = 'http://localhost:3000';
 
 // initial state
 const state = {
-  user: {},
-  errors: {},
+  user: null,
+  errors: null,
   user_signed_in: false,
 };
 
@@ -34,6 +34,7 @@ const mutations = {
   },
   setUser(state, user) {
     state.user = user;
+    state.errors = null;
     state.user_signed_in = true;
   },
 };
@@ -110,32 +111,39 @@ const actions = {
       .then(user => commit('setUser', user)).catch();
   },
   async userSession({ commit }, formData) {
-    fetch(`${API_URL}/users/sign_in.json`, {
-      headers: {
-        accept: 'application/json',
-        'Access-Control-Request-Method': 'POST',
-        'Access-Control-Request-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
-      },
-      method: 'post',
-      body: formData,
-    }).then((response) => {
-      if (response.headers.get('Authorization')) {
-        Vue.$cookies.set('user-token', response.headers.get('Authorization'));
-        Vue.$cookies.remove('login-errors');
-      } else {
-        Vue.$cookies.set('login-errors', response.body);
-      }
-      return response.json();
-    })
-      .then(user => commit('setUser', user)).catch();
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/users/sign_in.json`, {
+        headers: {
+          accept: 'application/json',
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+        method: 'post',
+        body: formData,
+      }).then((response) => {
+        if (response.headers.get('Authorization')) {
+          Vue.$cookies.set('user-token', response.headers.get('Authorization'));
+        }
+        return response.json();
+      })
+        .then((data) => {
+          if (data.error != null) {
+            commit('setErrors', data);
+            reject(new Error('Incorrect credentials'));
+          } else {
+            commit('setUser', data);
+            resolve('Success');
+          }
+        }).catch();
+    });
   },
-  async getUser({ commit }) {
-    fetch('http://localhost:3000/api/v1/users/profile.json', {
+  async getUser({ commit }, id) {
+    fetch(`${API_URL}/api/v1/users/${id}.json`, {
       headers: {
         accept: 'application/json',
-        Authorization: localStorage.getItem('token'),
+        Authorization: Vue.$cookies.get('user-token'),
         'Access-Control-Request-Method': 'GET',
         'Access-Control-Request-Headers': 'Content-Type',
         'Access-Control-Allow-Origin': '*',
