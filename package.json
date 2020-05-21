@@ -8,12 +8,16 @@
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
+    "@vuex-orm/core": "^0.36.3",
+    "@vuex-orm/plugin-axios": "^0.9.3",
+    "@websanova/vue-auth": "^3.1.5-beta",
     "axios": "^0.19.2",
     "bootstrap": "^4.4.1",
-    "bootstrap-vue": "^2.13.1",
+    "bootstrap-vue": "^2.14.0",
     "core-js": "^3.4.4",
     "marked": "^1.0.0",
     "moment": "^2.25.3",
+    "moment-timezone": "^0.5.31",
     "v-calendar": "^1.0.0-beta.23",
     "v-markdown-editor": "^1.2.4",
     "vue": "^2.6.11",

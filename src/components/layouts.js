@@ -98,11 +98,11 @@ Vue.component('user-navbar', {
             <!-- Center aligned nav items -->
             <b-navbar-nav class="mx-auto">
                 <router-link
-                    :to="{ path: '/users/dashboard' }"
+                    :to="{ path: '/users/activity' }"
                     class="nav-item p-2">
                     <b-icon-house>
                     </b-icon-house>
-                    Home
+                    Feed
                 </router-link>
                 <router-link
                     :to="{ path: '/users/chats' }"
@@ -128,14 +128,7 @@ Vue.component('user-navbar', {
                     Find a mentor 
                 </router-link>
                 <router-link
-                    :to="{ path: '/users/files' }"
-                    class="nav-item p-2">
-                    <b-icon-files>
-                    </b-icon-files>
-                    Files
-                </router-link>
-                <router-link
-                    :to="{ path: '/users/activity' }"
+                    :to="{ path: '/users/dashboard' }"
                     class="nav-item p-2">
                     <b-icon-person>
                     </b-icon-person>
@@ -163,39 +156,27 @@ Vue.component('user-navbar', {
   `,
 });
 Vue.component('main-navbar', {
-  props: ['userSignedIn'],
   template: `
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
-       <div class="container">
+       <div class="container-fluid">
         <b-navbar-brand href="/" class="font-weight-bold">threaded</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
-
-            <!-- Center aligned nav items -->
-            <b-navbar-nav class="mr-auto">
+            <!-- Right aligned nav items -->
+            <b-navbar-nav class="ml-auto">
                 <router-link
-                    :to="{ path: '/pricing' }"
+                    :to="{ path: '/blog' }"
                     class="nav-item p-2">
-                    Pricing
+                    Blog
                 </router-link>
                 <router-link
                     :to="{ path: '/about' }"
                     class="nav-item p-2">
                     About
                 </router-link>
-            </b-navbar-nav>
-            <!-- Right aligned nav items -->
-            <b-navbar-nav v-if="userSignedIn" class="ml-auto">
-                <router-link
-                    :to="{ path: '/logout' }"
-                    class="nav-item p-2 active">
-                    Logout
-                </router-link>
-            </b-navbar-nav>
-            <b-navbar-nav v-else class="ml-auto">
                 <router-link
                     :to="{ path: '/login' }"
                     class="nav-item p-2">
@@ -231,6 +212,7 @@ Vue.component('login-form', {
                     required
                     type="email"
                     placeholder="email address"
+                    auto-complete="email"
                     size="lg"
                     name="user[email]"
                     class="py-4"
@@ -241,6 +223,7 @@ Vue.component('login-form', {
                 <b-form-input
                     type="password"
                     required
+                    auto-complete="current-password"
                     placeholder="password"
                     size="lg"
                     name="user[password]"

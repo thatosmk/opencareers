@@ -110,26 +110,20 @@ Vue.component('todos-index', {
             :key="todo.id"
             class="mb-2 pl-4"
         >
-            <form @submit.prevent="updateTodo" ref="form">
+            <form @submit.prevent="updateTodo" ref="editTodo">
                 <div class="row">
                     <b-form-checkbox
+                          @change="updateTodoEvent"
                           id="checkbox-1"
-                          v-model="status"
                           name="checkbox-1"
-                          value="accepted"
+                          :aria-label="todo.title"
+                          value="false"
+                          :class="{ active: todo.completed }"
                           size="lg"
-                          unchecked-value="not_accepted"
+                          unchecked-value="true"
                         >
                         {{ todo.title }}
                     </b-form-checkbox>
-                    <span class="ml-auto">
-                        due soon{{ todo.deadline }}
-                    </span>
-                    <span class="ml-auto"
-                        v-if="todo.assignee !== null"
-                    >
-                        assigned to: {{ todo.assignee.full_name }}
-                    </span>
                 </div>
             </form>
         </b-list-group-item>
@@ -139,6 +133,9 @@ Vue.component('todos-index', {
   methods: {
     getImageUrl(imageId) {
       return `https://api.threaded.co.za/${imageId}`;
+    },
+    updateTodoEvent(e) {
+      this.$emit('updatedTodo', e);
     },
   },
 });

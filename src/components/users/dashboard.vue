@@ -23,7 +23,7 @@
                             new</b-button>
                             <hr/>
                         </h6>
-                        <todos-index :todos="todos" />
+                        <todos-index :todos="todos" @updatedTodo="editTodo" />
                         <add-todo :ids="mentees" />
                     </div>
                 </section>
@@ -72,6 +72,7 @@
 <script>
 // @ is an alias to /src
 import '@/components/todos/index';
+import Todo from '@/store/models/todo';
 
 export default {
   name: 'Show',
@@ -83,7 +84,7 @@ export default {
       return this.$store.state.users.user.mentees;
     },
     todos() {
-      return this.$store.state.todos.all;
+      return Todo.query().orderBy('id').get();
     },
     checkIns() {
       return this.$store.state.dashboard.checkIns;
@@ -94,8 +95,13 @@ export default {
   },
   created() {
     this.$store.dispatch('dashboard/loadCheckIns');
-    this.$store.dispatch('todos/loadTodos');
     this.$store.dispatch('posts/loadPosts');
+    Todo.api().fetch();
+  },
+  methods: {
+    editTodo(msg) {
+      console.log(msg);
+    },
   },
 };
 </script>

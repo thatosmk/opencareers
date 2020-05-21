@@ -30,6 +30,7 @@
                            <b-form-input
                                 required
                                 type="email"
+                                auto-complete="email"
                                 placeholder="email address"
                                 size="lg"
                                 name="user[email]"
@@ -42,6 +43,7 @@
                                 type="password"
                                 v-model="password"
                                 required
+                                auto-complete="create-password"
                                 placeholder="Create Password"
                                 size="lg"
                                 name="user[password]"

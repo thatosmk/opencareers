@@ -48,10 +48,12 @@ const mutations = {
     state.user = user;
     state.user_signed_in = false;
   },
-  setUser(state, user) {
-    state.user = user;
-    state.errors = null;
-    state.user_signed_in = true;
+  setUser(state, payload) {
+    if (payload.id) {
+      state.user = payload;
+      state.errors = null;
+      state.user_signed_in = true;
+    }
   },
   setMentor(state, mentor) {
     state.mentor = mentor;
@@ -80,18 +82,22 @@ const actions = {
       }).catch();
   },
   async userShow({ commit }) {
-    fetch(`${API_URL}/api/v1/users.json`, {
-      headers: {
-        accept: 'application/json',
-        Authorization: Vue.$cookies.get('user-token'),
-        'Access-Control-Request-Method': 'DELETE',
-        'Access-Control-Request-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
-      },
-      method: 'get',
-    }).then(response => response.json())
-      .then(user => commit('setUser', user)).catch();
+    if (this.state.user_signed_in) {
+      fetch(`${API_URL}/api/v1/users.json`, {
+        headers: {
+          accept: 'application/json',
+          Authorization: Vue.$cookies.get('user-token'),
+          'Access-Control-Request-Method': 'DELETE',
+          'Access-Control-Request-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+        method: 'get',
+      }).then(response => response.json())
+        .then((data) => {
+          commit('setUser', data);
+        }).catch();
+    }
   },
   async userUpdate({ commit }, formData) {
     fetch(`${API_URL}/users.json`, {

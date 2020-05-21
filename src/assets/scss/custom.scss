@@ -2,6 +2,7 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~bootstrap-vue/src/index.scss';
 @import "mixins";
+@import "navbar";
 @import "users";
 
 
@@ -13,6 +14,26 @@ body
     display: none;
 }
 
+.landing
+{
+    padding-top: 150px;
+    padding-bottom: 150px;
+    position: relative;
+    @media(max-width: 768px)
+    {
+        text-justify: center; 
+    }
+    .pj
+    {
+        @media(max-width: 768px)
+        {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            text-justify: center; 
+        }
+    }
+
+}
 .oc
 {
     background-color: #fff;
@@ -99,48 +120,6 @@ body
     }
 }
 
-.bg-light
-{
-    background-color: transparent !important;
-}
-.navbar .container
-{
-    height: 70px;
-}
-
-.navbar-nav .nav-link span
-{
-    color: #555;
-}
-
-.navbar-light .navbar-nav .active > .nav-link
-{
-    color: #fff;
-}
-.navbar-nav .nav-item .nav-link
-{
-    color: #555;
-}
-
-.navbar-nav .nav-item .nav-link:hover
-{
-    color: #555;
-}
-
-.navbar-nav .active
-{
-    color: #fff !important;
-    background-color: $primary;
-    border: 1px solid $primary;
-    border-radius: 5px;
-    padding-left: 10px; 
-    padding-right: 10px; 
-}
-.navbar-nav .active .nav-link
-{
-    color: #fff;
-}
-
 /* main */
 h1
 {
@@ -156,19 +135,19 @@ h1
 
 p
 {
-    @media(max-width: 768px)
-    {
-        text-align: center;
-    }
     padding-top: 20px;
     line-height: 1.8;
     font-weight: 300;
+}
+.cta
+{
+    padding: 16px 28px; 
 }
 .landing-header
 {
     @media(min-width: 768px)
     {
-        min-height: 80vh;
+        min-height: 100vh;
 
         .section-header
         {
@@ -184,6 +163,15 @@ p
             text-align: center;
             margin-left: 25%;
             margin-right: 10%;
+        }
+        button
+        {
+            margin-left: 25%;
+            margin-right: 10%;
+        }
+        .cta
+        {
+            padding: 16px 28px; 
         }
         p
         {
@@ -204,6 +192,14 @@ p
     {
         min-height: 100vh;
         padding: 1.0px 0.5rem;
+        button
+        {
+            display: block;
+        }
+        .cta
+        {
+            padding: 16px 28px; 
+        }
         h1
         {
             font-size: 2.0em !important;
@@ -473,4 +469,31 @@ footer
             border: none;
         }
     }
+}
+
+.ap
+{
+
+    @media(min-width: 768px)
+    {
+        margin-left: 10rem;
+        margin-right: 10rem;
+    }
+    
+    p
+    {
+        display: flex;
+        justify-content: center !important;
+
+        line-height: 1.8;
+        @media(min-width: 768px)
+        {
+            font-size: 1.4em;
+        }
+        @media(max-width: 768px)
+        {
+            font-size: 1.25em;
+        }
+    }
+
 }

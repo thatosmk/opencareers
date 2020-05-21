@@ -27,9 +27,9 @@ const routes = [
     component: () => import('@/views/pricing.vue'),
   },
   {
-    path: '/new',
-    name: 'new_blog',
-    component: () => import('@/components/posts/new.vue'),
+    path: '/blog',
+    name: 'blog',
+    component: () => import('@/views/blog.vue'),
   },
   {
     path: '/login',
@@ -99,12 +99,6 @@ const routes = [
         path: 'settings',
         name: 'user_settings',
         component: () => import('@/components/users/settings.vue'),
-      },
-      {
-        path: 'files',
-        name: 'user_files',
-        component: () => import('@/components/users/files.vue'),
-        meta: { requiresAuth: true },
       },
       {
         path: 'posts/:postId',
