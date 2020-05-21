@@ -27,13 +27,17 @@ Vue.component('user-mentees', {
   },
 });
 Vue.component('user-avatar', {
-  props: ['user', 'imgHeight'],
+  props: ['user'],
   template: `
+    <div class="p-2">
     <b-img
-        :style="height: imgHeight;"
+        v-if="user.avatar_url !== null"
         :src="getImageUrl(user.avatar_url)"
+        class="rounded-circle"
+        style="height: 80px; wdith: 80px;"
         >
     </b-img>
+    </div>
   `,
   methods: {
     getImageUrl(imageId) {
@@ -81,6 +85,7 @@ Vue.component('user-sidebar', {
   `,
 });
 Vue.component('user-navbar', {
+  props: ['user'],
   template: `
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light" sticky>
@@ -92,42 +97,65 @@ Vue.component('user-navbar', {
 
             <!-- Center aligned nav items -->
             <b-navbar-nav class="mx-auto">
-                <b-nav-item href="/users/dashboard">
+                <router-link
+                    :to="{ path: '/users/dashboard' }"
+                    class="nav-item p-2">
                     <b-icon-house>
                     </b-icon-house>
                     Home
-                </b-nav-item>
-                <b-nav-item href="/users/messages">
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/chats' }"
+                    class="nav-item p-2">
                     <b-icon-inbox>
                     </b-icon-inbox>
                     Inbox
-                </b-nav-item>
-                <b-nav-item href="/users/mentees">
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/mentees' }"
+                    v-if="user!== null && user.account !== null && user.account.role === 'mentor'" 
+                    class="nav-item p-2">
                     <b-icon-people>
                     </b-icon-people>
                     Mentees
-                </b-nav-item>
-                <b-nav-item href="/users/files">
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/mentors' }"
+                    v-if="user!== null && user.account !== null && user.account.role === 'mentee'" 
+                    class="nav-item p-2">
+                    <b-icon-search>
+                    </b-icon-search>
+                    Find a mentor 
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/files' }"
+                    class="nav-item p-2">
                     <b-icon-files>
                     </b-icon-files>
                     Files
-                </b-nav-item>
-                <b-nav-item href="/users/activity">
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/activity' }"
+                    class="nav-item p-2">
                     <b-icon-person>
                     </b-icon-person>
-                    Timeline
-                </b-nav-item>
-                <b-nav-item href="/users/settings">
+                    Resources
+                </router-link>
+                <router-link
+                    :to="{ path: '/users/settings' }"
+                    class="nav-item p-2">
                     <b-icon-gear>
                     </b-icon-gear>
                     Settings
-                </b-nav-item>
+                </router-link>
             </b-navbar-nav>
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <b-nav-item href="/logout" class="active">
+                <router-link
+                    :to="{ path: '/logout' }"
+                    class="nav-item p-2 active">
                     Logout
-                </b-nav-item>
+                </router-link>
             </b-navbar-nav>
         </b-collapse>
         </div>
@@ -148,33 +176,36 @@ Vue.component('main-navbar', {
 
             <!-- Center aligned nav items -->
             <b-navbar-nav class="mr-auto">
-                <b-nav-item   
-                    href="/about">
-                    About
-                </b-nav-item>
-                <b-nav-item   
-                    href="/about">
+                <router-link
+                    :to="{ path: '/pricing' }"
+                    class="nav-item p-2">
                     Pricing
-                </b-nav-item>
-                <b-nav-item   
-                    href="/about">
-                    Blog
-                </b-nav-item>
+                </router-link>
+                <router-link
+                    :to="{ path: '/about' }"
+                    class="nav-item p-2">
+                    About
+                </router-link>
             </b-navbar-nav>
             <!-- Right aligned nav items -->
             <b-navbar-nav v-if="userSignedIn" class="ml-auto">
-                <b-nav-item href="/logout" class="active">
+                <router-link
+                    :to="{ path: '/logout' }"
+                    class="nav-item p-2 active">
                     Logout
-                </b-nav-item>
+                </router-link>
             </b-navbar-nav>
             <b-navbar-nav v-else class="ml-auto">
-                <b-nav-item   
-                    href="/login">
+                <router-link
+                    :to="{ path: '/login' }"
+                    class="nav-item p-2">
                     Login
-                </b-nav-item>
-                <b-nav-item href="/register" class="active">
+                </router-link>
+                <router-link
+                    :to="{ path: '/register' }"
+                    class="nav-item active p-2">
                     Try threaded
-                </b-nav-item>
+                </router-link>
             </b-navbar-nav>
         </b-collapse>
         </div>
@@ -183,75 +214,12 @@ Vue.component('main-navbar', {
 });
 
 Vue.component('register-form', {
+  data() {
+    return {
+      password: null,
+    };
+  },
   template: `
-    <div class="py-2 mx-2 mx-login">
-        <div>
-            <b-form-group class="py-2">
-               <b-form-input
-                    required
-                    type="text"
-                    placeholder="Full Name"
-                    size="lg"
-                    name="user[full_name]"
-                    class="py-4"
-                >
-                </b-form-input>
-            </b-form-group>
-            <b-form-group class="py-2">
-               <b-form-input
-                    required
-                    type="email"
-                    placeholder="email address"
-                    size="lg"
-                    name="user[email]"
-                    class="py-4"
-                >
-                </b-form-input>
-            </b-form-group>
-            <b-form-group class="py-2">
-                <b-form-input
-                    type="password"
-                    required
-                    placeholder="Create Password"
-                    size="lg"
-                    name="user[password]"
-                    class="py-4"
-                >
-                </b-form-input>
-            </b-form-group>
-            <b-form-group class="py-2">
-                <b-form-input
-                    type="password"
-                    required
-                    placeholder="Type password again"
-                    size="lg"
-                    name="user[password_confirmation]"
-                    class="py-4"
-                >
-                </b-form-input>
-            </b-form-group>
-            <b-button
-                block
-                type="submit"
-                variant="secondary"
-                class="py-2"
-            >
-                Register
-            </b-button>
-        </div>
-        <div class="py-4">
-            <p
-                class="text-muted"
-            >
-                Already have an account?
-                <router-link
-                    :to="{ path: '/login' }"
-                >
-                Sign in
-                </router-link>
-            </p>
-        </div>
-    </div>
   `,
 });
 Vue.component('login-form', {
@@ -1088,27 +1056,33 @@ Vue.component('posts-index', {
 Vue.component('checks-index', {
   props: ['checks'],
   template: `
-    <div class="py-2">
+    <div class="py-2 checks">
         <div
             v-for="check in checks"
             :key="check.id"
-            class="py-4">
+            class="py-4 check-item"
+        >
             <router-link
-                :to="{ name: 'checkIn', params: { checkInId: check.id}}"
+                :to="{ name: 'checkIn', params: { checkInId: check.slug}}"
             >
-            <h6 class="font-weight-bold">
-                {{ check.title }}
-            </h6>
+                <h6 class="font-weight-bold">
+                    {{ check.title }}
+                </h6>
             </router-link>
-            <div class="py-2">
-                <div v-if="check.comments.length != 0">
+            <p class="pt-2 font-weight-light">
+                {{ check.description }}
+            </p>
+
+            <div class="mx-2">
+                <div v-if="check.comments.length > 0">
                     <b-img
-                        v-for="comment in check.comments"
+                       v-if="comment.user.avatar_url !== null"
                         :key="comment.id"
-                        class="rounded-circle"
-                        style="height: 30px;"
+                        v-for="comment in check.comments"
+                        style="height: 50px;"
+                        class="rounded-circle mr-2"
                         :src="getImageUrl(comment.user.avatar_url)"
-                    > 
+                    >
                     </b-img> 
                 </div>
             </div>

@@ -8,6 +8,66 @@
 body
 { overflow-x: hidden; }
 
+.image-upload > input
+{
+    display: none;
+}
+
+.oc
+{
+    background-color: #fff;
+    margin: 0 15%;
+    padding: 5rem 6rem 6rem;
+    border-radius: 16px;
+
+    .carousel
+    {
+        color: $primary;
+
+        .carousel-item img
+        {
+            display: inline !important; 
+        }
+    }
+}
+.personal-form
+{
+    border: 1px solid #eee;
+    border-radius: 20px;
+
+    form
+    {
+        padding: 0.25rem 5%; 
+    }
+}
+.button-check label
+{
+    background-color: #fff !important;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    color: $dark;
+
+    span
+    {
+        color: $dark;
+    }
+}
+.circle-avatar
+{
+    background-color: #eee;
+    height: 180px;
+    width: 180px;
+
+    &:hover
+    {
+        border: 2px solid $dark; 
+    }
+}
+.image-upload img
+{
+    width: 80px;
+    cursor: pointer;
+}
 .app__background
 {
     background-color: #eee;
@@ -18,7 +78,7 @@ body
     background-color: #fff;
     padding: 2rem 2rem;
     border-radius: 16px;
-    min-height: 350px;
+    min-height: 450px;
 }
 .jumbo-skew
 {
@@ -114,13 +174,24 @@ p
         {
             padding-top: 5rem;
         }
+        .ld
+        {
+            padding-left: 10rem; 
+        }
         h1
         {
             font-size: 4.0em;
+            text-align: center;
+            margin-left: 25%;
+            margin-right: 10%;
         }
         p
         {
+            padding-top: 2em;
             font-size: 1.6rem;
+            text-align: center;
+            margin-left: 25%;
+            margin-right: 10%;
         }
 
         img
@@ -336,4 +407,70 @@ footer
 {
   transform: translateX(10px);
   opacity: 0;
+}
+.Cookie
+{
+    @media(max-width: 768px)
+    {
+        text-align: center;
+        max-width: 75%;
+        margin-bottom: 15px;
+        margin-left: 15%;
+        border-radius: 50px;
+    }
+    @media(min-width: 768px)
+    {
+    text-align: center;
+    max-width: 50%;
+    margin-bottom: 15px;
+    margin-left: 25%;
+    border-radius: 50px;
+}
+}
+.Cookie > *
+{
+    padding: 1px 1%;
+}
+.Cookie--blood-orange--rounded
+{
+    text-align: center !important;
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.pricing-wrapper
+{
+    border-radius: 16px;
+
+    .pw
+    {
+        background-color: #fff;
+        border-radius: 25px;
+        padding: 20px 25px; 
+        border: 1px solid #eee;
+        border-right: none;
+        border-top-right-radius: 0 !important; 
+        border-bottom-right-radius: 0 !important; 
+       
+        .list-group-item
+        {
+            border: none;
+        }
+    }
+
+    .pg
+    {
+        color: #fff;
+        background-color: $primary;
+        border-radius: 16px;
+        padding: 20px 25px; 
+        border-top-left-radius: 0 !important; 
+        border-bottom-left-radius: 0 !important; 
+
+        .list-group-item
+        {
+            background-color: $primary; 
+            border: none;
+        }
+    }
 }

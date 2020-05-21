@@ -22,6 +22,11 @@ const routes = [
     component: () => import('@/views/About.vue'),
   },
   {
+    path: '/pricing',
+    name: 'pricing',
+    component: () => import('@/views/pricing.vue'),
+  },
+  {
     path: '/new',
     name: 'new_blog',
     component: () => import('@/components/posts/new.vue'),
@@ -54,9 +59,19 @@ const routes = [
         component: () => import('@/components/users/show.vue'),
       },
       {
+        path: 'onboarding',
+        name: 'onboarding',
+        component: () => import('@/components/users/onboarding.vue'),
+      },
+      {
         path: 'mentees',
         name: 'user_mentees',
         component: () => import('@/components/users/mentees.vue'),
+      },
+      {
+        path: 'mentors',
+        name: 'user_mentors',
+        component: () => import('@/components/users/mentors.vue'),
       },
       {
         path: 'dashboard',
@@ -64,9 +79,16 @@ const routes = [
         component: () => import('@/components/users/dashboard.vue'),
       },
       {
-        path: 'messages',
+        path: 'chats',
         name: 'user_messages',
         component: () => import('@/components/users/inbox.vue'),
+        children: [
+          {
+            path: ':conversationId',
+            name: 'conversation',
+            component: () => import('@/components/users/conversation.vue'),
+          },
+        ],
       },
       {
         path: 'activity',
@@ -115,7 +137,12 @@ router.beforeEach((to, from, next) => {
       });
     }
   } else {
-    next();
+    const url = to.name;
+    if (url === 'home' && Vue.$cookies.isKey('user-token')) {
+      next('/users/dashboard');
+    } else {
+      next();
+    }
   }
 });
 export default router;

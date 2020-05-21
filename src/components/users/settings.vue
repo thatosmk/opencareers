@@ -1,140 +1,161 @@
 <template>
     <div>
         <div class="py-2">
-            <h1 class="text-center font-weight-light"
+            <h4 class="text-center font-weight-light"
                 v-if="user.full_name != null ">
                 Hi, {{ user.full_name }}
-            </h1>
-            <h1 class="text-center font-weight-light"
+            </h4>
+            <h4 class="text-center font-weight-light"
                 v-else>
                 Hi, {{ user.email }}
-            </h1>
+            </h4>
         </div>
-        <div class="py-2">
+        <div class="canvas">
             <div class="row">
-                <section class="col-xs-12 col-md-4">
-                    <div v-if="user.avatar_url != null">
-                        <b-img
-                            style="height: 240px;"
-                            :src="getImageUrl(user.avatar_url)"
-                            >
-                    </b-img>
-                    </div>
-                    <p class="py-4 lead">
-                        {{ user.bio }}
-                    </p>
-                    <p class="py-2 lead">
-                        Currently, you are a
-                        <b-badge
-                            class="p-2"
-                            variant="primary">{{ user.role }}</b-badge>
-                    </p>
-                </section>
-                <section class="col-xs-12 col-md-4">
-                    <div class="py-2">
-                        <h6 class="text-muted py-4">
-                            Setup your account
-                        </h6>
-                        <b-button
-                            class="px-5 py-2"
-                            size="lg"
-                            v-b-modal.modal-update-account
-                            variant="primary"
-                        >Get Started</b-button>
-                    </div>
-                </section>
-            </div>
-        </div>
-        <div class="py-2">
-            <h6 class="text-muted py-4">
-                Update your account
-                <hr/>
-            </h6>
-            <b-button
-                class="px-5 py-2"
-                size="sm"
-                v-b-modal.modal-update-account
-                variant="primary"
-            >Make changes</b-button>
-            <h6 class="text-muted pt-5">
-                Change password
-                <hr/>
-            </h6>
-            <p>
-                coming soon
-            </p>
-        </div>
-        <b-modal id="modal-update-account"
-            centered
-            title="Welcome to threaded"
-            size="lg"
-            hide-header
-            hide-footer
-        >
-            <div class="py-2 text-center">
-                <h2 class="pb-4">
-                    Hi, {{ user.full_name }}
-                </h2>
-                <p>
-                    Welcome to the threaded community
-                </p>
-            </div>
-            <div class="mx-5 pb-5">
-                <form @submit.prevent="updateUser" ref="form">
-                    <div class="row">
-                        <div class="col-md-5">
-                            <div class="py-2">
-                                <b-form-group label="Full Name">
-                                    <b-form-input
-                                        type="text"
-                                        placeholder="e.g. Erich Bachman"
-                                        name="user[full_name]"
-                                        class="py-2"
-                                    >
-                                    </b-form-input>
-                                </b-form-group>
-                                <b-form-group label="Profile picture">
+                <aside class="col-md-6">
+                    <form @submit.prevent="updateUser" ref="form">
+                        <div class="py-2">
+                            <h4>Welcome to your settings page</h4>
+                            <h6 class="pt-4">Profile Picture</h6>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <user-avatar :user="user" />
+                                </div>
+                                <div class="col-md-8">
                                     <b-form-file
                                         name="user[avatar]"
-                                        class="py-2"
-                                    >
+                                        plain
+                                        >
                                     </b-form-file>
-                                </b-form-group>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-7">
-                            <div class="py-2">
-                                <b-form-group label="choose what describes you best">
-                                    <b-form-select
-                                        :options="roles"
-                                        name="user[role]"
-                                        >
-                                    </b-form-select>
-                                </b-form-group>
-                                <b-form-group label="Tell us a little about yourself">
-                                    <b-form-textarea
-                                        placeholder="(Enter brief bio)"
-                                        debounce="300"
-                                        size="lg"
-                                        rows="8"
-                                        name="user[bio]"
-                                        >
-                                    </b-form-textarea>
-                                </b-form-group>
-                                <b-button
-                                    block
-                                    @click="$bvModal.hide('modal-update-account')"
-                                    type="submit"
-                                    variant="success"
+                            <div class="w-50">
+                                <h6 class="pt-4">Full Name</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.full_name"
+                                    name="user[full_name]"
                                     >
-                                    Update account
+                                </b-form-input>
+                                <h6 class="pt-4">Bio/Summary</h6>
+                                <b-form-textarea
+                                    rows="4"
+                                    :value="user.bio"
+                                    name="user[bio]"
+                                    >
+                                </b-form-textarea>
+                                <h6 class="pt-4">Current Role</h6>
+                            </div>
+                            <b-button
+                               type="submit"
+                               variant="outline-dark"
+                                >
+                                Save
+                            </b-button>
+                        </div>
+                    </form>
+                    <div class="mt-4 jumbotron">
+                    <h4> Mentorship preferences </h4>
+                    <p class="font-weight-light lead">
+                        Set the ground rules
+                    </p>
+                    <b-button
+                        class="mt-4"
+                        variant="primary"
+                        >
+                        Let us know what you are looking for
+                    </b-button>
+                    <form @submit.prevent="updateUser" ref="form">
+                    </form>
+                    </div>
+                </aside>
+                <aside class="col-md-6">
+                    <div class="ml-2" v-if="user.account != null">
+                        <form @submit.prevent="updateAccount" ref="formAccount">
+                            <div class="w-50">
+                                <h6 class="pt-4">Currently you are a <b-badge variant="primary">
+                                        {{ user.account.role }}
+                                        </b-badge>
+                                </h6>
+                                <b-form-select
+                                    :options="roles"
+                                    name="account[role]"
+                                    >
+                                </b-form-select>
+                                <h6 class="pt-4">Date of birth</h6>
+                                <b-form-input
+                                    type="date"
+                                    :value="user.account.dob"
+                                    name="account[dob]"
+                                    >
+                                </b-form-input>
+                                <h6 class="pt-4">Cellphone</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.account.cell"
+                                    name="account[cell]"
+                                    >
+                                </b-form-input>
+                                <h6 class="pt-4">address</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.account.address"
+                                    name="account[address]"
+                                    >
+                                </b-form-input>
+                                <h6 class="pt-4">What describes me best</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.account.occupation"
+                                    name="account[occupation]"
+                                    >
+                                </b-form-input>
+                                <h6 class="pt-4">Industry</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.account.industry"
+                                    name="account[industry]"
+                                    >
+                                </b-form-input>
+                                <h6 class="pt-4">Education</h6>
+                                <b-form-input
+                                    type="text"
+                                    :value="user.account.institution"
+                                    placeholder="Institution"
+                                    name="account[institution]"
+                                    >
+                                </b-form-input>
+                                <b-form-input
+                                    type="text"
+                                    class="my-4"
+                                    :value="user.account.qualification"
+                                    placeholder="Qualification"
+                                    name="account[qualification]"
+                                    >
+                                </b-form-input>
+                                <b-button
+                                   type="submit"
+                                   variant="outline-dark"
+                                    >
+                                    Save Account
                                 </b-button>
                             </div>
+                        </form>
+                    </div>
+                    <div v-else>
+                        <div class="mt-4 jumbotron">
+                        <h4> Set up your account to get started </h4>
+                        <router-link
+                            class="btn btn-primary mt-4"
+                            :to="{ path: 'onboarding' }"
+                            >
+                            Continue
+                        </router-link>
                         </div>
                     </div>
-                </form>
+                </aside>
             </div>
-        </b-modal>
+        </div>
     </div>
 </template>
 <script>
@@ -142,7 +163,7 @@ export default {
   name: 'Settings',
   data() {
     return {
-      roles: ['mentor', 'content curator'],
+      roles: ['mentor', 'mentee'],
     };
   },
   computed: {
@@ -154,16 +175,12 @@ export default {
     async updateUser() {
       const formData = new FormData(this.$refs.form);
       this.$store.dispatch('users/userUpdate', formData);
-      this.$notify({
-        group: 'alerts',
-        title: 'Post successfully added',
-        type: 'success',
-        position: 'top center',
-        text: 'Hello user! This is a notification!',
-      });
+      this.$router.go(0);
     },
-    getImageUrl(imageId) {
-      return `http://localhost:3000/${imageId}`;
+    async updateAccount() {
+      const formData = new FormData(this.$refs.formAccount);
+      this.$store.dispatch('users/updateAccount', [formData, this.user.account.id]);
+      this.$router.go(0);
     },
   },
 };

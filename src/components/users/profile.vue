@@ -1,8 +1,15 @@
 <template>
     <div class="py-2">
-        <user-navbar />
-        <div class="container">
-            <router-view />
+        <div v-if="onboardingPage">
+            <div class="container">
+                <router-view />
+            </div>
+        </div>
+        <div v-else>
+            <user-navbar :user="user"/>
+            <div class="container">
+                <router-view />
+            </div>
         </div>
     </div>
 </template>
@@ -18,6 +25,9 @@ export default {
     };
   },
   computed: {
+    onboardingPage() {
+      return this.$route.path === '/users/onboarding';
+    },
     user() {
       return this.$store.state.users.user;
     },

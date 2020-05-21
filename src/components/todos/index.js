@@ -1,12 +1,30 @@
 import Vue from 'vue';
 
 Vue.component('add-todo', {
+  props: ['ids'],
+  computed: {
+    names() {
+      const users = [];
+      /*
+      for (const user of this.ids) {
+        const option = {};
+      }
+       */
+      Object.values(this.ids).forEach((value) => {
+        const option = {};
+        option.value = value.id;
+        option.text = value.full_name;
+        users.push(option);
+      });
+      return users;
+    },
+  },
   template: `
     <div>
         <b-modal id="modal-add-todo"
             centered
             title="Add a todo item"
-            size="xl"
+            size="lg"
             hide-header
             hide-footer
         >
@@ -28,9 +46,18 @@ Vue.component('add-todo', {
                         >
                         </b-form-input>
                     </b-form-group>
+                    <b-form-group label="add a deadline (optional)">
+                        <b-form-input
+                            type="date"
+                            size="lg"
+                            name="todo[deadline]"
+                            class="py-4"
+                        >
+                        </b-form-input>
+                    </b-form-group>
                     <b-form-group>
                         <b-form-textarea
-                            placeholder="(## Description, ## how to get started, ## salary, ## links)"
+                            placeholder="add notes"
                             debounce="300"
                             size="lg"
                             rows="8"
@@ -39,11 +66,23 @@ Vue.component('add-todo', {
                         >
                         </b-form-textarea>
                     </b-form-group>
+                    <b-form-group label="assign to... (optional)"
+                        v-if="ids !== null"
+                        >
+                        <b-form-select
+                            :options="names"
+                            size="lg"
+                            name="todo[assignee_id]"
+                            class="py-4"
+                        >
+                        </b-form-select>
+                    </b-form-group>
                     <b-button
                         variant="success"
                         @click="$bvModal.hide('modal-add-todo')"
                         type="submit"
                         size="lg"
+                        block
                     >
                         Submit
                     </b-button>
@@ -56,7 +95,7 @@ Vue.component('add-todo', {
     async addTodo() {
       const formData = new FormData(this.$refs.form);
       this.$store.dispatch('todos/add', formData);
-      this.$router.push('/users/dashboard');
+      this.$router.go(0);
     },
   },
 });
@@ -71,17 +110,28 @@ Vue.component('todos-index', {
             :key="todo.id"
             class="mb-2 pl-4"
         >
-                <form @submit.prevent="updateTodo" ref="form">
+            <form @submit.prevent="updateTodo" ref="form">
+                <div class="row">
                     <b-form-checkbox
                           id="checkbox-1"
                           v-model="status"
                           name="checkbox-1"
                           value="accepted"
+                          size="lg"
                           unchecked-value="not_accepted"
                         >
                         {{ todo.title }}
                     </b-form-checkbox>
-                </form>
+                    <span class="ml-auto">
+                        due soon{{ todo.deadline }}
+                    </span>
+                    <span class="ml-auto"
+                        v-if="todo.assignee !== null"
+                    >
+                        assigned to: {{ todo.assignee.full_name }}
+                    </span>
+                </div>
+            </form>
         </b-list-group-item>
     </b-list-group>
     </div>

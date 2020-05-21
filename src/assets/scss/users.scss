@@ -2,7 +2,12 @@
 
 .login_form
 {
+
     margin: 1rem 20%;
+    padding: 2rem 8rem;
+    border-radius: 16px;
+    background-color: #fff; 
+
 }
 .text-sm
 {
@@ -31,4 +36,35 @@
 .mentee_card
 {
     height: 100px;
+}
+
+.send_msg
+{
+    background-color: #f2f2f2;
+    border-radius: 16px;
+    p
+    {
+     padding: 8px 15px !important;
+    text-align: right;
+    font-weight: 400;
+
+    }
+}
+.receive_msg
+{
+    p
+    {
+     padding: 8px 15px !important;
+    text-align: left;
+    font-weight: 400;
+
+    }
+}
+
+.check-item
+{
+    border: 1px solid #f2f2f2;
+    border-radius: 16px;
+    padding: 0 18px;
+    margin: 4px 0;
 }

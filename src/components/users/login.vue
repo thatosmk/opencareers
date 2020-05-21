@@ -1,11 +1,11 @@
 <template>
-    <div class="container">
-        <div class="pt-5 text-center" style="padding-top: 120px !important;">
-            <h3 class="font-weight-light">
-                Welcome back
-            </h3>
-        </div>
-        <div class="py-4 login_form">
+    <div class="container pt-5">
+        <div class="pt-5 login_form shadow">
+            <div class="pt-5 text-center">
+                <h3 class="font-weight-bold text-center">
+                    Welcome back
+                </h3>
+            </div>
             <b-alert show v-if="notAuthenticated" variant="danger">
                 {{ errors }}
             </b-alert>
@@ -25,17 +25,10 @@ export default {
       const formData = new FormData(this.$refs.form);
       this.$store.dispatch('users/userSession', formData)
         .then((value) => {
-          console.log(value);
+          this.$cookies.set('loginSuccess', value);
           this.$router.push('/users/dashboard');
         })
-        .catch((error) => { console.log('not logged in', error); });
-      /*
-      if (this.$store.state.users.errors !== null) {
-        this.$router.push('/login');
-      } else if (this.$cookies.isKey('user-token')) {
-        this.$router.push('/users/dashboard');
-      }
-      */
+        .catch((error) => { this.$cookies.set('loginErrors', error); });
     },
   },
   computed: {

@@ -3,12 +3,12 @@
         <div class="hero-post">
             <span class="subtitle text-sm">
                 <p>
-                {{ checkIn.comments.length }} responses
+                {{ comments.length }} responses
                 </p>
             </span>
-            <h3 class="font-weight-bold">
+            <h4 class="font-weight-bold">
                 {{ checkIn.title }}
-            </h3>
+            </h4>
             <p>
                 {{ checkIn.description }}
             </p>
@@ -33,12 +33,20 @@
                                 name="comment[body]"
                             >
                             </b-form-textarea>
+                            <b-input-group-append>
+                                <b-button
+                                    type="submit"
+                                    variant="success"
+                                    >
+                                    reply
+                                </b-button>
+                            </b-input-group-append>
                         </b-input-group>
                 </form>
             </div>
             <div class="py-2">
                 <div
-                    v-for="comment in checkIn.comments"
+                    v-for="comment in comments"
                     :key="comment.id"
                     class="py-2 w-75">
                     <div class="row">
@@ -53,9 +61,9 @@
                             </div>
                         </div>
                         <div class="col-xs-8 col-md-10">
-                            <h4>
+                            <h6>
                                 {{ comment.user.full_name }}
-                            </h4>
+                            </h6>
                             <p class="py-2">
                                 {{ new Date(comment.created_at) | moment   }}
                             </p>
@@ -79,6 +87,9 @@ export default {
     checkIn() {
       return this.$store.state.dashboard.checkIn;
     },
+    comments() {
+      return this.$store.state.dashboard.checkIn.comments;
+    },
     user() {
       return this.$store.state.users.user;
     },
@@ -90,8 +101,8 @@ export default {
   methods: {
     async addComment() {
       const formData = new FormData(this.$refs.form);
-      const id = this.$route.params.postId;
-      this.$store.dispatch('dashboard/createComment', [formData, id]);
+      this.$store.dispatch('dashboard/createComment', [formData, this.checkIn.id]);
+      this.$router.go(0);
     },
     getImageUrl(imageId) {
       return `http://localhost:3000/${imageId}`;

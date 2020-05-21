@@ -1,5 +1,16 @@
 <template>
   <div class="main">
+    <div class="container">
+                            <vue-typed-js :strings="words" :loop="true">
+                                <h2 class="font-weight-light text-italic pt-4">
+                                    Become  &nbsp;
+                                    <span
+                                        class="text-primary worded font-weight-bold pt-2 typing"
+                                    >
+                                    </span>
+                                </h2>
+                            </vue-typed-js>
+    </div>
     <div class="give-back text-center pt-5">
         <h1>
             The best way to give back
@@ -269,7 +280,8 @@ export default {
   name: 'home',
   data() {
     return {
-      words: ['an entreprenuer', 'an artist', 'a chef', 'a photographer', 'an accountant', 'an engineer', 'a freelancer', 'scientist'],
+      words: ['a friend', 'an inspiration', 'a role-model', 'an icon', 'a miracle', 'a blessing',
+      ],
       mainProps: {
         center: true,
         fluidGrow: true,

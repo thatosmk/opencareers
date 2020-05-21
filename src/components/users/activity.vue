@@ -1,9 +1,9 @@
 <template>
     <div>
         <div class="py-2">
-            <h1 class="text-center font-weight-light">
-                Your activity
-            </h1>
+            <h4 class="text-center font-weight-light">
+                We have come up with tools to help you get started
+            </h4>
         </div>
         <div class="py-2 canvas">
             <div class="row">

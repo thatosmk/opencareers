@@ -10,7 +10,11 @@ const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   user: null,
+  mentor: null,
+  account: null,
   errors: null,
+  conversation: null,
+  conversations: {},
   user_signed_in: false,
 };
 
@@ -28,6 +32,18 @@ const mutations = {
   setErrors(state, errors) {
     state.errors = errors;
   },
+  setConversations(state, conversations) {
+    state.conversations = conversations;
+  },
+  addMessage(state, message) {
+    state.conversation.messages.push(message);
+  },
+  addAccount(state, account) {
+    state.user.account = account;
+  },
+  setConversation(state, conversation) {
+    state.conversation = conversation;
+  },
   userLogout(state, user) {
     state.user = user;
     state.user_signed_in = false;
@@ -36,6 +52,9 @@ const mutations = {
     state.user = user;
     state.errors = null;
     state.user_signed_in = true;
+  },
+  setMentor(state, mentor) {
+    state.mentor = mentor;
   },
 };
 // actions
@@ -90,25 +109,33 @@ const actions = {
       .then(user => commit('setUser', user)).catch();
   },
   async userRegister({ commit }, formData) {
-    fetch(`${API_URL}/users.json`, {
-      headers: {
-        accept: 'application/json',
-        'Access-Control-Request-Method': 'POST',
-        'Access-Control-Request-Headers': 'Content-Type',
-        'Access-Control-Allow-Origin': '*',
-        'Access-Control-Allow-Credentials': 'true',
-      },
-      method: 'post',
-      body: formData,
-    }).then((response) => {
-      if (response.headers.get('Authorization')) {
-        Vue.$cookies.set('user-token', response.headers.get('Authorization'));
-      } else {
-        Vue.$cookies.set('login-errors', response.body);
-      }
-      return response.json();
-    })
-      .then(user => commit('setUser', user)).catch();
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/users.json`, {
+        headers: {
+          accept: 'application/json',
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+        method: 'post',
+        body: formData,
+      }).then((response) => {
+        if (response.headers.get('Authorization')) {
+          Vue.$cookies.set('user-token', response.headers.get('Authorization'));
+        }
+        return response.json();
+      })
+        .then((data) => {
+          if (data.errors != null) {
+            commit('setErrors', data);
+            reject(new Error(data));
+          } else {
+            commit('setUser', data);
+            resolve(data);
+          }
+        }).catch();
+    });
   },
   async userSession({ commit }, formData) {
     return new Promise((resolve, reject) => {
@@ -134,7 +161,7 @@ const actions = {
             reject(new Error('Incorrect credentials'));
           } else {
             commit('setUser', data);
-            resolve('Success');
+            resolve(data);
           }
         }).catch();
     });
@@ -149,6 +176,118 @@ const actions = {
         'Access-Control-Allow-Origin': '*',
       },
       method: 'get',
+    }).then(response => response.json())
+      .then(user => commit('setMentor', user)).catch();
+  },
+  async userConversation({ commit }, id) {
+    fetch(`${API_URL}/api/v1/conversations/${id}.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'get',
+    }).then(response => response.json())
+      .then(conversation => commit('setConversation', conversation)).catch();
+  },
+  async userConversations({ commit }) {
+    fetch(`${API_URL}/api/v1/conversations.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'get',
+    }).then(response => response.json())
+      .then(conversations => commit('setConversations', conversations)).catch();
+  },
+  async createConversation({ commit }, formData) {
+    return new Promise((resolve, reject) => {
+      fetch(`${API_URL}/api/v1/conversations.json`, {
+        headers: {
+          accept: 'application/json',
+          Authorization: Vue.$cookies.get('user-token'),
+          'Access-Control-Request-Method': 'POST',
+          'Access-Control-Request-Headers': 'Content-Type',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Credentials': 'true',
+        },
+        method: 'post',
+        body: formData,
+      }).then(response => response.json())
+        .then((data) => {
+          if (data.id === null) {
+            commit('setErrors', data);
+            reject(new Error('Something went wrong'));
+          } else {
+            resolve(data);
+          }
+        }).catch();
+    });
+  },
+  async sendMessage({ commit }, [data, id]) {
+    fetch(`${API_URL}/api/v1/conversations/${id}/messages.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'post',
+      body: data,
+    }).then(response => response.json())
+      .then(message => commit('addMessage', message)).catch();
+  },
+  async createAccount({ commit }, data) {
+    fetch(`${API_URL}/api/v1/accounts.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'post',
+      body: data,
+    }).then(response => response.json())
+      .then(account => commit('addAccount', account)).catch();
+  },
+  async updateAccount({ commit }, [data, id]) {
+    fetch(`${API_URL}/api/v1/accounts/${id}.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'PUT',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'put',
+      body: data,
+    }).then(response => response.json())
+      .then(account => commit('addAccount', account)).catch();
+  },
+  async acceptMentee({ commit }, data) {
+    fetch(`${API_URL}/api/v1/accept_mentee.json`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('user-token'),
+        'Access-Control-Request-Method': 'POST',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+      },
+      method: 'post',
+      body: data,
     }).then(response => response.json())
       .then(user => commit('setUser', user)).catch();
   },
