@@ -13,6 +13,7 @@ import files from './modules/files';
 import posts from './modules/posts';
 import dashboard from './modules/dashboard';
 import todos from './modules/todos';
+import admins from './modules/admins';
 import articles from './modules/articles';
 import users from './modules/users';
 
@@ -34,6 +35,7 @@ const store = new Vuex.Store({
   modules: {
     universities,
     faculties,
+    admins,
     articles,
     programmes,
     dashboard,

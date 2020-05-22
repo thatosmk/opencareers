@@ -178,11 +178,6 @@ Vue.component('main-navbar', {
                     About
                 </router-link>
                 <router-link
-                    :to="{ path: '/login' }"
-                    class="nav-item p-2">
-                    Login
-                </router-link>
-                <router-link
                     :to="{ path: '/register' }"
                     class="nav-item active p-2">
                     Try threaded

@@ -72,14 +72,6 @@ export default {
     },
   },
   data() {
-    const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    // 18 years ago today
-    const minDate = new Date(today);
-    minDate.setYear(minDate.getYear() - 18);
-    // 18 years ago today
-    const maxDate = new Date(today);
-
     return {
       currentStep: 1,
       selected: 'radio-yes',
@@ -98,8 +90,6 @@ export default {
       step2: true,
       step3: true,
       step4: true,
-      min: minDate,
-      max: maxDate,
     };
   },
   methods: {

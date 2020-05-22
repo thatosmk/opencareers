@@ -43,16 +43,26 @@ const actions = {
     fetch(`${API_URL}/api/v1/articles/${id}`, {
       headers: {
         accept: 'application/json',
-        Authorization: Vue.$cookies.get('user-token'),
+        Authorization: Vue.$cookies.get('admin-token'),
       },
       method: 'put',
       body: formData,
+    }).then(response => response.json()).then(article => commit('addArticle', article)).catch();
+  },
+  async deleteArticle({ commit }, id) {
+    fetch(`${API_URL}/api/v1/articles/${id}`, {
+      headers: {
+        accept: 'application/json',
+        Authorization: Vue.$cookies.get('admin-token'),
+      },
+      method: 'delete',
     }).then(response => response.json()).then(article => commit('addArticle', article)).catch();
   },
   async createArticle({ commit }, formData) {
     fetch(`${API_URL}/api/v1/articles.json`, {
       headers: {
         accept: 'application/json',
+        Authorization: Vue.$cookies.get('admin-token'),
       },
       method: 'post',
       body: formData,

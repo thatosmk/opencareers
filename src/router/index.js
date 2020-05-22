@@ -22,11 +22,6 @@ const routes = [
     component: () => import('@/views/About.vue'),
   },
   {
-    path: '/pricing',
-    name: 'pricing',
-    component: () => import('@/views/pricing.vue'),
-  },
-  {
     path: '/blog',
     name: 'blog',
     component: () => import('@/views/blog.vue'),
@@ -40,92 +35,28 @@ const routes = [
     path: '/blog/:articleId/edit',
     name: 'edit_article',
     component: () => import('@/components/articles/edit.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/new',
     name: 'new_article',
     component: () => import('@/components/articles/new.vue'),
+    meta: { requiresAuth: true },
   },
   {
     path: '/login',
-    name: 'login',
-    component: () => import('@/components/users/login.vue'),
+    name: 'new_login',
+    component: () => import('@/views/login.vue'),
+  },
+  {
+    path: '/logout',
+    name: 'new_logout',
+    component: () => import('@/views/logout.vue'),
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@/components/users/register.vue'),
-  },
-  {
-    path: '/logout',
-    name: 'logout',
-    component: () => import('@/components/users/logout.vue'),
-    meta: { requiresAuth: true },
-  },
-  {
-    path: '/users',
-    name: 'users',
-    component: () => import('@/components/users/profile.vue'),
-    meta: { requiresAuth: true },
-    children: [
-      {
-        path: 'profile/:userId',
-        name: 'user',
-        component: () => import('@/components/users/show.vue'),
-      },
-      {
-        path: 'onboarding',
-        name: 'onboarding',
-        component: () => import('@/components/users/onboarding.vue'),
-      },
-      {
-        path: 'mentees',
-        name: 'user_mentees',
-        component: () => import('@/components/users/mentees.vue'),
-      },
-      {
-        path: 'mentors',
-        name: 'user_mentors',
-        component: () => import('@/components/users/mentors.vue'),
-      },
-      {
-        path: 'dashboard',
-        name: 'user_dashboard',
-        component: () => import('@/components/users/dashboard.vue'),
-      },
-      {
-        path: 'chats',
-        name: 'user_messages',
-        component: () => import('@/components/users/inbox.vue'),
-        children: [
-          {
-            path: ':conversationId',
-            name: 'conversation',
-            component: () => import('@/components/users/conversation.vue'),
-          },
-        ],
-      },
-      {
-        path: 'activity',
-        name: 'user_activity',
-        component: () => import('@/components/users/activity.vue'),
-      },
-      {
-        path: 'settings',
-        name: 'user_settings',
-        component: () => import('@/components/users/settings.vue'),
-      },
-      {
-        path: 'posts/:postId',
-        name: 'post',
-        component: () => import('@/components/posts/post.vue'),
-      },
-      {
-        path: 'check_ins/:checkInId',
-        name: 'checkIn',
-        component: () => import('@/components/users/checkIn.vue'),
-      },
-    ],
+    component: () => import('@/views/get_started.vue'),
   },
 ];
 
@@ -137,7 +68,7 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (Vue.$cookies.isKey('user-token')) {
+    if (Vue.$cookies.isKey('admin-token')) {
       next();
     } else {
       next({
@@ -146,12 +77,7 @@ router.beforeEach((to, from, next) => {
       });
     }
   } else {
-    const url = to.name;
-    if (url === 'home' && Vue.$cookies.isKey('user-token')) {
-      next('/users/dashboard');
-    } else {
-      next();
-    }
+    next();
   }
 });
 export default router;

@@ -12,12 +12,24 @@
                 {{ content }}
             </p>
         </div>
-        <router-link
-            :to="{ name: 'edit_article', params: { articleId: article.slug }}"
-            class="btn btn-primary"
+
+        <div
+            v-if="admin"
             >
-            Edit this article
-        </router-link>
+            <router-link
+                :to="{ name: 'edit_article', params: { articleId: article.slug }}"
+                class="btn btn-primary"
+                >
+                Edit this article
+            </router-link>
+            <b-button
+                @click="deleteArticle"
+                variant="danger"
+                class="mx-4"
+                >
+                Delete this article
+            </b-button>
+        </div>
     </div>
 </template>
 <script>
@@ -26,6 +38,9 @@ import hljs from 'highlight.js';
 
 export default {
   computed: {
+    admin() {
+      return this.$cookies.isKey('admin-token');
+    },
     content() {
       marked.setOptions({
         renderer: new marked.Renderer(),
@@ -49,6 +64,12 @@ export default {
   },
   created() {
     this.$store.dispatch('articles/loadArticle', this.$route.params.articleId);
+  },
+  methods: {
+    async deleteArticle() {
+      this.$store.dispatch('articles/deleteArticle', this.$route.params.articleId);
+      this.$router.go(-1);
+    },
   },
 };
 </script>
