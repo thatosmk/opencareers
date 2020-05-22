@@ -4,6 +4,7 @@ import Vuex from 'vuex';
 import VuexORM from '@vuex-orm/core';
 import VuexORMAxios from '@vuex-orm/plugin-axios';
 import Todo from './models/todo';
+import Article from './models/article';
 import universities from './modules/universities';
 import faculties from './modules/faculties';
 import programmes from './modules/programmes';
@@ -12,18 +13,20 @@ import files from './modules/files';
 import posts from './modules/posts';
 import dashboard from './modules/dashboard';
 import todos from './modules/todos';
+import articles from './modules/articles';
 import users from './modules/users';
-import http from '@/store/http';
 
 Vue.use(Vuex);
+
 const db = new VuexORM.Database();
 db.register(Todo, todos);
+db.register(Article, articles);
 
 VuexORM.use(VuexORMAxios, {
   axios,
   db,
-  http,
 });
+
 const ORMPlugin = VuexORM.install(db);
 
 const store = new Vuex.Store({
@@ -31,12 +34,12 @@ const store = new Vuex.Store({
   modules: {
     universities,
     faculties,
+    articles,
     programmes,
     dashboard,
     careers,
     files,
     posts,
-    todos,
     users,
   },
 });

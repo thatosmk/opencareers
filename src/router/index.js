@@ -32,6 +32,21 @@ const routes = [
     component: () => import('@/views/blog.vue'),
   },
   {
+    path: '/blog/:articleId',
+    name: 'article',
+    component: () => import('@/components/articles/show.vue'),
+  },
+  {
+    path: '/blog/:articleId/edit',
+    name: 'edit_article',
+    component: () => import('@/components/articles/edit.vue'),
+  },
+  {
+    path: '/new',
+    name: 'new_article',
+    component: () => import('@/components/articles/new.vue'),
+  },
+  {
     path: '/login',
     name: 'login',
     component: () => import('@/components/users/login.vue'),

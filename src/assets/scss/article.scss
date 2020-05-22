@@ -1,0 +1,44 @@
+@import "variables";
+
+.article-date span
+{
+    font-size: 80%;
+    font-weight: 400;
+    padding-right: 15px;
+    float: left;
+    justify-content: left !important;
+    text-align: left !important;
+}
+
+.articles_index {
+    @media(min-width: 768px) {
+        width: 578px;
+        margin-left: 15%;
+    }
+
+    a
+    {
+        text-decoration: none; 
+        color: $dark;
+    }
+
+}
+.articles_index .article-link
+{
+    padding-top: 50px !important; 
+}
+blockquote
+{
+    padding: 10px 1rem;
+    p
+    {
+        padding: 0 1em;
+        color: #6a737d;
+        border-left: .25em solid #dfe2e5;
+    }
+}
+
+img
+{
+    height: 480px;
+}

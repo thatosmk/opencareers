@@ -9,6 +9,7 @@ const state = {
   all: [],
   comments: [],
   post: {},
+  articles: {},
 };
 
 // getters
@@ -21,6 +22,9 @@ const getters = {
 const mutations = {
   setPosts(state, posts) {
     state.all = posts;
+  },
+  setArticles(state, articles) {
+    state.articles = articles;
   },
   setPost(state, post) {
     state.post = post;
@@ -50,6 +54,20 @@ const actions = {
     }).then(response => response.json())
       .then((posts) => {
         commit('setPosts', posts);
+      }).catch();
+  },
+  async loadArticles({ commit }) {
+    fetch(`${API_URL}/api/v1/articles.json`, {
+      headers: {
+        accept: 'application/json',
+        'Access-Control-Request-Method': 'GET',
+        'Access-Control-Request-Headers': 'Content-Type',
+        'Access-Control-Allow-Origin': '*',
+      },
+      method: 'get',
+    }).then(response => response.json())
+      .then((articles) => {
+        commit('setArticles', articles);
       }).catch();
   },
   async loadPost({ commit }, id) {

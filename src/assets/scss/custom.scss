@@ -4,6 +4,7 @@
 @import "mixins";
 @import "navbar";
 @import "users";
+@import "article";
 
 
 body
@@ -19,7 +20,7 @@ body
     padding-top: 150px;
     padding-bottom: 150px;
     position: relative;
-    @media(max-width: 768px)
+    @media(max-width: 1024px)
     {
         text-justify: center; 
     }
@@ -145,7 +146,7 @@ p
 }
 .landing-header
 {
-    @media(min-width: 768px)
+    @media(min-width: 1024px)
     {
         min-height: 100vh;
 
@@ -474,7 +475,7 @@ footer
 .ap
 {
 
-    @media(min-width: 768px)
+    @media(min-width: 1024px)
     {
         margin-left: 10rem;
         margin-right: 10rem;
@@ -484,6 +485,7 @@ footer
     {
         display: flex;
         justify-content: center !important;
+        text-align: justify;
 
         line-height: 1.8;
         @media(min-width: 768px)
