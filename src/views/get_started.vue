@@ -11,7 +11,7 @@
             </p>
         </div>
         <div class="py-4 mx-5">
-            <form @submit.prevent="betaSignup">
+            <form @submit.prevent="betaSignup" ref="form">
                 <h3>Sign up as
                     <b-badge variant="warning">required</b-badge>
                 </h3>
@@ -49,6 +49,7 @@
                 </b-form-textarea>
                 <b-button
                     variant="primary"
+                    type="submit"
                     size="lg"
                     class="py-4 px-5 my-5"
                     >
@@ -86,5 +87,10 @@ export default {
     };
   },
   name: 'GetStarted',
+  methods: {
+    async betaSignup() {
+      this.$store.dispatch('articles/beta', new FormData(this.$refs.form));
+    },
+  },
 };
 </script>

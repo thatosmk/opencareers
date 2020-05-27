@@ -24,9 +24,9 @@
                             </div>
                         </div>
                         <div class="col-xs-12 col-md-6">
-                            <div class="container ld">
+                            <div class="container left-aside">
                                 <h1>
-                                    Mentorship made easy
+                                    Connect with people who can help
                                 </h1>
                                 <p>
                                     At any stage in your career
@@ -38,6 +38,7 @@
                                         class="cta"
                                         variant="dark"
                                         block
+                                        href="/register"
                                         >
                                         Become a mentor
                                     </b-button>
@@ -46,6 +47,7 @@
                                     <b-button
                                         class="cta"
                                         variant="dark"
+                                        href="/register"
                                         >
                                         Become a mentor
                                     </b-button>
@@ -93,7 +95,7 @@
 
 <script>
 import CookieLaw from 'vue-cookie-law';
-import threadedRead from '@/assets/images/hero-header.png';
+import threadedRead from '@/assets/images/hero-main.png';
 
 export default {
   components: { CookieLaw },

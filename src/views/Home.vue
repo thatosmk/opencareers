@@ -1,11 +1,19 @@
 <template>
   <div class="main">
-    <div class="container">
-        <div class="landing">
+    <div class="landing-left">
+        <div class="landing-container">
             <div class="row">
-                <div class="col-md-5 col-lg-5">
+                <div class="col-md-6 col-lg-6">
+                    <div class="aside-left">
+                        <b-img
+                            :src="book"
+                            fluid
+                            class="rounded-img"
+                            >
+                        </b-img>
+                    </div>
                 </div>
-                <div class="col-md-7 col-lg-7">
+                <div class="col-md-6 col-lg-6">
                     <div class="py-4">
                         <vue-typed-js :strings="words" :loop="true">
                             <h1 class="font-weight-light text-italic pt-4">
@@ -24,16 +32,17 @@
                         <b-button
                             class="cta"
                             variant="dark"
+                            href="/register"
                             >
-                            Why should I mentor?
+                            I want to mentor
                         </b-button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="landing">
+    <div class="landing-right">
+        <div class="landing-container">
             <div class="row">
                 <div class="col-md-6 col-lg-6">
                     <div class="py-4">
@@ -49,84 +58,105 @@
                             <b-button
                                 class="cta mx-2"
                                 variant="dark"
+                                href="/register"
                                 >
-                                See our mentors
+                                I need a mentor
                             </b-button>
                         </div>
                         <div class="d-none d-md-block">
                             <b-button
                                 class="cta"
                                 variant="dark"
+                                href="/register"
                                 >
-                                See our mentors
+                                I need a mentor
                             </b-button>
                         </div>
                     </div>
                 </div>
                 <div class="col-md-5 col-lg-5">
+                    <div class="aside-right">
+                        <b-img
+                            :src="smiling"
+                            fluid
+                            class="rounded-img"
+                            >
+                        </b-img>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
     <div class="container">
         <div class="landing">
-            <div class="text-center py-5">
-                <h1>
+            <div class="text-center">
+                <h1 class="py-5">
                     A platform for engaging mentorships
                 </h1>
             </div>
             <div class="pt-5">
                 <div class="row">
                     <div class="col-md-3 col-lg-3">
-                        <div class="card">
-                            <h4 class="py-5">
-                                Easy Scheduling
+                        <div class="text-center pt-4">
+                            <b-icon-calendar
+                                variant="primary"
+                                font-scale="3"
+                                >
+                            </b-icon-calendar>
+                            <h4 class="pb-3 pt-5">
+                                Schedule Meetings
                             </h4>
                             <p>
-                                We are a community of professionals in industry
-                                and academia. We want to support you so you
-                                make an informed career choice for your life.
+                                Set meetings and important dates
+                                for the mentorship.
                             </p>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
-                        <div class="card">
-                            <h4 class="py-5">
-                                Easy Scheduling
-                            </h4>
-                            <p>
-                                We are a community of professionals in industry
-                                and academia. We want to support you so you
-                                make an informed career choice for your life.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-lg-3">
-                        <div class="card">
+                        <div class="text-center pt-4">
                             <b-icon-chat
                                 variant="primary"
                                 font-scale="3"
                                 >
                             </b-icon-chat>
-                            <h4 class="py-5">
-                                Private messaging
+                            <h4 class="pb-3 pt-5">
+                                Instant Messaging
                             </h4>
                             <p>
-                                We are a community of professionals in industry
-                                and academia. We want to support you so you
-                                make an informed career choice for your life.
+                                Chat privately with each other and
+                                and share stuff with honesty and trust.
                             </p>
                         </div>
                     </div>
                     <div class="col-md-3 col-lg-3">
-                        <div class="card">
-                            <h4 class="py-5">
-                                Private messaging
+                        <div class="text-center pt-4">
+                            <b-icon-files
+                                variant="primary"
+                                font-scale="3"
+                                >
+                            </b-icon-files>
+                            <h4 class="pb-3 pt-5">
+                                Shared Resources
                             </h4>
                             <p>
-                                We are a community of professionals in industry
-                                and academia. We want to support you so you
-                                make an informed career choice for your life.
+                                Share documents and useful files
+                                between each other.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-3 col-lg-3">
+                        <div class="text-center pt-4">
+                            <b-icon-clipboard-data
+                                variant="primary"
+                                font-scale="3"
+                                >
+                            </b-icon-clipboard-data>
+                            <h4 class="pb-3 pt-5">
+                                Goal Setting &amp; To-dos
+                            </h4>
+                            <p>
+                                Make a list of goals and to dos
+                                and assign them with due dates.
                             </p>
                         </div>
                     </div>
@@ -134,128 +164,98 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <div class="landing text-center">
+    <div class="landing-colored">
+        <div class="container text-center">
             <h1 class="py-5">
-                Check up on your mentors &amp; mentees
+                For Organisations
             </h1>
             <p class="pb-5 pj lead">
-                Have you been worrying about what to do with your life,
-                what the next the next step in your career would
-                be? We can help you navigate safely into the seemingly
-                dreadful unknown.
+                Take your mentorship programme online and manage with ease.
             </p>
-            <b-img-lazy
-                v-bind="mainProps"
-                :src="heroCompany"
-                alt="threaded-careers"
-                >
-            </b-img-lazy>
         </div>
-    </div>
-    <div class="container">
-        <div class="landing">
+        <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-md-4">
-                    <h4 class="text-center py-5">
+                    <h4 class="py-5">
                         Quick &amp; Easy onboarding
                     </h4>
-                    <div class="d-block d-md-none">
-                    <b-img-lazy
-                        fluid
-                        :src="heroCompany"
-                        alt="threaded-careers"
-                        >
-                    </b-img-lazy>
-                    </div>
-                    <p class="pb-5 lead">
-                        Is your organisation or school running a mentorship programme?
-                        Move your mentorship programme online to make it easy to access
-                        and valuable to mentees and mentors.
+                    <p class="mr-2 pb-5 lead">
+                        Easily sign up mentors and mentees and get
+                        them onboard with all they need to know about
+                        your mentorship programme.
                     </p>
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    <h4 class="text-center py-5">
-                        Automatic Check-ins &amp; Reports
+                    <h4 class="py-5">
+                        Automatic Check-ins
                     </h4>
-                    <div class="d-block d-md-none">
-                    <b-img-lazy
-                        fluid
-                        :src="mOffice"
-                        alt="threaded-careers"
-                        >
-                    </b-img-lazy>
-                    </div>
-                    <p class="pb-2 lead">
-                        Share your programme link with your volunteers
-                        and potential mentees, once their profiles have
-                        been setup, you will be ready to assign based on
-                        our algorithm recommendations.
+                    <p class="pb-2 mr-2 lead">
+                        Find out how your mentors and mentees
+                        are getting along with scheduled
+                        regular check-ins.
                     </p>
                 </div>
                 <div class="col-xs-12 col-md-4">
-                    <h4 class="text-center py-5">
+                    <h4 class="py-5">
                         Evaluate &amp; Improve
                     </h4>
-                    <p class="pb-5 lead">
-                        Ensure ideal mentor-mentee matches by using our
-                        match recommendation algorithm that ensure that both
-                        the mentor and mentee will find the most value from their
-                        mentorship relationship.
+                    <p class="mr-2 pb-5 lead">
+                        View interaction metrics and feedback
+                        by sending our quick surveys. Browse
+                        the dashboard for useful reporting.
                     </p>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container py-4">
-        <b-jumbotron class="jumb_landing py-5">
-            <template
-                class="font-weight-bold"
-                v-slot:lead>
-                    <div class="pb-5 jumb_text">
-                        Engage in a <span class="text-primary">
-                           volunteering</span> opportunity,
-                        <br/>
-                        highly valued by<span class="text-primary"> employers
-                            </span>
-                    </div>
-                    <b-button
-                        variant="primary"
-                        class="cta"
-                        size="lg"
-                        href="/careers"
-                        >
-                        Try threaded
-                    </b-button>
-                    <b-button
-                        variant="danger"
-                        class="cta mx-4"
-                        size="lg"
-                        href="/careers"
-                        >
-                        Got questions?
-                    </b-button>
-            </template>
-        </b-jumbotron>
+    <div class="landing">
+        <div class="container">
+            <div class="pb-5 jumb_text">
+                <h1 class="font-weight-light">
+                Engage in a <span class="text-primary">
+                   volunteering</span> opportunity,
+                <br/>
+                highly valued by<span class="text-primary"> employers
+                    </span>
+                </h1>
+            </div>
+            <b-button
+                variant="primary"
+                class="cta m-2"
+                size="lg"
+                href="/register"
+                >
+                Try threaded
+            </b-button>
+            <b-button
+                variant="danger"
+                class="cta m-2"
+                size="lg"
+                href="/about"
+                >
+                Got questions?
+            </b-button>
+        </div>
     </div>
   </div>
 </template>
 
 <script>
 // @ is an alias to /src
-import readingImage from '@/assets/images/happy_students2.jpg';
+import backGraphic from '@/assets/images/background-main.png';
 import magnolia from '@/assets/images/marginalia-success.png';
 import social from '@/assets/images/social-girl.png';
 import mOffice from '@/assets/images/hero-company.png';
 import heroCompany from '@/assets/images/hero-company-1.png';
-import thoughts from '@/assets/images/smiling.jpg';
+import smiling from '@/assets/images/smiling.jpg';
 import growth from '@/assets/images/love.png';
+import book from '@/assets/images/book.jpg';
 
 export default {
   name: 'home',
   data() {
     return {
-      words: ['a friend', 'an advisor', 'a role-model', 'an icon', 'a miracle', 'a blessing',
+      words: ['a friend', 'an advisor', 'an icon', 'a miracle', 'a blessing',
       ],
       mainProps: {
         center: true,
@@ -266,9 +266,10 @@ export default {
         height: 400,
         class: 'my-5',
       },
-      readingImage,
+      backGraphic,
       magnolia,
-      thoughts,
+      book,
+      smiling,
       social,
       growth,
       mOffice,

@@ -8,6 +8,7 @@ const API_URL = 'http://localhost:3000';
 // initial state
 const state = {
   all: [],
+  beta: {},
   article: {},
 };
 
@@ -18,6 +19,9 @@ const mutations = {
   },
   addArticle(state, article) {
     state.article = article;
+  },
+  addBeta(state, beta) {
+    state.beta = beta;
   },
 };
 
@@ -67,6 +71,15 @@ const actions = {
       method: 'post',
       body: formData,
     }).then(response => response.json()).then(article => commit('addArticle', article)).catch();
+  },
+  async beta({ commit }, formData) {
+    fetch(`${API_URL}/api/v1/beta_signups.json`, {
+      headers: {
+        accept: 'application/json',
+      },
+      method: 'post',
+      body: formData,
+    }).then(response => response.json()).then(beta => commit('addBeta', beta)).catch();
   },
 };
 

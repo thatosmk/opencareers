@@ -160,7 +160,7 @@ Vue.component('main-navbar', {
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
        <div class="container-fluid">
-        <b-navbar-brand href="/" class="font-weight-bold">threaded</b-navbar-brand>
+        <b-navbar-brand href="/" class="text-primary font-weight-bold">threaded</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
@@ -175,7 +175,7 @@ Vue.component('main-navbar', {
                 <router-link
                     :to="{ path: '/about' }"
                     class="nav-item p-2">
-                    About
+                    Our Story
                 </router-link>
                 <router-link
                     :to="{ path: '/register' }"
