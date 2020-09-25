@@ -160,18 +160,15 @@ Vue.component('main-navbar', {
     <!-- navbar -->
     <b-navbar toggleable="lg" type="light" variant="light">
        <div class="container-fluid">
-        <b-navbar-brand href="/" class="text-primary font-weight-bold">threaded</b-navbar-brand>
+        <b-navbar-brand href="/" class="text-primary font-weight-bold">
+    opencareers
+    </b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
             <!-- Right aligned nav items -->
             <b-navbar-nav class="ml-auto">
-                <router-link
-                    :to="{ path: '/blog' }"
-                    class="nav-item p-2">
-                    Blog
-                </router-link>
                 <router-link
                     :to="{ path: '/about' }"
                     class="nav-item p-2">
@@ -180,7 +177,7 @@ Vue.component('main-navbar', {
                 <router-link
                     :to="{ path: '/register' }"
                     class="nav-item active p-2">
-                    Try threaded
+                    Contribute
                 </router-link>
             </b-navbar-nav>
         </b-collapse>

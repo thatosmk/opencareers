@@ -9,62 +9,35 @@
       <div v-else>
         <div v-if="rootPage" class="content-wrap">
             <header class="landing-header">
-                <div class="jumbo-skew"></div>
                 <main-navbar />
                 <div class="section-header">
-                    <b-row class="pt-2">
-                        <div class="d-block d-md-none">
-                            <div class="mx-4">
-                            <b-img
-                                :src="threadedRead"
-                                alt="threaded-careers"
-                                fluid
-                                >
-                            </b-img>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
+                    <div class="d-flex flex-column bd-highlight">
+                        <div class="bd-highlight w-100">
                             <div class="container left-aside">
                                 <h1>
-                                    Connect with people who can help
+                                    The world is changing, and so are careers
                                 </h1>
                                 <p>
-                                    At any stage in your career
-                                    the right relationship can steer you into
-                                    a fruitful journey.
+                                    Search &amp; read more about career and
+                                    how to get into careers you love.
                                 </p>
-                                <div class="pt-5 d-md-none d-block">
-                                    <b-button
-                                        class="cta"
-                                        variant="dark"
-                                        block
-                                        href="/register"
-                                        >
-                                        Become a mentor
-                                    </b-button>
-                                </div>
-                                <div class="text-center d-none d-md-block pt-5">
-                                    <b-button
-                                        class="cta"
-                                        variant="dark"
-                                        href="/register"
-                                        >
-                                        Become a mentor
-                                    </b-button>
-                                </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-md-5">
-                            <div class="d-none d-md-block">
-                                <b-img
-                                    :src="threadedRead"
-                                    alt="threaded-careers"
-                                    fluid-grow
-                                    >
-                                </b-img>
+                        <div class="bd-highlight w-100">
+                            <div class="container pt-5">
+                                <b-form inline>
+                                    <b-input
+                                        id="search"
+                                        class="mb-2 mr-sm-2 mb-sm-0 form-control-lg w-75"
+                                        placeholder="Search for a career..."
+                                        >
+                                    </b-input>
+                                    <b-button variant="primary" size="lg">Save</b-button>
+
+                                </b-form>
                             </div>
                         </div>
-                    </b-row>
+                    </div>
                 </div>
             </header>
             <main>

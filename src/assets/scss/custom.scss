@@ -80,14 +80,12 @@ body
 }
 .landing-left
 {
+    
     @media(min-width: 768px)
     {
         padding-top: 150px;
         padding-bottom: 150px;
         position: relative;
-        background-image: url('../images/b3-main.png'); 
-        background-repeat: no-repeat;
-        background-position: top left;
         background-size: 55%;
         .landing-container
         {
@@ -231,12 +229,9 @@ p
 }
 .landing-header
 {
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    @media(min-width: 1024px)
+    @media(min-width: 992px)
     {
-        min-height: 100vh;
+        min-height: 50vh;
 
         .section-header
         {
@@ -244,7 +239,7 @@ p
         }
         .left-aside
         {
-            width: 576px;
+            width: 768px;
         }
         h1
         {
@@ -257,8 +252,8 @@ p
         }
         p
         {
-            padding-top: 2em;
-            font-size: 1.6rem;
+            padding-top: 1em;
+            font-size: 1.4rem;
             text-align: center;
         }
 
