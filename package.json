@@ -16,7 +16,7 @@
     "bootstrap-vue": "^2.14.0",
     "core-js": "^3.4.4",
     "highlight": "^0.2.4",
-    "highlight.js": "^10.0.3",
+    "highlight.js": "^10.4.1",
     "highlightjs-vue": "^1.0.0",
     "marked": "^1.0.0",
     "moment": "^2.25.3",
