@@ -20,7 +20,7 @@
     "highlightjs-vue": "^1.0.0",
     "marked": "^1.0.0",
     "moment": "^2.25.3",
-    "moment-timezone": "^0.5.31",
+    "moment-timezone": "^0.5.35",
     "v-calendar": "^1.0.0-beta.23",
     "v-markdown-editor": "^1.2.4",
     "vue": "^2.6.11",
